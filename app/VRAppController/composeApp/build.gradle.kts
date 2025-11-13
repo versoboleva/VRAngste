@@ -42,8 +42,10 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation(libs.kotlinx.serialization.core)
+            implementation(libs.kotlinx.serialization.protobuf)
+            implementation(libs.ktor.network)
             implementation("org.jetbrains.compose.material:material-icons-extended:1.7.3")
-
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
