@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+message Envelope {
+
+  oneof payload {
+    RainSetting rain_setting = 1;
+    WindSetting wind_setting = 2;
+    ThunderSetting thunder_setting = 3;
+    CloudDensitySetting cloud_density_setting = 4;
+
+    LightningBrightnessSetting lightning_brightness_setting = 5;
+    LightningFrequencySetting lightning_frequency_setting = 6;
+    LightningDistanceSetting lightning_distance_setting = 7;
+
+    LightningReport lightning_report = 8;
+    ThunderReport thunder_report = 9;
+    PanicReport panic_report = 10;
+    LoginFailed login_failed = 11;
+
+  }
+}
+
+message RainSetting {
+  uint32 level = 1;
+}
+
+message WindSetting {
+  uint32 level = 1;
+}
+
+message ThunderSetting {
+  uint32 level = 1;
+}
+
+message CloudDensitySetting {
+  uint32 level = 1;
+}
+
+message LightningBrightnessSetting {
+  float scale = 1;
+}
+
+message LightningFrequencySetting {
+  float scale = 1;
+}
+
+message LightningDistanceSetting {
+  float scale = 1;
+}
+
+message LightningReport {
+  uint64 distance = 1;
+  uint64 duration = 2;
+}
+
+message ThunderReport {
+  float intensity = 1;
+}
+
+message PanicReport {}
+
+message LoginFailed {}
