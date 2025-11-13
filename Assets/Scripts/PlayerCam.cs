@@ -5,7 +5,6 @@ public class PlayerCam : MonoBehaviour
 {
     public float sensX;
     public float sensY;
-    private bool disableXRInEditor = true;
 
     public Transform orientation;
 
@@ -16,16 +15,6 @@ public class PlayerCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-    }
-
-    private void Awake()
-    {
-#if UNITY_EDITOR
-        if (disableXRInEditor)
-        {
-            DisableXR();
-        }
-#endif
     }
 
     private void Update()
@@ -40,22 +29,6 @@ public class PlayerCam : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-    }
-    
-     private void DisableXR()
-    {
-        var xrManager = XRGeneralSettings.Instance?.Manager;
-        if (xrManager == null)
-        {
-            Debug.LogWarning("[DisableXRIfTesting] Kein XR Manager gefunden.");
-            return;
-        }
-
-        if (xrManager.isInitializationComplete)
-        {
-            xrManager.StopSubsystems();
-            xrManager.DeinitializeLoader();
-            Debug.Log("[DisableXRIfTesting] XR deaktiviert für Editor-Testlauf.");
-        }
+        return;
     }
 }
