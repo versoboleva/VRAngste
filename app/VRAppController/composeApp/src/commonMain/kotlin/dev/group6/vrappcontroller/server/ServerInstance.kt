@@ -2,6 +2,7 @@ package dev.group6.vrappcontroller.server
 
 object ServerInstance {
     private val server: Server
+    private var isRunning = false
 
     init {
         val randomNonce = generateNonce()
@@ -14,9 +15,17 @@ object ServerInstance {
         return (1..4).map { chars.random() }.joinToString("")
     }
 
-    fun start() = server.start()
+    fun start() {
+        if (isRunning) return
+        server.start()
+        isRunning = true
+    }
 
-    fun stop() = server.stop()
+    fun stop() {
+        if (!isRunning) return
+        server.stop()
+        isRunning = false
+    }
 
     suspend fun broadcast(msg: Envelope) = server.broadcast(msg)
 }
