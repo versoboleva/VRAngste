@@ -1,13 +1,12 @@
 package dev.group6.vrappcontroller.view
 
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -16,29 +15,25 @@ import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RangeSlider
 import androidx.compose.material3.Slider
-import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import dev.group6.vrappcontroller.model.MainModel
-import kotlinx.coroutines.flow.asStateFlow
+import dev.group6.vrappcontroller.model.ControlModel
+import org.jetbrains.compose.ui.tooling.preview.Preview
 import kotlin.math.roundToInt
 
 @Composable
-fun MainView(
-    viewModel: MainModel
+fun ControlView(
+    viewModel: ControlModel
 ) {
 
     val thunderVolume by viewModel.thunderVolume.collectAsState()
@@ -49,16 +44,12 @@ fun MainView(
     val wind by viewModel.wind.collectAsState()
     val clouds by viewModel.clouds.collectAsState()
 
-    val minThunderInterval by viewModel.minThunderInterval.collectAsState()
-    val maxThunderInterval by viewModel.maxThunderInterval.collectAsState()
-    val minLightningInterval by viewModel.minLightningInterval.collectAsState()
-    val maxLightningInterval by viewModel.maxLightningInterval.collectAsState()
+    val lightningInterval by viewModel.lightningInterval.collectAsState()
 
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxHeight().fillMaxWidth()
             .verticalScroll(rememberScrollState())
-            .padding(32.dp)
-            .windowInsetsPadding(WindowInsets.systemBars),
+            .padding(32.dp),
     ) {
         Category("Blitz/Donner") {
             SubCategory("Lautstärke Donner") {
@@ -80,7 +71,7 @@ fun MainView(
                     value = lightningDistance,
                     onValueChange = viewModel::setLightningDistance,
                 )
-                Text("${(lightningDistance * 100).roundToInt()}%")
+                Text("${(lightningDistance * 100).roundToInt()}m")
             }
 
         }
@@ -105,27 +96,13 @@ fun MainView(
             }
         }
         Category("Interval") {
-            SubCategory("Intervall Donner") {
-                RangeSlider(
-                    value = minThunderInterval.toFloat()..maxThunderInterval.toFloat(),
-                    onValueChange = { rangeSliderState ->
-                        viewModel.setMinThunderInterval(rangeSliderState.start.roundToInt())
-                        viewModel.setMaxThunderInterval(rangeSliderState.endInclusive.roundToInt())
-                    },
-                    valueRange = 0f..100f,
-                )
-                Text("From $minThunderInterval to $maxThunderInterval per minute")
-            }
             SubCategory("Intervall Blitz") {
-                RangeSlider(
-                    value = minLightningInterval.toFloat()..maxLightningInterval.toFloat(),
-                    onValueChange = { rangeSliderState ->
-                        viewModel.setMinLightningInterval(rangeSliderState.start.roundToInt())
-                        viewModel.setMaxLightningInterval(rangeSliderState.endInclusive.roundToInt())
-                    },
+                Slider(
+                    value = lightningInterval.toFloat(),
+                    onValueChange = {viewModel.setLightningInterval(it.roundToInt())},
                     valueRange = 0f..100f,
                 )
-                Text("From $minLightningInterval to $maxLightningInterval per minute")
+                Text("Blitzschläge alle ${lightningInterval}s")
             }
         }
     }

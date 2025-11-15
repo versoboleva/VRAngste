@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.composeHotReload)
+    alias(libs.plugins.atomicfu)
 }
 
 kotlin {
@@ -25,6 +27,8 @@ kotlin {
         }
     }
 
+    jvm()
+
     sourceSets {
         androidMain.dependencies {
             implementation(compose.preview)
@@ -39,9 +43,18 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+            implementation(libs.kotlinx.serialization.core)
+            implementation(libs.kotlinx.serialization.protobuf)
+            implementation(libs.ktor.network)
+            implementation(libs.atomicfu)
+            implementation("org.jetbrains.compose.material:material-icons-extended:1.7.3")
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+        jvmMain.dependencies {
+            implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinx.coroutinesSwing)
         }
     }
 }
@@ -75,5 +88,17 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+}
+
+compose.desktop {
+    application {
+        mainClass = "dev.group6.vrappcontroller.MainKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "dev.group6.vrappcontroller"
+            packageVersion = "1.0.0"
+        }
+    }
 }
 
