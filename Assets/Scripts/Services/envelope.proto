@@ -16,9 +16,10 @@ message Envelope {
     ThunderReport thunder_report = 9;
     PanicEvent panic_event = 10;
     LoginFailed login_failed = 11;
+    LoginSuccess login_success = 12;
     
-    SceneChangeSetting scene_change_setting = 12;
-    AnnounceLightningReport announce_lightning_report = 13;
+    SceneChangeSetting scene_change_setting = 13;
+    AnnounceLightningReport announce_lightning_report = 14;
   }
 }
 
@@ -72,3 +73,5 @@ message ThunderReport {
 message PanicEvent {}
 
 message LoginFailed {}
+
+message LoginSuccess {}
