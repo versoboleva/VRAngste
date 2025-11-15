@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Receiver</title>
+</head>
+<body>
+<script>
+    // Set your WebSocket server URL
+    const wsUrl = "ws://127.0.0.1:8081"; // adjust port if needed
+    const socket = new WebSocket(wsUrl);
+
+    // Connection opened
+    socket.addEventListener('open', function (event) {
+        console.log('Connected to WebSocket server at', wsUrl);
+    });
+
+    // Listen for messages
+    socket.addEventListener('message', function (event) {
+        // Only receiving, not displaying
+        console.log('Received data length:', event.data.length || event.data.byteLength);
+        // If you want, you could process binary data here
+        // For now we ignore the content
+    });
+
+    // Handle errors
+    socket.addEventListener('error', function (event) {
+        console.error('WebSocket error:', event);
+    });
+
+    // Handle close
+    socket.addEventListener('close', function (event) {
+        console.log('WebSocket closed:', event.code, event.reason);
+    });
+</script>
+</body>
+</html>
