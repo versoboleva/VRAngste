@@ -89,9 +89,9 @@ public class StormSystem : MonoBehaviour
         }
 
     }
-    public void SetStorm(int distance, int wolken, int intervalBlitz, int regen, int helligkeitBlitz)
+    public void SetStorm(float distance, int wolken, int intervalBlitz, int regen, int helligkeitBlitz)
     {
-        position = new Vector3(distance, 6, distance);
+        position = new Vector3(distance * 100, 6, distance*100);
 
         scale = wolken;
         
@@ -102,6 +102,30 @@ public class StormSystem : MonoBehaviour
         flashIntencity = helligkeitBlitz /2;
     }
 
+    public void SetDistance( float distance)
+    {
+        position = new Vector3(distance*100, 6, distance*100);
+    }
+
+    public void SetWolken(int wolken)
+    {
+        scale = wolken;
+    }
+
+    public void SetInterval(int interval)
+    {
+        emitionLightning = interval / 1;
+    }
+
+    public void SetHelligkeit(float helligkeitBlitz)
+    {
+        flashIntencity = helligkeitBlitz / 2;
+    }
+
+    public void SetRegen(int regen)
+    {
+        emitionRain = regen;
+    }
     private void MoveToPosition()
     {
         if (LightningController != null && LightningController.position != position) 

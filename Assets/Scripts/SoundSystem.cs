@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEditor.SearchService;
 
 public class SoundSystem : MonoBehaviour 
 {
@@ -43,7 +44,7 @@ public class SoundSystem : MonoBehaviour
         windSource.transform.position = player.position;
     }
 
-    public void SetThunderVolume()
+    private void SetThunderVolume()
     {
         if (thunderSource != null)
         {
@@ -74,6 +75,33 @@ public class SoundSystem : MonoBehaviour
             this.windIntencity = windIntencity;
             PlayWind();
         }
+        if (thunderVolume != donnerVolume / 100f)
+        {
+            thunderVolume = donnerVolume / 100f;
+            SetThunderVolume();
+        }
+    }
+
+    public void SetSceneNr(int sceneNr)
+    {
+        if (currentScene != sceneNr)
+        {
+            currentScene = sceneNr;
+            SetScene();
+        }
+    }
+
+    public void SetWind(int windIntencity)
+    {
+        if (this.windIntencity != windIntencity)
+        {
+            this.windIntencity = windIntencity;
+            PlayWind();
+        }
+    }
+
+    public void SetThunder(int donnerVolume)
+    {
         if (thunderVolume != donnerVolume / 100f)
         {
             thunderVolume = donnerVolume / 100f;
