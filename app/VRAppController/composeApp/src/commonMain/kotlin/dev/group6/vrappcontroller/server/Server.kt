@@ -47,6 +47,8 @@ class Server(private val port: Int, private val nonce: String) {
                 val socket = serverSocket!!.accept()
                 val handler = ClientHandler(socket)
                 if (handler.validateNonce()) {
+                    val msg = ProtoBuf.encodeToByteArray(Envelope(login_success = LoginSuccess()))
+                    handler.send(msg)
                     clients.update { it + handler }
                     handler.start()
                 } else {
