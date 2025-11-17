@@ -40,7 +40,7 @@ public static partial class EnvelopeReflection {
           "Z2h0bmluZ19yZXBvcnQYDiABKAsyGC5Bbm5vdW5jZUxpZ2h0bmluZ1JlcG9y",
           "dEgAQgkKB3BheWxvYWQiHAoLUmFpblNldHRpbmcSDQoFbGV2ZWwYASABKA0i",
           "HAoLV2luZFNldHRpbmcSDQoFbGV2ZWwYASABKA0iHwoOVGh1bmRlclNldHRp",
-          "bmcSDQoFbGV2ZWwYASABKA0iJAoTQ2xvdWREZW5zaXR5U2V0dGluZxINCgVs",
+          "bmcSDQoFc2NhbGUYASABKAIiJAoTQ2xvdWREZW5zaXR5U2V0dGluZxINCgVs",
           "ZXZlbBgBIAEoDSIjChJTY2VuZUNoYW5nZVNldHRpbmcSDQoFaW5kZXgYASAB",
           "KA0iKwoaTGlnaHRuaW5nQnJpZ2h0bmVzc1NldHRpbmcSDQoFc2NhbGUYASAB",
           "KAIiKgoZTGlnaHRuaW5nRnJlcXVlbmN5U2V0dGluZxINCgVzY2FsZRgBIAEo",
@@ -57,7 +57,7 @@ public static partial class EnvelopeReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::Envelope), global::Envelope.Parser, new[]{ "RainSetting", "WindSetting", "ThunderSetting", "CloudDensitySetting", "LightningBrightnessSetting", "LightningFrequencySetting", "LightningDistanceSetting", "LightningReport", "ThunderReport", "PanicEvent", "LoginFailed", "LoginSuccess", "SceneChangeSetting", "AnnounceLightningReport" }, new[]{ "Payload" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RainSetting), global::RainSetting.Parser, new[]{ "Level" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::WindSetting), global::WindSetting.Parser, new[]{ "Level" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::ThunderSetting), global::ThunderSetting.Parser, new[]{ "Level" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::ThunderSetting), global::ThunderSetting.Parser, new[]{ "Scale" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::CloudDensitySetting), global::CloudDensitySetting.Parser, new[]{ "Level" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::SceneChangeSetting), global::SceneChangeSetting.Parser, new[]{ "Index" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LightningBrightnessSetting), global::LightningBrightnessSetting.Parser, new[]{ "Scale" }, null, null, null, null),
@@ -1436,7 +1436,7 @@ public sealed partial class ThunderSetting : pb::IMessage<ThunderSetting>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public ThunderSetting(ThunderSetting other) : this() {
-    level_ = other.level_;
+    scale_ = other.scale_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -1446,15 +1446,15 @@ public sealed partial class ThunderSetting : pb::IMessage<ThunderSetting>
     return new ThunderSetting(this);
   }
 
-  /// <summary>Field number for the "level" field.</summary>
-  public const int LevelFieldNumber = 1;
-  private uint level_;
+  /// <summary>Field number for the "scale" field.</summary>
+  public const int ScaleFieldNumber = 1;
+  private float scale_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public uint Level {
-    get { return level_; }
+  public float Scale {
+    get { return scale_; }
     set {
-      level_ = value;
+      scale_ = value;
     }
   }
 
@@ -1473,7 +1473,7 @@ public sealed partial class ThunderSetting : pb::IMessage<ThunderSetting>
     if (ReferenceEquals(other, this)) {
       return true;
     }
-    if (Level != other.Level) return false;
+    if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(Scale, other.Scale)) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -1481,7 +1481,7 @@ public sealed partial class ThunderSetting : pb::IMessage<ThunderSetting>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
-    if (Level != 0) hash ^= Level.GetHashCode();
+    if (Scale != 0F) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(Scale);
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -1500,9 +1500,9 @@ public sealed partial class ThunderSetting : pb::IMessage<ThunderSetting>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
-    if (Level != 0) {
-      output.WriteRawTag(8);
-      output.WriteUInt32(Level);
+    if (Scale != 0F) {
+      output.WriteRawTag(13);
+      output.WriteFloat(Scale);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -1514,9 +1514,9 @@ public sealed partial class ThunderSetting : pb::IMessage<ThunderSetting>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (Level != 0) {
-      output.WriteRawTag(8);
-      output.WriteUInt32(Level);
+    if (Scale != 0F) {
+      output.WriteRawTag(13);
+      output.WriteFloat(Scale);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
@@ -1528,8 +1528,8 @@ public sealed partial class ThunderSetting : pb::IMessage<ThunderSetting>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
-    if (Level != 0) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Level);
+    if (Scale != 0F) {
+      size += 1 + 4;
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -1543,8 +1543,8 @@ public sealed partial class ThunderSetting : pb::IMessage<ThunderSetting>
     if (other == null) {
       return;
     }
-    if (other.Level != 0) {
-      Level = other.Level;
+    if (other.Scale != 0F) {
+      Scale = other.Scale;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -1565,8 +1565,8 @@ public sealed partial class ThunderSetting : pb::IMessage<ThunderSetting>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
-        case 8: {
-          Level = input.ReadUInt32();
+        case 13: {
+          Scale = input.ReadFloat();
           break;
         }
       }
@@ -1588,8 +1588,8 @@ public sealed partial class ThunderSetting : pb::IMessage<ThunderSetting>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
-        case 8: {
-          Level = input.ReadUInt32();
+        case 13: {
+          Scale = input.ReadFloat();
           break;
         }
       }

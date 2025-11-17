@@ -17,7 +17,7 @@ message Envelope {
     PanicEvent panic_event = 10;
     LoginFailed login_failed = 11;
     LoginSuccess login_success = 12;
-    
+
     SceneChangeSetting scene_change_setting = 13;
     AnnounceLightningReport announce_lightning_report = 14;
   }
@@ -32,7 +32,7 @@ message WindSetting {
 }
 
 message ThunderSetting {
-  uint32 level = 1;
+  float scale = 1;
 }
 
 message CloudDensitySetting {
