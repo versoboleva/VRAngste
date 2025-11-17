@@ -4904,7 +4904,7 @@ GameObject:
   - component: {fileID: 3555968662365512100}
   m_Layer: 0
   m_Name: Rain
-  m_TagString: Untagged
+  m_TagString: RainSystem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4998,7 +4998,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0

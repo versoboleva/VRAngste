@@ -4,32 +4,70 @@ public class LightningController : MonoBehaviour
 {
     public ParticleSystem lightningPS;
     public Skylight skyLight;
+    public SoundSystem soundSystem;
+    public Vector3 position = new Vector3(0, 40, 0);
+    public Vector3 scale = new Vector3(10, 10, 1);
 
-    private int lastParticleCount = 0;
+    
+    public int emissionRate = 100;
 
-    void OnEnable()
+    private float timer = 0f;
+
+    private void Start()
     {
+        if (soundSystem == null)
+            soundSystem = Object.FindAnyObjectByType<SoundSystem>();
+
         if (lightningPS != null)
         {
+            var emission = lightningPS.emission;
+            emission.enabled = false; 
             lightningPS.Play();
         }
-        lastParticleCount = 0;
     }
 
-    void Update()
+    private void Update()
     {
-        if (lightningPS == null || !lightningPS.IsAlive())
-            return;
+        if (lightningPS == null) return;
 
-        int currentCount = lightningPS.particleCount;
+        timer += Time.deltaTime;
 
-        // If new particles spawned this frame, trigger flash
-        if (currentCount > lastParticleCount)
+        if (timer >=  emissionRate && emissionRate>0)
         {
-            skyLight.TriggerFlash();
-            Debug.Log("Sky flash for new particle");
+            EmitLightning();
+            timer = 0f;
         }
+    }
 
-        lastParticleCount = currentCount;
+    private void FixedUpdate()
+    {
+        if (lightningPS == null) return;
+
+        lightningPS.transform.position = position;
+
+        var shape = lightningPS.shape;
+        shape.scale = scale;
+    }
+
+    private void EmitLightning()
+    {
+        lightningPS.Emit(1);
+
+        ParticleSystem.Particle[] particles = new ParticleSystem.Particle[1];
+        int count = lightningPS.GetParticles(particles);
+
+        Vector3 spawnPos;
+        if (count > 0)
+            spawnPos = lightningPS.transform.TransformPoint(particles[count - 1].position);
+        else
+            spawnPos = lightningPS.transform.position;
+
+        if (skyLight != null)
+            skyLight.TriggerFlash(spawnPos);
+
+        if (soundSystem != null)
+            soundSystem.PlayThunder(spawnPos);
+
+        Debug.Log("Lightning emitted at: " + spawnPos);
     }
 }
