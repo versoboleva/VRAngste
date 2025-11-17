@@ -45,7 +45,7 @@ data class WindSetting(@ProtoNumber(1) val level: UInt)
 
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
-data class ThunderSetting(@ProtoNumber(1) val level: UInt)
+data class ThunderSetting(@ProtoNumber(1) val scale: Float)
 
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
