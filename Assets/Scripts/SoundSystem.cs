@@ -100,11 +100,11 @@ public class SoundSystem : MonoBehaviour
         }
     }
 
-    public void SetThunder(int donnerVolume)
+    public void SetThunder(float donnerVolume)
     {
-        if (thunderVolume != donnerVolume / 100f)
+        if (thunderVolume != donnerVolume)
         {
-            thunderVolume = donnerVolume / 100f;
+            thunderVolume = donnerVolume;
             SetThunderVolume();
         }
     }

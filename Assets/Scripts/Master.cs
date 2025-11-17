@@ -15,7 +15,7 @@ public class Master : MonoBehaviour
 
     private int SceneNr;
     private int windIntencity;
-    private int thunderVolume;
+    private float thunderVolume;
     private float distance;
     private int rainIntencity;
     private int clouds;
@@ -58,9 +58,9 @@ public class Master : MonoBehaviour
                 break;
 
             case Envelope.PayloadOneofCase.ThunderSetting: 
-                thunderVolume = (int) envelope.ThunderSetting.Level;
+                thunderVolume = envelope.ThunderSetting.Scale;
                 sound.SetThunder(thunderVolume);
-                Debug.Log("Thunder level:" +thunderVolume);
+                Debug.Log("Thunder volume:" +thunderVolume);
                 break;
 
             case Envelope.PayloadOneofCase.CloudDensitySetting: 
