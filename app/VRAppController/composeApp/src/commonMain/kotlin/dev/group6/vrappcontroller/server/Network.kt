@@ -17,21 +17,40 @@ data class Envelope(
     @ProtoNumber(8) val lightning_report: LightningReport? = null,
     @ProtoNumber(9) val thunder_report: ThunderReport? = null,
     @ProtoNumber(10) val panic_report: PanicReport? = null,
-    @ProtoNumber(11) val login_failed: LoginFailed? = null
+    @ProtoNumber(11) val login_failed: LoginFailed? = null,
+    @ProtoNumber(12) val login_success: LoginSuccess? = null,
+    @ProtoNumber(13) val scene_change_setting: SceneChangeSetting? = null,
+    @ProtoNumber(14) val announce_lightning_report: AnnounceLightningReport? = null
 )
 
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 data class RainSetting(@ProtoNumber(1) val level: UInt)
+
+@OptIn(ExperimentalSerializationApi::class)
+@Serializable
+data class SceneChangeSetting(@ProtoNumber(1) val index: UInt)
+
+@OptIn(ExperimentalSerializationApi::class)
+@Serializable
+data class AnnounceLightningReport(
+    @ProtoNumber(1) val distance: ULong,
+    @ProtoNumber(2) val duration: ULong,
+    @ProtoNumber(3) val duration_until_start: ULong
+)
+
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 data class WindSetting(@ProtoNumber(1) val level: UInt)
+
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 data class ThunderSetting(@ProtoNumber(1) val level: UInt)
+
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 data class CloudDensitySetting(@ProtoNumber(1) val level: UInt)
+
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 data class LightningBrightnessSetting(@ProtoNumber(1) val scale: Float)
@@ -60,3 +79,6 @@ class PanicReport
 
 @Serializable
 class LoginFailed
+
+@Serializable
+class LoginSuccess

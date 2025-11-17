@@ -10,7 +10,6 @@ import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.encodeToByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
-import kotlin.collections.emptyList
 import kotlin.time.Duration.Companion.seconds
 
 
@@ -38,6 +37,7 @@ class Server(private val port: Int, private val nonce: String) {
     private val clients = atomic<List<ClientHandler>>(emptyList())
     private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private var serverSocket: ServerSocket? = null
+
     @OptIn(ExperimentalSerializationApi::class)
     fun start() {
         serverJob = scope.launch {
@@ -47,6 +47,8 @@ class Server(private val port: Int, private val nonce: String) {
                 val socket = serverSocket!!.accept()
                 val handler = ClientHandler(socket)
                 if (handler.validateNonce()) {
+                    val msg = ProtoBuf.encodeToByteArray(Envelope(login_success = LoginSuccess()))
+                    handler.send(msg)
                     clients.update { it + handler }
                     handler.start()
                 } else {
