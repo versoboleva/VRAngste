@@ -22,7 +22,7 @@ public static partial class EnvelopeReflection {
   static EnvelopeReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "Cg5lbnZlbG9wZS5wcm90byKxBAoIRW52ZWxvcGUSJAoMcmFpbl9zZXR0aW5n",
+          "Cg5lbnZlbG9wZS5wcm90byLLBQoIRW52ZWxvcGUSJAoMcmFpbl9zZXR0aW5n",
           "GAEgASgLMgwuUmFpblNldHRpbmdIABIkCgx3aW5kX3NldHRpbmcYAiABKAsy",
           "DC5XaW5kU2V0dGluZ0gAEioKD3RodW5kZXJfc2V0dGluZxgDIAEoCzIPLlRo",
           "dW5kZXJTZXR0aW5nSAASNQoVY2xvdWRfZGVuc2l0eV9zZXR0aW5nGAQgASgL",
@@ -32,33 +32,43 @@ public static partial class EnvelopeReflection {
           "Z2h0bmluZ0ZyZXF1ZW5jeVNldHRpbmdIABI/ChpsaWdodG5pbmdfZGlzdGFu",
           "Y2Vfc2V0dGluZxgHIAEoCzIZLkxpZ2h0bmluZ0Rpc3RhbmNlU2V0dGluZ0gA",
           "EiwKEGxpZ2h0bmluZ19yZXBvcnQYCCABKAsyEC5MaWdodG5pbmdSZXBvcnRI",
-          "ABIoCg50aHVuZGVyX3JlcG9ydBgJIAEoCzIOLlRodW5kZXJSZXBvcnRIABIk",
-          "CgxwYW5pY19yZXBvcnQYCiABKAsyDC5QYW5pY1JlcG9ydEgAEiQKDGxvZ2lu",
-          "X2ZhaWxlZBgLIAEoCzIMLkxvZ2luRmFpbGVkSABCCQoHcGF5bG9hZCIcCgtS",
-          "YWluU2V0dGluZxINCgVsZXZlbBgBIAEoDSIcCgtXaW5kU2V0dGluZxINCgVs",
-          "ZXZlbBgBIAEoDSIfCg5UaHVuZGVyU2V0dGluZxINCgVsZXZlbBgBIAEoDSIk",
-          "ChNDbG91ZERlbnNpdHlTZXR0aW5nEg0KBWxldmVsGAEgASgNIisKGkxpZ2h0",
-          "bmluZ0JyaWdodG5lc3NTZXR0aW5nEg0KBXNjYWxlGAEgASgCIioKGUxpZ2h0",
-          "bmluZ0ZyZXF1ZW5jeVNldHRpbmcSDQoFc2NhbGUYASABKAIiKQoYTGlnaHRu",
-          "aW5nRGlzdGFuY2VTZXR0aW5nEg0KBXNjYWxlGAEgASgCIjUKD0xpZ2h0bmlu",
-          "Z1JlcG9ydBIQCghkaXN0YW5jZRgBIAEoBBIQCghkdXJhdGlvbhgCIAEoBCIi",
-          "Cg1UaHVuZGVyUmVwb3J0EhEKCWludGVuc2l0eRgBIAEoAiINCgtQYW5pY1Jl",
-          "cG9ydCINCgtMb2dpbkZhaWxlZGIGcHJvdG8z"));
+          "ABIoCg50aHVuZGVyX3JlcG9ydBgJIAEoCzIOLlRodW5kZXJSZXBvcnRIABIi",
+          "CgtwYW5pY19ldmVudBgKIAEoCzILLlBhbmljRXZlbnRIABIkCgxsb2dpbl9m",
+          "YWlsZWQYCyABKAsyDC5Mb2dpbkZhaWxlZEgAEiYKDWxvZ2luX3N1Y2Nlc3MY",
+          "DCABKAsyDS5Mb2dpblN1Y2Nlc3NIABIzChRzY2VuZV9jaGFuZ2Vfc2V0dGlu",
+          "ZxgNIAEoCzITLlNjZW5lQ2hhbmdlU2V0dGluZ0gAEj0KGWFubm91bmNlX2xp",
+          "Z2h0bmluZ19yZXBvcnQYDiABKAsyGC5Bbm5vdW5jZUxpZ2h0bmluZ1JlcG9y",
+          "dEgAQgkKB3BheWxvYWQiHAoLUmFpblNldHRpbmcSDQoFbGV2ZWwYASABKA0i",
+          "HAoLV2luZFNldHRpbmcSDQoFbGV2ZWwYASABKA0iHwoOVGh1bmRlclNldHRp",
+          "bmcSDQoFbGV2ZWwYASABKA0iJAoTQ2xvdWREZW5zaXR5U2V0dGluZxINCgVs",
+          "ZXZlbBgBIAEoDSIjChJTY2VuZUNoYW5nZVNldHRpbmcSDQoFaW5kZXgYASAB",
+          "KA0iKwoaTGlnaHRuaW5nQnJpZ2h0bmVzc1NldHRpbmcSDQoFc2NhbGUYASAB",
+          "KAIiKgoZTGlnaHRuaW5nRnJlcXVlbmN5U2V0dGluZxINCgVzY2FsZRgBIAEo",
+          "AiIpChhMaWdodG5pbmdEaXN0YW5jZVNldHRpbmcSDQoFc2NhbGUYASABKAIi",
+          "NQoPTGlnaHRuaW5nUmVwb3J0EhAKCGRpc3RhbmNlGAEgASgEEhAKCGR1cmF0",
+          "aW9uGAIgASgEIlsKF0Fubm91bmNlTGlnaHRuaW5nUmVwb3J0EhAKCGRpc3Rh",
+          "bmNlGAEgASgEEhAKCGR1cmF0aW9uGAIgASgEEhwKFGR1cmF0aW9uX3VudGls",
+          "X3N0YXJ0GAMgASgEIiIKDVRodW5kZXJSZXBvcnQSEQoJaW50ZW5zaXR5GAEg",
+          "ASgCIgwKClBhbmljRXZlbnQiDQoLTG9naW5GYWlsZWQiDgoMTG9naW5TdWNj",
+          "ZXNzYgZwcm90bzM="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::Envelope), global::Envelope.Parser, new[]{ "RainSetting", "WindSetting", "ThunderSetting", "CloudDensitySetting", "LightningBrightnessSetting", "LightningFrequencySetting", "LightningDistanceSetting", "LightningReport", "ThunderReport", "PanicReport", "LoginFailed" }, new[]{ "Payload" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Envelope), global::Envelope.Parser, new[]{ "RainSetting", "WindSetting", "ThunderSetting", "CloudDensitySetting", "LightningBrightnessSetting", "LightningFrequencySetting", "LightningDistanceSetting", "LightningReport", "ThunderReport", "PanicEvent", "LoginFailed", "LoginSuccess", "SceneChangeSetting", "AnnounceLightningReport" }, new[]{ "Payload" }, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::RainSetting), global::RainSetting.Parser, new[]{ "Level" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::WindSetting), global::WindSetting.Parser, new[]{ "Level" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ThunderSetting), global::ThunderSetting.Parser, new[]{ "Level" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::CloudDensitySetting), global::CloudDensitySetting.Parser, new[]{ "Level" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::SceneChangeSetting), global::SceneChangeSetting.Parser, new[]{ "Index" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LightningBrightnessSetting), global::LightningBrightnessSetting.Parser, new[]{ "Scale" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LightningFrequencySetting), global::LightningFrequencySetting.Parser, new[]{ "Scale" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LightningDistanceSetting), global::LightningDistanceSetting.Parser, new[]{ "Scale" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LightningReport), global::LightningReport.Parser, new[]{ "Distance", "Duration" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::AnnounceLightningReport), global::AnnounceLightningReport.Parser, new[]{ "Distance", "Duration", "DurationUntilStart" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ThunderReport), global::ThunderReport.Parser, new[]{ "Intensity" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PanicReport), global::PanicReport.Parser, null, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::LoginFailed), global::LoginFailed.Parser, null, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::PanicEvent), global::PanicEvent.Parser, null, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::LoginFailed), global::LoginFailed.Parser, null, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::LoginSuccess), global::LoginSuccess.Parser, null, null, null, null, null)
         }));
   }
   #endregion
@@ -128,11 +138,20 @@ public sealed partial class Envelope : pb::IMessage<Envelope>
       case PayloadOneofCase.ThunderReport:
         ThunderReport = other.ThunderReport.Clone();
         break;
-      case PayloadOneofCase.PanicReport:
-        PanicReport = other.PanicReport.Clone();
+      case PayloadOneofCase.PanicEvent:
+        PanicEvent = other.PanicEvent.Clone();
         break;
       case PayloadOneofCase.LoginFailed:
         LoginFailed = other.LoginFailed.Clone();
+        break;
+      case PayloadOneofCase.LoginSuccess:
+        LoginSuccess = other.LoginSuccess.Clone();
+        break;
+      case PayloadOneofCase.SceneChangeSetting:
+        SceneChangeSetting = other.SceneChangeSetting.Clone();
+        break;
+      case PayloadOneofCase.AnnounceLightningReport:
+        AnnounceLightningReport = other.AnnounceLightningReport.Clone();
         break;
     }
 
@@ -253,15 +272,15 @@ public sealed partial class Envelope : pb::IMessage<Envelope>
     }
   }
 
-  /// <summary>Field number for the "panic_report" field.</summary>
-  public const int PanicReportFieldNumber = 10;
+  /// <summary>Field number for the "panic_event" field.</summary>
+  public const int PanicEventFieldNumber = 10;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public global::PanicReport PanicReport {
-    get { return payloadCase_ == PayloadOneofCase.PanicReport ? (global::PanicReport) payload_ : null; }
+  public global::PanicEvent PanicEvent {
+    get { return payloadCase_ == PayloadOneofCase.PanicEvent ? (global::PanicEvent) payload_ : null; }
     set {
       payload_ = value;
-      payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.PanicReport;
+      payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.PanicEvent;
     }
   }
 
@@ -274,6 +293,42 @@ public sealed partial class Envelope : pb::IMessage<Envelope>
     set {
       payload_ = value;
       payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.LoginFailed;
+    }
+  }
+
+  /// <summary>Field number for the "login_success" field.</summary>
+  public const int LoginSuccessFieldNumber = 12;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::LoginSuccess LoginSuccess {
+    get { return payloadCase_ == PayloadOneofCase.LoginSuccess ? (global::LoginSuccess) payload_ : null; }
+    set {
+      payload_ = value;
+      payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.LoginSuccess;
+    }
+  }
+
+  /// <summary>Field number for the "scene_change_setting" field.</summary>
+  public const int SceneChangeSettingFieldNumber = 13;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::SceneChangeSetting SceneChangeSetting {
+    get { return payloadCase_ == PayloadOneofCase.SceneChangeSetting ? (global::SceneChangeSetting) payload_ : null; }
+    set {
+      payload_ = value;
+      payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.SceneChangeSetting;
+    }
+  }
+
+  /// <summary>Field number for the "announce_lightning_report" field.</summary>
+  public const int AnnounceLightningReportFieldNumber = 14;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::AnnounceLightningReport AnnounceLightningReport {
+    get { return payloadCase_ == PayloadOneofCase.AnnounceLightningReport ? (global::AnnounceLightningReport) payload_ : null; }
+    set {
+      payload_ = value;
+      payloadCase_ = value == null ? PayloadOneofCase.None : PayloadOneofCase.AnnounceLightningReport;
     }
   }
 
@@ -290,8 +345,11 @@ public sealed partial class Envelope : pb::IMessage<Envelope>
     LightningDistanceSetting = 7,
     LightningReport = 8,
     ThunderReport = 9,
-    PanicReport = 10,
+    PanicEvent = 10,
     LoginFailed = 11,
+    LoginSuccess = 12,
+    SceneChangeSetting = 13,
+    AnnounceLightningReport = 14,
   }
   private PayloadOneofCase payloadCase_ = PayloadOneofCase.None;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -331,8 +389,11 @@ public sealed partial class Envelope : pb::IMessage<Envelope>
     if (!object.Equals(LightningDistanceSetting, other.LightningDistanceSetting)) return false;
     if (!object.Equals(LightningReport, other.LightningReport)) return false;
     if (!object.Equals(ThunderReport, other.ThunderReport)) return false;
-    if (!object.Equals(PanicReport, other.PanicReport)) return false;
+    if (!object.Equals(PanicEvent, other.PanicEvent)) return false;
     if (!object.Equals(LoginFailed, other.LoginFailed)) return false;
+    if (!object.Equals(LoginSuccess, other.LoginSuccess)) return false;
+    if (!object.Equals(SceneChangeSetting, other.SceneChangeSetting)) return false;
+    if (!object.Equals(AnnounceLightningReport, other.AnnounceLightningReport)) return false;
     if (PayloadCase != other.PayloadCase) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -350,8 +411,11 @@ public sealed partial class Envelope : pb::IMessage<Envelope>
     if (payloadCase_ == PayloadOneofCase.LightningDistanceSetting) hash ^= LightningDistanceSetting.GetHashCode();
     if (payloadCase_ == PayloadOneofCase.LightningReport) hash ^= LightningReport.GetHashCode();
     if (payloadCase_ == PayloadOneofCase.ThunderReport) hash ^= ThunderReport.GetHashCode();
-    if (payloadCase_ == PayloadOneofCase.PanicReport) hash ^= PanicReport.GetHashCode();
+    if (payloadCase_ == PayloadOneofCase.PanicEvent) hash ^= PanicEvent.GetHashCode();
     if (payloadCase_ == PayloadOneofCase.LoginFailed) hash ^= LoginFailed.GetHashCode();
+    if (payloadCase_ == PayloadOneofCase.LoginSuccess) hash ^= LoginSuccess.GetHashCode();
+    if (payloadCase_ == PayloadOneofCase.SceneChangeSetting) hash ^= SceneChangeSetting.GetHashCode();
+    if (payloadCase_ == PayloadOneofCase.AnnounceLightningReport) hash ^= AnnounceLightningReport.GetHashCode();
     hash ^= (int) payloadCase_;
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -407,13 +471,25 @@ public sealed partial class Envelope : pb::IMessage<Envelope>
       output.WriteRawTag(74);
       output.WriteMessage(ThunderReport);
     }
-    if (payloadCase_ == PayloadOneofCase.PanicReport) {
+    if (payloadCase_ == PayloadOneofCase.PanicEvent) {
       output.WriteRawTag(82);
-      output.WriteMessage(PanicReport);
+      output.WriteMessage(PanicEvent);
     }
     if (payloadCase_ == PayloadOneofCase.LoginFailed) {
       output.WriteRawTag(90);
       output.WriteMessage(LoginFailed);
+    }
+    if (payloadCase_ == PayloadOneofCase.LoginSuccess) {
+      output.WriteRawTag(98);
+      output.WriteMessage(LoginSuccess);
+    }
+    if (payloadCase_ == PayloadOneofCase.SceneChangeSetting) {
+      output.WriteRawTag(106);
+      output.WriteMessage(SceneChangeSetting);
+    }
+    if (payloadCase_ == PayloadOneofCase.AnnounceLightningReport) {
+      output.WriteRawTag(114);
+      output.WriteMessage(AnnounceLightningReport);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -461,13 +537,25 @@ public sealed partial class Envelope : pb::IMessage<Envelope>
       output.WriteRawTag(74);
       output.WriteMessage(ThunderReport);
     }
-    if (payloadCase_ == PayloadOneofCase.PanicReport) {
+    if (payloadCase_ == PayloadOneofCase.PanicEvent) {
       output.WriteRawTag(82);
-      output.WriteMessage(PanicReport);
+      output.WriteMessage(PanicEvent);
     }
     if (payloadCase_ == PayloadOneofCase.LoginFailed) {
       output.WriteRawTag(90);
       output.WriteMessage(LoginFailed);
+    }
+    if (payloadCase_ == PayloadOneofCase.LoginSuccess) {
+      output.WriteRawTag(98);
+      output.WriteMessage(LoginSuccess);
+    }
+    if (payloadCase_ == PayloadOneofCase.SceneChangeSetting) {
+      output.WriteRawTag(106);
+      output.WriteMessage(SceneChangeSetting);
+    }
+    if (payloadCase_ == PayloadOneofCase.AnnounceLightningReport) {
+      output.WriteRawTag(114);
+      output.WriteMessage(AnnounceLightningReport);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
@@ -506,11 +594,20 @@ public sealed partial class Envelope : pb::IMessage<Envelope>
     if (payloadCase_ == PayloadOneofCase.ThunderReport) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(ThunderReport);
     }
-    if (payloadCase_ == PayloadOneofCase.PanicReport) {
-      size += 1 + pb::CodedOutputStream.ComputeMessageSize(PanicReport);
+    if (payloadCase_ == PayloadOneofCase.PanicEvent) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(PanicEvent);
     }
     if (payloadCase_ == PayloadOneofCase.LoginFailed) {
       size += 1 + pb::CodedOutputStream.ComputeMessageSize(LoginFailed);
+    }
+    if (payloadCase_ == PayloadOneofCase.LoginSuccess) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(LoginSuccess);
+    }
+    if (payloadCase_ == PayloadOneofCase.SceneChangeSetting) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(SceneChangeSetting);
+    }
+    if (payloadCase_ == PayloadOneofCase.AnnounceLightningReport) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(AnnounceLightningReport);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -579,17 +676,35 @@ public sealed partial class Envelope : pb::IMessage<Envelope>
         }
         ThunderReport.MergeFrom(other.ThunderReport);
         break;
-      case PayloadOneofCase.PanicReport:
-        if (PanicReport == null) {
-          PanicReport = new global::PanicReport();
+      case PayloadOneofCase.PanicEvent:
+        if (PanicEvent == null) {
+          PanicEvent = new global::PanicEvent();
         }
-        PanicReport.MergeFrom(other.PanicReport);
+        PanicEvent.MergeFrom(other.PanicEvent);
         break;
       case PayloadOneofCase.LoginFailed:
         if (LoginFailed == null) {
           LoginFailed = new global::LoginFailed();
         }
         LoginFailed.MergeFrom(other.LoginFailed);
+        break;
+      case PayloadOneofCase.LoginSuccess:
+        if (LoginSuccess == null) {
+          LoginSuccess = new global::LoginSuccess();
+        }
+        LoginSuccess.MergeFrom(other.LoginSuccess);
+        break;
+      case PayloadOneofCase.SceneChangeSetting:
+        if (SceneChangeSetting == null) {
+          SceneChangeSetting = new global::SceneChangeSetting();
+        }
+        SceneChangeSetting.MergeFrom(other.SceneChangeSetting);
+        break;
+      case PayloadOneofCase.AnnounceLightningReport:
+        if (AnnounceLightningReport == null) {
+          AnnounceLightningReport = new global::AnnounceLightningReport();
+        }
+        AnnounceLightningReport.MergeFrom(other.AnnounceLightningReport);
         break;
     }
 
@@ -694,12 +809,12 @@ public sealed partial class Envelope : pb::IMessage<Envelope>
           break;
         }
         case 82: {
-          global::PanicReport subBuilder = new global::PanicReport();
-          if (payloadCase_ == PayloadOneofCase.PanicReport) {
-            subBuilder.MergeFrom(PanicReport);
+          global::PanicEvent subBuilder = new global::PanicEvent();
+          if (payloadCase_ == PayloadOneofCase.PanicEvent) {
+            subBuilder.MergeFrom(PanicEvent);
           }
           input.ReadMessage(subBuilder);
-          PanicReport = subBuilder;
+          PanicEvent = subBuilder;
           break;
         }
         case 90: {
@@ -709,6 +824,33 @@ public sealed partial class Envelope : pb::IMessage<Envelope>
           }
           input.ReadMessage(subBuilder);
           LoginFailed = subBuilder;
+          break;
+        }
+        case 98: {
+          global::LoginSuccess subBuilder = new global::LoginSuccess();
+          if (payloadCase_ == PayloadOneofCase.LoginSuccess) {
+            subBuilder.MergeFrom(LoginSuccess);
+          }
+          input.ReadMessage(subBuilder);
+          LoginSuccess = subBuilder;
+          break;
+        }
+        case 106: {
+          global::SceneChangeSetting subBuilder = new global::SceneChangeSetting();
+          if (payloadCase_ == PayloadOneofCase.SceneChangeSetting) {
+            subBuilder.MergeFrom(SceneChangeSetting);
+          }
+          input.ReadMessage(subBuilder);
+          SceneChangeSetting = subBuilder;
+          break;
+        }
+        case 114: {
+          global::AnnounceLightningReport subBuilder = new global::AnnounceLightningReport();
+          if (payloadCase_ == PayloadOneofCase.AnnounceLightningReport) {
+            subBuilder.MergeFrom(AnnounceLightningReport);
+          }
+          input.ReadMessage(subBuilder);
+          AnnounceLightningReport = subBuilder;
           break;
         }
       }
@@ -812,12 +954,12 @@ public sealed partial class Envelope : pb::IMessage<Envelope>
           break;
         }
         case 82: {
-          global::PanicReport subBuilder = new global::PanicReport();
-          if (payloadCase_ == PayloadOneofCase.PanicReport) {
-            subBuilder.MergeFrom(PanicReport);
+          global::PanicEvent subBuilder = new global::PanicEvent();
+          if (payloadCase_ == PayloadOneofCase.PanicEvent) {
+            subBuilder.MergeFrom(PanicEvent);
           }
           input.ReadMessage(subBuilder);
-          PanicReport = subBuilder;
+          PanicEvent = subBuilder;
           break;
         }
         case 90: {
@@ -827,6 +969,33 @@ public sealed partial class Envelope : pb::IMessage<Envelope>
           }
           input.ReadMessage(subBuilder);
           LoginFailed = subBuilder;
+          break;
+        }
+        case 98: {
+          global::LoginSuccess subBuilder = new global::LoginSuccess();
+          if (payloadCase_ == PayloadOneofCase.LoginSuccess) {
+            subBuilder.MergeFrom(LoginSuccess);
+          }
+          input.ReadMessage(subBuilder);
+          LoginSuccess = subBuilder;
+          break;
+        }
+        case 106: {
+          global::SceneChangeSetting subBuilder = new global::SceneChangeSetting();
+          if (payloadCase_ == PayloadOneofCase.SceneChangeSetting) {
+            subBuilder.MergeFrom(SceneChangeSetting);
+          }
+          input.ReadMessage(subBuilder);
+          SceneChangeSetting = subBuilder;
+          break;
+        }
+        case 114: {
+          global::AnnounceLightningReport subBuilder = new global::AnnounceLightningReport();
+          if (payloadCase_ == PayloadOneofCase.AnnounceLightningReport) {
+            subBuilder.MergeFrom(AnnounceLightningReport);
+          }
+          input.ReadMessage(subBuilder);
+          AnnounceLightningReport = subBuilder;
           break;
         }
       }
@@ -1629,6 +1798,204 @@ public sealed partial class CloudDensitySetting : pb::IMessage<CloudDensitySetti
 }
 
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class SceneChangeSetting : pb::IMessage<SceneChangeSetting>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<SceneChangeSetting> _parser = new pb::MessageParser<SceneChangeSetting>(() => new SceneChangeSetting());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<SceneChangeSetting> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::EnvelopeReflection.Descriptor.MessageTypes[5]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SceneChangeSetting() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SceneChangeSetting(SceneChangeSetting other) : this() {
+    index_ = other.index_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public SceneChangeSetting Clone() {
+    return new SceneChangeSetting(this);
+  }
+
+  /// <summary>Field number for the "index" field.</summary>
+  public const int IndexFieldNumber = 1;
+  private uint index_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public uint Index {
+    get { return index_; }
+    set {
+      index_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as SceneChangeSetting);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(SceneChangeSetting other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Index != other.Index) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Index != 0) hash ^= Index.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (Index != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Index);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Index != 0) {
+      output.WriteRawTag(8);
+      output.WriteUInt32(Index);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (Index != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Index);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(SceneChangeSetting other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Index != 0) {
+      Index = other.Index;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Index = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          Index = input.ReadUInt32();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class LightningBrightnessSetting : pb::IMessage<LightningBrightnessSetting>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
@@ -1643,7 +2010,7 @@ public sealed partial class LightningBrightnessSetting : pb::IMessage<LightningB
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::EnvelopeReflection.Descriptor.MessageTypes[5]; }
+    get { return global::EnvelopeReflection.Descriptor.MessageTypes[6]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1841,7 +2208,7 @@ public sealed partial class LightningFrequencySetting : pb::IMessage<LightningFr
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::EnvelopeReflection.Descriptor.MessageTypes[6]; }
+    get { return global::EnvelopeReflection.Descriptor.MessageTypes[7]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2039,7 +2406,7 @@ public sealed partial class LightningDistanceSetting : pb::IMessage<LightningDis
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::EnvelopeReflection.Descriptor.MessageTypes[7]; }
+    get { return global::EnvelopeReflection.Descriptor.MessageTypes[8]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2237,7 +2604,7 @@ public sealed partial class LightningReport : pb::IMessage<LightningReport>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::EnvelopeReflection.Descriptor.MessageTypes[8]; }
+    get { return global::EnvelopeReflection.Descriptor.MessageTypes[9]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2458,6 +2825,278 @@ public sealed partial class LightningReport : pb::IMessage<LightningReport>
 }
 
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class AnnounceLightningReport : pb::IMessage<AnnounceLightningReport>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<AnnounceLightningReport> _parser = new pb::MessageParser<AnnounceLightningReport>(() => new AnnounceLightningReport());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<AnnounceLightningReport> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::EnvelopeReflection.Descriptor.MessageTypes[10]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public AnnounceLightningReport() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public AnnounceLightningReport(AnnounceLightningReport other) : this() {
+    distance_ = other.distance_;
+    duration_ = other.duration_;
+    durationUntilStart_ = other.durationUntilStart_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public AnnounceLightningReport Clone() {
+    return new AnnounceLightningReport(this);
+  }
+
+  /// <summary>Field number for the "distance" field.</summary>
+  public const int DistanceFieldNumber = 1;
+  private ulong distance_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong Distance {
+    get { return distance_; }
+    set {
+      distance_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "duration" field.</summary>
+  public const int DurationFieldNumber = 2;
+  private ulong duration_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong Duration {
+    get { return duration_; }
+    set {
+      duration_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "duration_until_start" field.</summary>
+  public const int DurationUntilStartFieldNumber = 3;
+  private ulong durationUntilStart_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public ulong DurationUntilStart {
+    get { return durationUntilStart_; }
+    set {
+      durationUntilStart_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as AnnounceLightningReport);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(AnnounceLightningReport other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Distance != other.Distance) return false;
+    if (Duration != other.Duration) return false;
+    if (DurationUntilStart != other.DurationUntilStart) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Distance != 0UL) hash ^= Distance.GetHashCode();
+    if (Duration != 0UL) hash ^= Duration.GetHashCode();
+    if (DurationUntilStart != 0UL) hash ^= DurationUntilStart.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (Distance != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(Distance);
+    }
+    if (Duration != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(Duration);
+    }
+    if (DurationUntilStart != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(DurationUntilStart);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (Distance != 0UL) {
+      output.WriteRawTag(8);
+      output.WriteUInt64(Distance);
+    }
+    if (Duration != 0UL) {
+      output.WriteRawTag(16);
+      output.WriteUInt64(Duration);
+    }
+    if (DurationUntilStart != 0UL) {
+      output.WriteRawTag(24);
+      output.WriteUInt64(DurationUntilStart);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (Distance != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Distance);
+    }
+    if (Duration != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Duration);
+    }
+    if (DurationUntilStart != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(DurationUntilStart);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(AnnounceLightningReport other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Distance != 0UL) {
+      Distance = other.Distance;
+    }
+    if (other.Duration != 0UL) {
+      Duration = other.Duration;
+    }
+    if (other.DurationUntilStart != 0UL) {
+      DurationUntilStart = other.DurationUntilStart;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Distance = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          Duration = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          DurationUntilStart = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          Distance = input.ReadUInt64();
+          break;
+        }
+        case 16: {
+          Duration = input.ReadUInt64();
+          break;
+        }
+        case 24: {
+          DurationUntilStart = input.ReadUInt64();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
 public sealed partial class ThunderReport : pb::IMessage<ThunderReport>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
@@ -2472,7 +3111,7 @@ public sealed partial class ThunderReport : pb::IMessage<ThunderReport>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::EnvelopeReflection.Descriptor.MessageTypes[9]; }
+    get { return global::EnvelopeReflection.Descriptor.MessageTypes[11]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2656,21 +3295,21 @@ public sealed partial class ThunderReport : pb::IMessage<ThunderReport>
 }
 
 [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-public sealed partial class PanicReport : pb::IMessage<PanicReport>
+public sealed partial class PanicEvent : pb::IMessage<PanicEvent>
 #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     , pb::IBufferMessage
 #endif
 {
-  private static readonly pb::MessageParser<PanicReport> _parser = new pb::MessageParser<PanicReport>(() => new PanicReport());
+  private static readonly pb::MessageParser<PanicEvent> _parser = new pb::MessageParser<PanicEvent>(() => new PanicEvent());
   private pb::UnknownFieldSet _unknownFields;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pb::MessageParser<PanicReport> Parser { get { return _parser; } }
+  public static pb::MessageParser<PanicEvent> Parser { get { return _parser; } }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::EnvelopeReflection.Descriptor.MessageTypes[10]; }
+    get { return global::EnvelopeReflection.Descriptor.MessageTypes[12]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2681,7 +3320,7 @@ public sealed partial class PanicReport : pb::IMessage<PanicReport>
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public PanicReport() {
+  public PanicEvent() {
     OnConstruction();
   }
 
@@ -2689,25 +3328,25 @@ public sealed partial class PanicReport : pb::IMessage<PanicReport>
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public PanicReport(PanicReport other) : this() {
+  public PanicEvent(PanicEvent other) : this() {
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public PanicReport Clone() {
-    return new PanicReport(this);
+  public PanicEvent Clone() {
+    return new PanicEvent(this);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override bool Equals(object other) {
-    return Equals(other as PanicReport);
+    return Equals(other as PanicEvent);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool Equals(PanicReport other) {
+  public bool Equals(PanicEvent other) {
     if (ReferenceEquals(other, null)) {
       return false;
     }
@@ -2767,7 +3406,7 @@ public sealed partial class PanicReport : pb::IMessage<PanicReport>
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(PanicReport other) {
+  public void MergeFrom(PanicEvent other) {
     if (other == null) {
       return;
     }
@@ -2831,7 +3470,7 @@ public sealed partial class LoginFailed : pb::IMessage<LoginFailed>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::EnvelopeReflection.Descriptor.MessageTypes[11]; }
+    get { return global::EnvelopeReflection.Descriptor.MessageTypes[13]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2929,6 +3568,167 @@ public sealed partial class LoginFailed : pb::IMessage<LoginFailed>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public void MergeFrom(LoginFailed other) {
+    if (other == null) {
+      return;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+    if ((tag & 7) == 4) {
+      // Abort on any end group tag.
+      return;
+    }
+    switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+      }
+    }
+  }
+  #endif
+
+}
+
+[global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+public sealed partial class LoginSuccess : pb::IMessage<LoginSuccess>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<LoginSuccess> _parser = new pb::MessageParser<LoginSuccess>(() => new LoginSuccess());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<LoginSuccess> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::EnvelopeReflection.Descriptor.MessageTypes[14]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public LoginSuccess() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public LoginSuccess(LoginSuccess other) : this() {
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public LoginSuccess Clone() {
+    return new LoginSuccess(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as LoginSuccess);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(LoginSuccess other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(LoginSuccess other) {
     if (other == null) {
       return;
     }

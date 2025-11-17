@@ -21,7 +21,7 @@ data class Envelope(
     @ProtoNumber(12) val login_success: LoginSuccess? = null,
     @ProtoNumber(13) val scene_change_setting: SceneChangeSetting? = null,
     @ProtoNumber(14) val announce_lightning_report: AnnounceLightningReport? = null
-)    
+)
 
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
