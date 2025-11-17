@@ -1272,7 +1272,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283272984}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4800c78fc1cba8b4ebbf0c6c1d612df5, type: 3}
   m_Name: 
@@ -1428,7 +1428,7 @@ MonoBehaviour:
   storm: {fileID: 2093073061}
   api: {fileID: 1494343024}
   host: 192.168.178.25
-  nonce: FKPR
+  nonce: iAWi
 --- !u!4 &1494343026
 Transform:
   m_ObjectHideFlags: 0
