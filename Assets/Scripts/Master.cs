@@ -83,6 +83,7 @@ public class Master : MonoBehaviour
 
             case Envelope.PayloadOneofCase.LightningFrequencySetting: 
                 lightningFrequency = envelope.LightningFrequencySetting.Scale;
+                storm.SetInterval((int)lightningFrequency);
                 Debug.Log("Lightning frequency"+ lightningFrequency);
                 break;
 

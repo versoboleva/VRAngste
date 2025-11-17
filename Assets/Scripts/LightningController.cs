@@ -8,10 +8,10 @@ public class LightningController : MonoBehaviour
     public Vector3 position = new Vector3(0, 40, 0);
     public Vector3 scale = new Vector3(10, 10, 1);
 
-    [Tooltip("Particles per minute to emit")]
-    public float emissionRate = 4f; 
+    
+    public int emissionRate = 100;
 
-    private float emissionAccumulator = 0f;
+    private float timer = 0f;
 
     private void Start()
     {
@@ -28,22 +28,21 @@ public class LightningController : MonoBehaviour
 
     private void Update()
     {
-        if (lightningPS == null)
-            return;
+        if (lightningPS == null) return;
 
-        float particlesPerSecond = emissionRate / 60f;
+        timer += Time.deltaTime;
 
-        emissionAccumulator += particlesPerSecond * Time.deltaTime;
-
-        while (emissionAccumulator >= 1f)
+        if (timer >=  emissionRate && emissionRate>0)
         {
             EmitLightning();
-            emissionAccumulator -= 1f;
+            timer = 0f;
         }
-        
     }
+
     private void FixedUpdate()
     {
+        if (lightningPS == null) return;
+
         lightningPS.transform.position = position;
 
         var shape = lightningPS.shape;
@@ -59,13 +58,9 @@ public class LightningController : MonoBehaviour
 
         Vector3 spawnPos;
         if (count > 0)
-        {
             spawnPos = lightningPS.transform.TransformPoint(particles[count - 1].position);
-        }
         else
-        {
             spawnPos = lightningPS.transform.position;
-        }
 
         if (skyLight != null)
             skyLight.TriggerFlash(spawnPos);

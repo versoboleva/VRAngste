@@ -17,8 +17,8 @@ public class StormSystem : MonoBehaviour
     public int scale = 1;
     private int scaleCheck = 1;
 
-    public float emitionLightning = 0;
-    private float emitionLightningCheck = 0;
+    public int emitionLightning = 0;
+    private int emitionLightningCheck = 0;
 
     public int emitionRain = 1;
     private int emitionRainCheck = 1;
@@ -114,7 +114,7 @@ public class StormSystem : MonoBehaviour
 
     public void SetInterval(int interval)
     {
-        emitionLightning = interval / 1;
+        emitionLightning = interval;
     }
 
     public void SetHelligkeit(float helligkeitBlitz)
