@@ -44,7 +44,7 @@ class ControlModel() : ViewModel() {
         _thunderVolume.value = value
         sendEnvelope(
             Envelope(
-                thunder_setting = ThunderSetting((_thunderVolume.value * 100).roundToInt().toUInt())
+                thunder_setting = ThunderSetting(_thunderVolume.value)
             )
         )
     }
