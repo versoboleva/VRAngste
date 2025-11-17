@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import dev.group6.vrappcontroller.server.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import kotlin.math.roundToInt
 
 /**
  * Model for handling the slider values.
@@ -43,7 +44,7 @@ class ControlModel() : ViewModel() {
         _thunderVolume.value = value
         sendEnvelope(
             Envelope(
-                thunder_setting = ThunderSetting(_thunderVolume.value.toUInt())
+                thunder_setting = ThunderSetting((_thunderVolume.value * 100).roundToInt().toUInt())
             )
         )
     }
