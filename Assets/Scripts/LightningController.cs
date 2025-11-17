@@ -5,7 +5,7 @@ public class LightningController : MonoBehaviour
     public ParticleSystem lightningPS;
     public Skylight skyLight;
     public SoundSystem soundSystem;
-    public Vector3 position = new Vector3(0, 6, 0);
+    public Vector3 position = new Vector3(0, 40, 0);
     public Vector3 scale = new Vector3(10, 10, 1);
 
     [Tooltip("Particles per minute to emit")]
@@ -68,7 +68,7 @@ public class LightningController : MonoBehaviour
         }
 
         if (skyLight != null)
-            skyLight.TriggerFlash();
+            skyLight.TriggerFlash(spawnPos);
 
         if (soundSystem != null)
             soundSystem.PlayThunder(spawnPos);

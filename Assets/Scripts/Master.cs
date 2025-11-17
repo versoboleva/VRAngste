@@ -92,7 +92,7 @@ public class Master : MonoBehaviour
                 Debug.Log("Distance: "+ distance);
                 break;
 
-            case Envelope.PayloadOneofCase.PanicReport: //heist irgendwann mal PanicEvent
+            case Envelope.PayloadOneofCase.PanicEvent: 
                 //add panic event
                 Debug.Log("Panic event!");
                 break;

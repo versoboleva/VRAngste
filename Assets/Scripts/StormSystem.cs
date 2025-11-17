@@ -11,8 +11,8 @@ public class StormSystem : MonoBehaviour
     //add cloud system
     
     
-    public Vector3 position = new Vector3(0,6,0);
-    private Vector3 positionCheck = new Vector3(0,6,0);
+    public Vector3 position = new Vector3(0,40,0);
+    private Vector3 positionCheck = new Vector3(0,40,0);
 
     public int scale = 1;
     private int scaleCheck = 1;
@@ -91,7 +91,7 @@ public class StormSystem : MonoBehaviour
     }
     public void SetStorm(float distance, int wolken, int intervalBlitz, int regen, int helligkeitBlitz)
     {
-        position = new Vector3(distance * 100, 6, distance*100);
+        position = new Vector3(0, 40, distance*100);
 
         scale = wolken;
         
@@ -104,7 +104,7 @@ public class StormSystem : MonoBehaviour
 
     public void SetDistance( float distance)
     {
-        position = new Vector3(distance*100, 6, distance*100);
+        position = new Vector3(0, 40, distance*100);
     }
 
     public void SetWolken(int wolken)
