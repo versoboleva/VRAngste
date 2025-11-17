@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "XRI Default Input Actions",
     "maps": [
         {
@@ -1341,7 +1342,7 @@
                     "name": "Grab Move",
                     "type": "Button",
                     "id": "c5a6d766-d487-42ae-b293-da4749469e18",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
