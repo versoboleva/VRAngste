@@ -8,7 +8,7 @@ public class StormSystem : MonoBehaviour
     private ParticleSystem Rain;
     private Skylight Flash;
     private SoundSystem Sound;
-    //add cloud system
+    private CloudController clouds;
     
     
     public Vector3 position = new Vector3(0,40,0);
@@ -46,6 +46,11 @@ public class StormSystem : MonoBehaviour
         {
             LightningController = FindAnyObjectByType<LightningController>();
         }
+        if (clouds == null)
+        {
+            clouds = FindAnyObjectByType<CloudController>();
+        }
+
 
         LightningController.position = position;
         
@@ -110,6 +115,11 @@ public class StormSystem : MonoBehaviour
     public void SetWolken(int wolken)
     {
         scale = wolken;
+
+        if (clouds != null)
+        {
+            clouds.SetCloudDensity(wolken * 25); 
+        }
     }
 
     public void SetInterval(int interval)
@@ -148,4 +158,12 @@ public class StormSystem : MonoBehaviour
 
         emission.rateOverTime = new ParticleSystem.MinMaxCurve(rate);
     }
+
+    //two functions for testing, can be deleted after
+    [ContextMenu("Test Clouds Level 1")]
+    private void TestClouds1() => SetWolken(1);
+
+    [ContextMenu("Test Clouds Level 4")]
+    private void TestClouds4() => SetWolken(4);
+
 }
