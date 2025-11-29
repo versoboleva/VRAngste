@@ -390,56 +390,6 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 5347782009867803489, guid: a52b42fe31b09f34daefe196e1382f72, type: 3}
   m_PrefabInstance: {fileID: 2143378566}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &515999989
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 515999991}
-  - component: {fileID: 515999990}
-  m_Layer: 0
-  m_Name: stormtest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &515999990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 515999989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd362362ff384594c98a5bc2d5c29140, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  position: {x: 0, y: 40, z: 0}
-  scale: 1
-  emitionLightning: 0
-  emitionRain: 1
-  flashIntencity: 1
-  speed: 5
---- !u!4 &515999991
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 515999989}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 618.34357, y: -651.0108, z: -691.6597}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &593504568
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,6 +1546,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1412647512}
     - target: {fileID: 1780668296199479301, guid: 032f7bbb9a1ffd44b9f850521ef5ab1e, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1780668296199479301, guid: 032f7bbb9a1ffd44b9f850521ef5ab1e, type: 3}
       propertyPath: m_Name
       value: Lightning
       objectReference: {fileID: 0}
@@ -2404,7 +2358,7 @@ GameObject:
   m_Layer: 0
   m_Name: Clouds
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2567,8 +2521,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 20
+      minMaxState: 0
+      scalar: 47.5
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -2675,7 +2629,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 0.36078432}
+      maxColor: {r: 0.9625, g: 0.9625, b: 0.9625, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -2739,8 +2693,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 100
-      minScalar: 200
+      scalar: 160
+      minScalar: 100
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3322,7 +3276,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 0.6325
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -3590,7 +3544,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   RotationModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 3
@@ -3947,7 +3901,7 @@ ParticleSystem:
     x:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 11.25
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4053,7 +4007,7 @@ ParticleSystem:
     z:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -7216,13 +7170,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2031694484}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.63113314, y: -0, z: -0.7756746, w: 0}
+  m_LocalRotation: {x: -0.7055198, y: -0, z: -0.7086902, w: 0}
   m_LocalPosition: {x: 48, y: 60, z: -110.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 180, y: 258.268, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 269.74298, z: 0}
 --- !u!114 &2031694488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7235,8 +7189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0def130a6432347ab87f8177d925ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cloudParticles: {fileID: 0}
-  cloudDensity: 0
+  cloudParticles: {fileID: 2031694486}
+  cloudLevel: 1
 --- !u!1 &2045942531
 GameObject:
   m_ObjectHideFlags: 0
@@ -7517,7 +7471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position: {x: 0, y: 30, z: 80}
-  scale: 3
+  scale: 2
   emitionLightning: 10
   emitionRain: 2
   flashIntencity: 5
@@ -7653,4 +7607,3 @@ SceneRoots:
   - {fileID: 2045942534}
   - {fileID: 318200299}
   - {fileID: 2031694487}
-  - {fileID: 515999991}

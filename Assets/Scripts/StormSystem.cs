@@ -49,6 +49,7 @@ public class StormSystem : MonoBehaviour
         if (clouds == null)
         {
             clouds = FindAnyObjectByType<CloudController>();
+            
         }
 
 
@@ -118,7 +119,7 @@ public class StormSystem : MonoBehaviour
 
         if (clouds != null)
         {
-            clouds.SetCloudDensity(wolken * 25); 
+            clouds.SetCloudDensity(wolken);   
         }
     }
 
@@ -159,11 +160,37 @@ public class StormSystem : MonoBehaviour
         emission.rateOverTime = new ParticleSystem.MinMaxCurve(rate);
     }
 
-    //two functions for testing, can be deleted after
-    [ContextMenu("Test Clouds Level 1")]
-    private void TestClouds1() => SetWolken(1);
+    // inside StormSystem class
 
-    [ContextMenu("Test Clouds Level 4")]
-    private void TestClouds4() => SetWolken(4);
+[ContextMenu("Test Clouds Level 0")]
+private void TestClouds0()
+{
+    SetWolken(0);
+}
+
+[ContextMenu("Test Clouds Level 1")]
+private void TestClouds1()
+{
+    SetWolken(1);
+}
+
+[ContextMenu("Test Clouds Level 2")]
+private void TestClouds2()
+{
+    SetWolken(2);
+}
+
+[ContextMenu("Test Clouds Level 3")]
+private void TestClouds3()
+{
+    SetWolken(3);
+}
+
+[ContextMenu("Test Clouds Level 4")]
+private void TestClouds4()
+{
+    SetWolken(4);
+}
+
 
 }
