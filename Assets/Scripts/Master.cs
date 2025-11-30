@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
 using NUnit;
+using TMPro;
+using System;
 
 public class Master : MonoBehaviour 
 {
@@ -12,6 +14,9 @@ public class Master : MonoBehaviour
     public Envelope envelope;
     public string host = "127.0.0.1";
     public string nonce = "ABCD";
+
+    public TMP_InputField hostField;
+    public TMP_InputField nonceField;
 
     private int SceneNr;
     private int windIntencity;
@@ -114,6 +119,42 @@ public class Master : MonoBehaviour
 
     {
         ApiClient.Instance.Connect(this.nonce, this.host);
+    }
+
+    public void SetHost(string value)
+    {
+        if (!string.IsNullOrEmpty(value))
+        {
+            this.host = value;
+            Debug.Log("Host set to: " + value);
+        }
+
+        Debug.Log("Host string null");
+    }
+
+    public void SetNunce(string value)
+    {
+        if (!string.IsNullOrEmpty(value))
+        {
+            this.nonce = value;
+        Debug.Log("Nonce set to: " + value);
+        }
+
+        Debug.Log("Nunce string null");
+    }
+
+    // Diese Methode verbinden wir mit dem Keyboard Submit Event
+    public void OnKeyboardSubmit()
+    {
+        // Lies direkt aus dem InputField
+        string hostText = hostField.text;
+        string nonceText = nonceField.text;
+
+        this.host = hostText;
+        this.nonce = nonceText;
+
+        Debug.Log("Host set to: " + hostText);
+        Debug.Log("Nonce set to: " + nonceText);
     }
 
     
