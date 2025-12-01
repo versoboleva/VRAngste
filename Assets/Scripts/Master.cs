@@ -69,11 +69,12 @@ public class Master : MonoBehaviour
                 Debug.Log("Cloud density:" +clouds);
                 break;
 
-            /*case Envelope.PayloadOneofCase.SceneChangeSetting:
-                sceneNr = envelope....
-                sound.SetSceneNr(sceneNr);
-                Debug.Log($"Scene index: {scene.Index}");
-                break;*/
+            case Envelope.PayloadOneofCase.SceneChangeSetting:
+                int sceneNr = (int) envelope.SceneChangeSetting.Index;  // get the number from the envelope?
+                SceneManagementController.Instance.ChangeScene(sceneNr); // call our SceneManager
+                Debug.Log("Scene index received: " + sceneNr);
+                break;
+
 
             case Envelope.PayloadOneofCase.LightningBrightnessSetting:
                 lightningIntencity = envelope.LightningFrequencySetting.Scale;
@@ -116,7 +117,7 @@ public class Master : MonoBehaviour
         ApiClient.Instance.Connect(this.nonce, this.host);
     }
 
-    
-
 
 }
+
+    
