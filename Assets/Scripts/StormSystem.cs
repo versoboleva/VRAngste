@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Android;
+using System.Collections;
 
 public class StormSystem : MonoBehaviour
 {
@@ -148,7 +149,6 @@ public class StormSystem : MonoBehaviour
 
     private void SetRainEmition()
     {
-        var emission = Rain.emission;    // copy of struct
         Sound.SetRainIntencity(emitionRain);
 
         float rate = 0;
@@ -157,12 +157,37 @@ public class StormSystem : MonoBehaviour
         if (emitionRain == 2) rate = 500;
         if (emitionRain == 3) rate = 1000;
 
-        emission.rateOverTime = new ParticleSystem.MinMaxCurve(rate);
+        // instead of setting instantly:
+        // emission.rateOverTime = new MinMaxCurve(rate);
+
+        StartCoroutine(LerpRainEmission(rate, 10f));  // 1f = duration of blend
+    }
+
+    private IEnumerator LerpRainEmission(float targetRate, float duration)
+    {
+        var emission = Rain.emission;
+        float startRate = emission.rateOverTime.constant;
+
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float t = time / duration;
+
+            float newRate = Mathf.Lerp(startRate, targetRate, t);
+            emission.rateOverTime = new ParticleSystem.MinMaxCurve(newRate);
+
+            yield return null;
+        }
+
+        // Ensure final exact value
+        emission.rateOverTime = new ParticleSystem.MinMaxCurve(targetRate);
     }
 
     // inside StormSystem class
 
-[ContextMenu("Test Clouds Level 0")]
+    [ContextMenu("Test Clouds Level 0")]
 private void TestClouds0()
 {
     SetWolken(0);
