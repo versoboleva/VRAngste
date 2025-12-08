@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneManagementController : MonoBehaviour
+public class SceneSetter : MonoBehaviour
 {
-    public static SceneManagementController Instance;
+    public static SceneSetter Instance;
 
     private void Awake()
     {
@@ -23,6 +23,7 @@ public class SceneManagementController : MonoBehaviour
     public void ChangeScene(int sceneNumber)
     {
         string sceneName = GetSceneName(sceneNumber);
+        Debug.Log("Scenesettings called");
         if (Application.CanStreamedLevelBeLoaded(sceneName))
         {
             SceneManager.LoadScene(sceneName);
@@ -38,11 +39,11 @@ public class SceneManagementController : MonoBehaviour
     {
         switch (sceneNumber)
         {
-            case 0: return "0_Safe";
+            case 0: return "Safespace";
             case 1: return "Inside";
-            case 2: return "2_Porch";
+            case 2: return "Outside";
             case 3: return "Car";
-            default: return "0_Safe"; // fallback
+            default: return "Safespace"; // fallback
         }
     }
 }

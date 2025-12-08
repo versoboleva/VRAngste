@@ -27,62 +27,56 @@ public class CloudController : MonoBehaviour
     }
 
     public void SetCloudDensity(int level)
-{
-    if (cloudParticles == null) return;
-
-    cloudLevel = Mathf.Clamp(level, 0, 3);
-    float t = cloudLevel / 3f;   
-
-    var emission = cloudParticles.emission;
-    var main = cloudParticles.main;
-    var velocity = cloudParticles.velocityOverLifetime;
-
-    // Level 0 → NO CLOUDS
-    if (cloudLevel == 0)
     {
-        emission.rateOverTime = 0f;
-        cloudParticles.Clear();
-        return;
+        if (cloudParticles == null) return;
+
+        cloudLevel = Mathf.Clamp(level, 0, 3);
+        float t = cloudLevel / 3f;   
+
+        var emission = cloudParticles.emission;
+        var main = cloudParticles.main;
+        var velocity = cloudParticles.velocityOverLifetime;
+
+        // Level 0 → NO CLOUDS
+        if (cloudLevel == 0)
+        {
+            emission.rateOverTime = 0f;
+            cloudParticles.Clear();
+            return;
+        }
+
+        // Emission levels
+        float minEmission = 0.01f;
+        float maxEmission = 2.5f;
+        emission.rateOverTime = Mathf.Lerp(minEmission, maxEmission, t);
+
+        // Velocity (wind speed)
+        float minVelocity = 10f;
+        float maxVelocity = 15f;
+        velocity.x = Mathf.Lerp(minVelocity, maxVelocity, t);
+        velocity.y = 0f;
+        velocity.z = 0f;
+
+        // Lifetime
+        float minLifetime = 30f;
+        float maxLifetime = 100f;
+        main.startLifetime = Mathf.Lerp(minLifetime, maxLifetime, t);
+
+        // Size randomization
+        main.startSize = new ParticleSystem.MinMaxCurve(100f, 200f); 
+
+        // Keep color fixed
+        main.startColor = cloudColor;
+
+        if (!cloudParticles.isPlaying)
+            cloudParticles.Play();
+
+        Debug.Log(
+            $"Cloud Level: {cloudLevel} | " +
+            $"Emission: {emission.rateOverTime.constant} | " +
+            $"VelX: {velocity.x.constant} | " +
+            $"Lifetime: {main.startLifetime.constant} | " +
+            $"Size: {main.startSize.constantMin}-{main.startSize.constantMax}"
+        );
     }
-
-    // Emission levels
-    float minEmission = 0.01f;
-    float maxEmission = 2.5f;
-    emission.rateOverTime = Mathf.Lerp(minEmission, maxEmission, t);
-
-    // Velocity (wind speed)
-    float minVelocity = 10f;
-    float maxVelocity = 15f;
-    velocity.x = Mathf.Lerp(minVelocity, maxVelocity, t);
-    velocity.y = 0f;
-    velocity.z = 0f;
-
-    // Lifetime
-    float minLifetime = 30f;
-    float maxLifetime = 100f;
-    main.startLifetime = Mathf.Lerp(minLifetime, maxLifetime, t);
-
-    // Size randomization
-    main.startSize = new ParticleSystem.MinMaxCurve(100f, 200f); 
-
-    // Keep color fixed
-    main.startColor = cloudColor;
-
-    if (!cloudParticles.isPlaying)
-        cloudParticles.Play();
-
-    Debug.Log(
-        $"Cloud Level: {cloudLevel} | " +
-        $"Emission: {emission.rateOverTime.constant} | " +
-        $"VelX: {velocity.x.constant} | " +
-        $"Lifetime: {main.startLifetime.constant} | " +
-        $"Size: {main.startSize.constantMin}-{main.startSize.constantMax}"
-    );
-}
-
-    // Context menu testing (0–3 only)
-    [ContextMenu("Cloud Level 0")] private void Test0() => SetCloudDensity(0);
-    [ContextMenu("Cloud Level 1")] private void Test1() => SetCloudDensity(1);
-    [ContextMenu("Cloud Level 2")] private void Test2() => SetCloudDensity(2);
-    [ContextMenu("Cloud Level 3")] private void Test3() => SetCloudDensity(3);
 }

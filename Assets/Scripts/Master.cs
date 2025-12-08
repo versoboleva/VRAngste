@@ -12,13 +12,14 @@ public class Master : MonoBehaviour
     public StormSystem storm;
     public ApiClient api;
     public Envelope envelope;
+    public SceneSetter sceneSetter;
     public string host = "127.0.0.1";
     public string nonce = "ABCD";
 
     public TMP_InputField hostField;
     public TMP_InputField nonceField;
 
-    private int SceneNr;
+    private int sceneNr;
     private int windIntencity;
     private float thunderVolume;
     private float distance;
@@ -38,11 +39,15 @@ public class Master : MonoBehaviour
         {
             storm = FindAnyObjectByType<StormSystem>();
         }
+        if (sceneSetter == null)
+        {
+            sceneSetter = FindAnyObjectByType<SceneSetter>();
+        }
         if (api == null)
         {
             api = FindAnyObjectByType<ApiClient>();
         }
-        //ConnectToServer();
+        ConnectToServer();
         ApiClient.Instance.OnBytesReceived += HandleEnvelope; // <- call function on event/does the same as https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
     }
 
@@ -75,8 +80,9 @@ public class Master : MonoBehaviour
                 break;
 
             case Envelope.PayloadOneofCase.SceneChangeSetting:
-                int sceneNr = (int) envelope.SceneChangeSetting.Index; 
-                SceneManagementController.Instance.ChangeScene(sceneNr); 
+                sceneNr = (int) envelope.SceneChangeSetting.Index; 
+                sceneSetter.ChangeScene(sceneNr); 
+                sound.currentScene = sceneNr;
                 Debug.Log("Scene index received: " + sceneNr);
                 break;
 

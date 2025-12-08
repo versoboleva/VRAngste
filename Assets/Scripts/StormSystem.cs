@@ -19,17 +19,17 @@ public class StormSystem : MonoBehaviour
     public int scale = 1;
     private int scaleCheck = 1;
 
-    public int cloudLevel = 1;        // 0–3
-    private int cloudLevelCheck = 1;
+    public int cloudLevel = 0;        // 0–3
+    private int cloudLevelCheck = 0;
 
     public int emitionLightning = 0;
     private int emitionLightningCheck = 0;
 
-    public int emitionRain = 1;
-    private int emitionRainCheck = 1;
+    public int emitionRain = 0;
+    private int emitionRainCheck = 0;
 
-    public float flashIntencity = 1;
-    private float flashIntencityCheck = 1;
+    public float flashIntencity = 0;
+    private float flashIntencityCheck = 0;
 
     public float speed = 5f;
 
@@ -117,7 +117,7 @@ public class StormSystem : MonoBehaviour
     {
         position = new Vector3(0, 40, distance*100);
 
-        scale = wolken;
+        cloudLevel = wolken;
         
         emitionLightning = intervalBlitz/1;
         
@@ -133,7 +133,7 @@ public class StormSystem : MonoBehaviour
 
     public void SetWolken(int wolken)
     {
-        scale = wolken;
+        cloudLevel = wolken;
 
         if (clouds != null)
         {
@@ -176,10 +176,7 @@ public class StormSystem : MonoBehaviour
         if (emitionRain == 2) rate = 500;
         if (emitionRain == 3) rate = 1000;
 
-        // instead of setting instantly:
-        // emission.rateOverTime = new MinMaxCurve(rate);
-
-        StartCoroutine(LerpRainEmission(rate, 10f));  // 1f = duration of blend
+        StartCoroutine(LerpRainEmission(rate, 10f));  
     }
 
     private IEnumerator LerpRainEmission(float targetRate, float duration)
@@ -200,7 +197,6 @@ public class StormSystem : MonoBehaviour
             yield return null;
         }
 
-        // Ensure final exact value
         emission.rateOverTime = new ParticleSystem.MinMaxCurve(targetRate);
     }
 
@@ -218,17 +214,5 @@ public class StormSystem : MonoBehaviour
 
         emission.rateOverTime = new ParticleSystem.MinMaxCurve(rate);
     }
-
-[ContextMenu("Cloud Level 0")]
-private void TestCloud0() => cloudLevel = 0;
-
-[ContextMenu("Cloud Level 1")]
-private void TestCloud1() => cloudLevel = 1;
-
-[ContextMenu("Cloud Level 2")]
-private void TestCloud2() => cloudLevel = 2;
-
-[ContextMenu("Cloud Level 3")]
-private void TestCloud3() => cloudLevel = 3;
 
 }
