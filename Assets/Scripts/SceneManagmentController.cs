@@ -39,9 +39,9 @@ public class SceneManagementController : MonoBehaviour
         switch (sceneNumber)
         {
             case 0: return "0_Safe";
-            case 1: return "1_Room";
+            case 1: return "Inside";
             case 2: return "2_Porch";
-            case 3: return "3_Car";
+            case 3: return "Car";
             default: return "0_Safe"; // fallback
         }
     }

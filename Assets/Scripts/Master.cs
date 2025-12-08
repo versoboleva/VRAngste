@@ -70,8 +70,8 @@ public class Master : MonoBehaviour
                 break;
 
             case Envelope.PayloadOneofCase.SceneChangeSetting:
-                int sceneNr = (int) envelope.SceneChangeSetting.Index;  // get the number from the envelope?
-                SceneManagementController.Instance.ChangeScene(sceneNr); // call our SceneManager
+                int sceneNr = (int) envelope.SceneChangeSetting.Index; 
+                SceneManagementController.Instance.ChangeScene(sceneNr); 
                 Debug.Log("Scene index received: " + sceneNr);
                 break;
 
