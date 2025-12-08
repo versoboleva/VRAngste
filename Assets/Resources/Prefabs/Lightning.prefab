@@ -872,7 +872,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4851,7 +4851,9 @@ MonoBehaviour:
   lightningPS: {fileID: 6839406196727723362}
   skyLight: {fileID: 3106205868461640320}
   soundSystem: {fileID: 0}
-  worldPosition: {x: 0, y: 0, z: 0}
+  position: {x: 0, y: 40, z: 0}
+  scale: {x: 10, y: 10, z: 1}
+  emissionRate: 100
 --- !u!114 &3106205868461640320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4866,3 +4868,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashIntensity: 1.5
   fadeSpeed: 4
+  cam: {fileID: 0}

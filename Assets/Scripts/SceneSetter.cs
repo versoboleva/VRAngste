@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class SceneSetter : MonoBehaviour
 {
     public static SceneSetter Instance;
+    public Master master;
 
     private void Awake()
     {
@@ -16,6 +17,10 @@ public class SceneSetter : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (master == null)
+        {
+            master = FindAnyObjectByType<Master>();
+        }
     }
 
     
@@ -23,7 +28,6 @@ public class SceneSetter : MonoBehaviour
     public void ChangeScene(int sceneNumber)
     {
         string sceneName = GetSceneName(sceneNumber);
-        Debug.Log("Scenesettings called");
         if (Application.CanStreamedLevelBeLoaded(sceneName))
         {
             SceneManager.LoadScene(sceneName);

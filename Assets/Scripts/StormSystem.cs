@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Android;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class StormSystem : MonoBehaviour
 {
@@ -72,6 +73,27 @@ public class StormSystem : MonoBehaviour
 
         Flash.flashIntensity = flashIntencity;
 
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Flash = FindAnyObjectByType<Skylight>();
+        Rain = GameObject.FindGameObjectWithTag("RainSystem")?.GetComponent<ParticleSystem>();
+        PorchDroplets = GameObject.FindGameObjectWithTag("PorchDroplets")?.GetComponent<ParticleSystem>();
+        LightningController = FindAnyObjectByType<LightningController>();
+        Sound = FindAnyObjectByType<SoundSystem>();
+        clouds = GameObject.FindGameObjectWithTag("Clouds")?.GetComponent<CloudController>();
     }
     void FixedUpdate()
     {
@@ -169,6 +191,7 @@ public class StormSystem : MonoBehaviour
     private void SetRainEmition()
     {
         Sound.SetRainIntencity(emitionRain);
+        SetPorchDropletEmission();
 
         float rate = 0;
 
@@ -176,7 +199,7 @@ public class StormSystem : MonoBehaviour
         if (emitionRain == 2) rate = 500;
         if (emitionRain == 3) rate = 1000;
 
-        StartCoroutine(LerpRainEmission(rate, 10f));  
+        StartCoroutine(LerpRainEmission(rate, 5f));  
     }
 
     private IEnumerator LerpRainEmission(float targetRate, float duration)
@@ -204,7 +227,7 @@ public class StormSystem : MonoBehaviour
     {
         if (PorchDroplets == null) return;
 
-        var emission = PorchDroplets.emission;
+        var porchemission = PorchDroplets.emission;
 
         float rate = 0;
 
@@ -212,7 +235,7 @@ public class StormSystem : MonoBehaviour
         if (emitionRain == 2) rate = 50;   // medium
         if (emitionRain == 3) rate = 120;  // heavy
 
-        emission.rateOverTime = new ParticleSystem.MinMaxCurve(rate);
+        porchemission.rateOverTime = new ParticleSystem.MinMaxCurve(rate);
     }
 
 }

@@ -5,6 +5,7 @@ using UnityEditor.PackageManager.Requests;
 using NUnit;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Master : MonoBehaviour 
 {
@@ -51,6 +52,34 @@ public class Master : MonoBehaviour
         ApiClient.Instance.OnBytesReceived += HandleEnvelope; // <- call function on event/does the same as https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
     }
 
+    private void Awake()
+    {
+        if (FindObjectsByType<SoundSystem>(FindObjectsSortMode.None).Length > 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        sound = FindAnyObjectByType<SoundSystem>();
+        storm = FindAnyObjectByType<StormSystem>();
+        sceneSetter = FindAnyObjectByType<SceneSetter>();
+        api = FindAnyObjectByType<ApiClient>();
+
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
     private void HandleEnvelope(Envelope envelope)
     {
         switch (envelope.PayloadCase)

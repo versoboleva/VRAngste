@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Skylight : MonoBehaviour
 {
@@ -14,15 +15,43 @@ public class Skylight : MonoBehaviour
         originalIntensity = RenderSettings.ambientIntensity;
 
         if (cam == null)
-            cam = Camera.main;
+            cam = Object.FindAnyObjectByType<Camera>();
+    }
+    private void Awake()
+    {
+        if (cam == null)
+            cam = Object.FindAnyObjectByType<Camera>();
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (cam == null || cam.gameObject.scene != scene)
+        {
+            cam = Object.FindAnyObjectByType<Camera>();
+            if (cam == null)
+                Debug.LogWarning("Skylight: No MainCamera found in scene " + scene.name);
+        }
+    }
     public void TriggerFlash(Vector3 lightningPos)
     {
+        if (cam == null)
+        {
+            Debug.LogWarning("Skylight: No camera assigned! Flash skipped.");
+            return;
+        }
+
         float distance = Vector3.Distance(cam.transform.position, lightningPos);
-
         float distanceFactor = 1f / (1f + distance * 0.01f);
-
         float finalIntensity = originalIntensity + flashIntensity * distanceFactor;
 
         StartCoroutine(FlashRoutine(finalIntensity));

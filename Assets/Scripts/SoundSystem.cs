@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using UnityEditor.SearchService;
 
 public class SoundSystem : MonoBehaviour 
 {
+    public static SoundSystem Instance;
+    
     public AudioClip[] rainInsideSounds = new AudioClip[4];
     public AudioClip[] rainOutsideSounds = new AudioClip[4];
     public AudioClip[] rainCarSounds = new AudioClip[4];
@@ -25,17 +26,61 @@ public class SoundSystem : MonoBehaviour
     public int rainIntencity = 0;
     public float thunderVolume = 0;
 
+    
+
     private void Awake()
     {
-        SetScene();
-    }
-    private void Start()
-    {
-        rainSource.transform.position = player.position;
-        windSource.transform.position = player.position;
-        PlayRain();
-        PlayWind();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
 
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine(SetupSceneObjects());
+    }
+
+    private IEnumerator SetupSceneObjects()
+    {
+        yield return null;
+
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        Particlerain = GameObject.FindGameObjectWithTag("RainSystem")?.GetComponent<ParticleSystem>();
+
+        SetScene(); 
+
+        if (player != null)
+        {
+            rainSource.transform.position = player.position;
+            windSource.transform.position = player.position;
+        }
+
+        PlayRain();
+        //PlayWind();
     }
 
     private void FixedUpdate()
@@ -73,7 +118,7 @@ public class SoundSystem : MonoBehaviour
         if(this.windIntencity != windIntencity)
         {
             this.windIntencity = windIntencity;
-            PlayWind();
+            //PlayWind();
         }
         if (thunderVolume != donnerVolume / 100f)
         {
@@ -96,7 +141,7 @@ public class SoundSystem : MonoBehaviour
         if (this.windIntencity != windIntencity)
         {
             this.windIntencity = windIntencity;
-            PlayWind();
+            //PlayWind();
         }
     }
 
@@ -114,14 +159,18 @@ public class SoundSystem : MonoBehaviour
         switch (currentScene)
         {
             case 0:
+                currentRain = null;
+                currentWind = null;
+                break;
+            case 1:
                 currentRain = rainInsideSounds;
                 currentWind = windInsideSounds;
                 break;
-            case 1:
+            case 2:
                 currentRain = rainOutsideSounds;
                 currentWind = windOutsideSounds;
                 break;
-            case 2:
+            case 3:
                 currentRain = rainCarSounds;
                 currentWind = windCarSounds;
                 break;
@@ -177,14 +226,14 @@ public class SoundSystem : MonoBehaviour
 
         Debug.Log($"Thunder played at {lightningPos} after {delay:F2} seconds");
     }
-    private void PlayWind()
+    /*private void PlayWind()
     {
         if (currentWind[windIntencity] != null && windSource != null)
         {
             windSource.clip = currentWind[windIntencity];
             windSource.Play();
         }
-    }
+    }*/
 
 
 }

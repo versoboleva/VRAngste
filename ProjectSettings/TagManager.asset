@@ -8,6 +8,7 @@ TagManager:
   - RainSystem
   - PorchDroplets
   - Clouds
+  - Lightning
   layers:
   - Default
   - TransparentFX
