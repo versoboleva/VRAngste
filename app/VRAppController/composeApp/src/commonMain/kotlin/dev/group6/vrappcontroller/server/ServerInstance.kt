@@ -1,9 +1,17 @@
 package dev.group6.vrappcontroller.server
 
+import dev.group6.vrappcontroller.stream.module
+import io.ktor.server.application.Application
+import io.ktor.server.cio.CIO
+import io.ktor.server.cio.CIOApplicationEngine
+import io.ktor.server.engine.EmbeddedServer
+import io.ktor.server.engine.embeddedServer
+
 object ServerInstance {
     private val server: Server
     private var isRunning = false
     val nonce: String
+    private var ktorEngine: EmbeddedServer<CIOApplicationEngine, CIOApplicationEngine.Configuration>? = null
 
     init {
         val randomNonce = generateNonce()
@@ -20,11 +28,22 @@ object ServerInstance {
     fun start() {
         if (isRunning) return
         server.start()
+
+        ktorEngine = embeddedServer(
+            CIO,
+            port = 35615,
+            module = Application::module
+        ).also { it.start(wait = false) }
         isRunning = true
     }
 
     fun stop() {
         if (!isRunning) return
+        ktorEngine?.stop(
+            gracePeriodMillis = 1000,
+            timeoutMillis = 5000
+        )
+        ktorEngine = null
         server.stop()
         isRunning = false
     }

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Anchor
   - RainSystem
+  - PorchDroplets
+  - Clouds
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
+  - Camera
   - 
   - 
   - 
