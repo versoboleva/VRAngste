@@ -1,6 +1,8 @@
 package dev.group6.vrappcontroller
 
 import android.os.Build
+import androidx.compose.foundation.ScrollState
+import androidx.compose.runtime.Composable
 import java.net.Inet4Address
 import java.net.NetworkInterface
 
@@ -28,4 +30,14 @@ actual fun getLocalIP(): String? {
                 "172."
             )
         }?.hostAddress
+}
+
+@Composable
+actual fun VerticalScrollbar(scrollState: ScrollState) {
+ //Nothing
+}
+
+@Composable
+actual fun HorizontalScrollbar(scrollState: ScrollState) {
+ //Nothing
 }

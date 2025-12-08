@@ -34,6 +34,9 @@ class ControlModel() : ViewModel() {
     var _lightningInterval = MutableStateFlow(10)
     val lightningInterval: MutableStateFlow<Int> = _lightningInterval
 
+    var _selectedScene = MutableStateFlow(0)
+    val selectedScene: MutableStateFlow<Int> = _selectedScene
+
     init {
         _thunderVolume.value = 1.0f
         _lightningBrightness.value = 1.0f
@@ -99,6 +102,15 @@ class ControlModel() : ViewModel() {
         sendEnvelope(
             Envelope(
                 lightning_frequency_setting = LightningFrequencySetting(_lightningInterval.value.toFloat())
+            )
+        )
+    }
+
+    fun setSelectedScene(value: Int) {
+        _selectedScene.value = value
+        sendEnvelope(
+            Envelope(
+                scene_change_setting = SceneChangeSetting(_selectedScene.value.toUInt())
             )
         )
     }

@@ -1,8 +1,8 @@
 import socket
 import struct
 
-HOST = "192.168.178.97"
-NONCE = "xwlS"
+HOST = "192.168.178.72"
+NONCE = "yCgj"
 
 PORT = 35614
 
