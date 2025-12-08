@@ -7,6 +7,7 @@ public class StormSystem : MonoBehaviour
 {
     private LightningController LightningController;
     private ParticleSystem Rain;
+    private ParticleSystem PorchDroplets;
     private Skylight Flash;
     private SoundSystem Sound;
     private CloudController clouds;
@@ -17,6 +18,9 @@ public class StormSystem : MonoBehaviour
 
     public int scale = 1;
     private int scaleCheck = 1;
+
+    public int cloudLevel = 1;        // 0–3
+    private int cloudLevelCheck = 1;
 
     public int emitionLightning = 0;
     private int emitionLightningCheck = 0;
@@ -39,6 +43,10 @@ public class StormSystem : MonoBehaviour
         {
             Rain = GameObject.FindGameObjectWithTag("RainSystem")?.GetComponent<ParticleSystem>();
         }
+        if (PorchDroplets == null)
+        {
+            PorchDroplets = GameObject.FindGameObjectWithTag("PorchDroplets")?.GetComponent<ParticleSystem>();
+        }
         if (Sound == null)
         {
             Sound = FindAnyObjectByType<SoundSystem>();
@@ -47,11 +55,11 @@ public class StormSystem : MonoBehaviour
         {
             LightningController = FindAnyObjectByType<LightningController>();
         }
-        if (clouds == null)
+       if (clouds == null)
         {
-            clouds = FindAnyObjectByType<CloudController>();
-            
+            clouds = GameObject.FindGameObjectWithTag("Clouds")?.GetComponent<CloudController>();
         }
+
 
 
         LightningController.position = position;
@@ -78,6 +86,14 @@ public class StormSystem : MonoBehaviour
             scaleCheck = scale;
         }
 
+        if (cloudLevel != cloudLevelCheck)
+        {
+            if (clouds != null)
+                clouds.SetCloudDensity(cloudLevel);
+            cloudLevelCheck = cloudLevel;
+        }
+
+
         if (emitionLightning != emitionLightningCheck)
         {
             LightningController.emissionRate = emitionLightning;
@@ -86,6 +102,7 @@ public class StormSystem : MonoBehaviour
         if (emitionRain != emitionRainCheck)
         {
             SetRainEmition();
+            SetPorchDropletEmission();
             emitionRainCheck = emitionRain;
         }
 
@@ -137,7 +154,9 @@ public class StormSystem : MonoBehaviour
     public void SetRegen(int regen)
     {
         emitionRain = regen;
+        SetPorchDropletEmission();
     }
+
     private void MoveToPosition()
     {
         if (LightningController != null && LightningController.position != position) 
@@ -185,37 +204,31 @@ public class StormSystem : MonoBehaviour
         emission.rateOverTime = new ParticleSystem.MinMaxCurve(targetRate);
     }
 
-    // inside StormSystem class
+    private void SetPorchDropletEmission()
+    {
+        if (PorchDroplets == null) return;
 
-    [ContextMenu("Test Clouds Level 0")]
-private void TestClouds0()
-{
-    SetWolken(0);
-}
+        var emission = PorchDroplets.emission;
 
-[ContextMenu("Test Clouds Level 1")]
-private void TestClouds1()
-{
-    SetWolken(1);
-}
+        float rate = 0;
 
-[ContextMenu("Test Clouds Level 2")]
-private void TestClouds2()
-{
-    SetWolken(2);
-}
+        if (emitionRain == 1) rate = 10;   // light dripping
+        if (emitionRain == 2) rate = 50;   // medium
+        if (emitionRain == 3) rate = 120;  // heavy
 
-[ContextMenu("Test Clouds Level 3")]
-private void TestClouds3()
-{
-    SetWolken(3);
-}
+        emission.rateOverTime = new ParticleSystem.MinMaxCurve(rate);
+    }
 
-[ContextMenu("Test Clouds Level 4")]
-private void TestClouds4()
-{
-    SetWolken(4);
-}
+[ContextMenu("Cloud Level 0")]
+private void TestCloud0() => cloudLevel = 0;
 
+[ContextMenu("Cloud Level 1")]
+private void TestCloud1() => cloudLevel = 1;
+
+[ContextMenu("Cloud Level 2")]
+private void TestCloud2() => cloudLevel = 2;
+
+[ContextMenu("Cloud Level 3")]
+private void TestCloud3() => cloudLevel = 3;
 
 }
