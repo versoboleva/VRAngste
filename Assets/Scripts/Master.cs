@@ -48,7 +48,7 @@ public class Master : MonoBehaviour
         {
             api = FindAnyObjectByType<ApiClient>();
         }
-        ConnectToServer();
+        //ConnectToServer();
         ApiClient.Instance.OnBytesReceived += HandleEnvelope; // <- call function on event/does the same as https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
     }
 
@@ -191,6 +191,8 @@ public class Master : MonoBehaviour
 
         Debug.Log("Host set to: " + hostText);
         Debug.Log("Nonce set to: " + nonceText);
+
+        ApiClient.Instance.Connect(this.nonce, this.host);
     }
 
     

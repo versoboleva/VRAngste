@@ -26,6 +26,19 @@ public class CloudController : MonoBehaviour
             cloudParticles.Play();
     }
 
+    void LateUpdate()
+    {
+        ParticleSystem.Particle[] particles = new ParticleSystem.Particle[cloudParticles.main.maxParticles];
+        int count = cloudParticles.GetParticles(particles);
+
+        for (int i = 0; i < count; i++)
+        {
+            particles[i].rotation3D = new Vector3(0, particles[i].rotation3D.y, 0);
+        }
+
+        cloudParticles.SetParticles(particles, count);
+    }
+
     public void SetCloudDensity(int level)
     {
         if (cloudParticles == null) return;

@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 6a9dffdad19f204448e0c545cdaf7ce8, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 788d01f44fb526746b6df6414acbf731, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &21105010 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3447935437714240049, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+  m_PrefabInstance: {fileID: 28783838}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &28783838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1541,6 +1552,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
+      propertyPath: hostField
+      value: 
+      objectReference: {fileID: 21105010}
+    - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
+      propertyPath: nonceField
+      value: 
+      objectReference: {fileID: 939588354}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1699,6 +1718,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2407588056680121697, guid: b885735b1e3aef84387d257e307a2dea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 919162347}
+    - target: {fileID: 2407588056680121697, guid: b885735b1e3aef84387d257e307a2dea, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnKeyboardSubmit
+      objectReference: {fileID: 0}
     - target: {fileID: 2407588056680121698, guid: b885735b1e3aef84387d257e307a2dea, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1748,6 +1775,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b885735b1e3aef84387d257e307a2dea, type: 3}
+--- !u!114 &919162347 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
+  m_PrefabInstance: {fileID: 526590605}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b309a42e7ddb6b4fb13bf3ce5f9b2e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &939588354 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2075028214261897345, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+  m_PrefabInstance: {fileID: 28783838}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1184486564
 GameObject:
   m_ObjectHideFlags: 0
