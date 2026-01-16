@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &129066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 400158}
+  - component: {fileID: 11436094}
+  m_Layer: 0
+  m_Name: CloudsToy Mngr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129066}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11436094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 947635634, guid: 4f06083ae4de3b342aa60660d878121d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaximunClouds: 300
+  CloudPreset: 5
+  CloudRender: 1
+  CloudDetail: 1
+  TypeClouds: 1
+  realisticShader: {fileID: 4800000, guid: 7ad368ed770217c41b82395d446f2386, type: 3}
+  brightShader: {fileID: 4800000, guid: 8e7b06511ba28d94b8363b087e90ff78, type: 3}
+  projectorMaterial: {fileID: 2100000, guid: fae9b28b8e5671e47b550465dab02b07, type: 2}
+  positionCheckerTime: 0.1
+  SizeFactorPart: 1.2
+  EmissionMult: 1.5
+  _showDebug: 1
+  SoftClouds: 0
+  SpreadDir: {x: -1, y: 0, z: 0}
+  LengthSpread: 1
+  NumberClouds: 67
+  Side: {x: 1500, y: 100, z: 1500}
+  MaximunVelocity: {x: -10, y: 0, z: 0}
+  VelocityMultipier: 0.85
+  DisappearMultiplier: 2
+  PaintType: 1
+  CloudColor: {r: 0.972549, g: 0.972549, b: 0.972549, a: 0.502}
+  MainColor: {r: 1, g: 1, b: 1, a: 0.302}
+  SecondColor: {r: 0.39607844, g: 0.38431373, b: 0.34901962, a: 1}
+  TintStrength: 80
+  offset: 0.8
+  MaxWidthCloud: 283
+  MaxHeightCloud: 97
+  MaxDepthCloud: 278
+  FixedSize: 0
+  NumberOfShadows: 4
+  CloudsTextAdd:
+  - {fileID: 2800000, guid: 281acc87b76c56d438bade9fc1e32570, type: 3}
+  - {fileID: 2800000, guid: 1fe9ef7a02d47104eac08df0ea6ad772, type: 3}
+  - {fileID: 2800000, guid: 0a97114557956584f95075e17c0ca955, type: 3}
+  - {fileID: 2800000, guid: 86923de1204ee954eb8bbc75e2d5da01, type: 3}
+  - {fileID: 2800000, guid: 21378d930c46359458cc66c3754a83cb, type: 3}
+  - {fileID: 2800000, guid: d7df31ca12d6d4f4aa56e6008eaa9789, type: 3}
+  CloudsTextBlended:
+  - {fileID: 2800000, guid: 72d2f745598015f4987f93083c2223ed, type: 3}
+  - {fileID: 2800000, guid: aafdc5ecb7574304bb77c0894c28c839, type: 3}
+  - {fileID: 2800000, guid: 28dd3ea79f61ac0449c89379178698ea, type: 3}
+  - {fileID: 2800000, guid: 071291e463c0c9343bdb066fc460f36d, type: 3}
+  - {fileID: 2800000, guid: e77f4cf9af310ae4f8c638b4db5c4357, type: 3}
+  - {fileID: 2800000, guid: 110faba5d54cc9b47992e70f27c3c7d9, type: 3}
+  IsAnimate: 1
+  AnimationVelocity: 0.1
+  isFadeInOut: 1
+  fadeRatio: 20
+  alphaRange: 0.3
+  ProceduralTexture: {fileID: 0}
+  PT1TextureWidth: 128
+  PT1TextureHeight: 128
+  PT1TypeNoise: 0
+  PT1Texture: {fileID: 0}
+  PT1Seed: 132
+  PT1ScaleWidth: 1
+  PT1ScaleHeight: 1
+  PT1ScaleFactor: 1
+  PT1Lacunarity: 3
+  PT1FractalIncrement: 0.5
+  PT1Octaves: 7
+  PT1Offset: 1
+  PT1TurbSize: 16
+  PT1TurbLacun: 0.01
+  PT1TurbGain: 0.5
+  PT1turbPower: 5
+  PT1xyPeriod: 0.8
+  PT1HaloEffect: 1.7
+  PT1HaloInsideRadius: 0.1
+  PT1InvertColors: 0
+  PT1ContrastMult: 0
+  PT1UseAlphaTexture: 1
+  PT1AlphaIndex: 0.1
+  maximunCloudsOrig: 0
+  fadeRatioPrev: 0

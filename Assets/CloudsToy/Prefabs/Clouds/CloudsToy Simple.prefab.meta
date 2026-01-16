@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: de3754df72272894489e3e5f31bc9648
+NativeFormatImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Prefabs/Clouds/CloudsToy Simple.prefab
+  uploadId: 757993

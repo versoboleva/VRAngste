@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: eff4d27b5a0f7804998ee5aed56f949c
+timeCreated: 1430643328
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Materials/Procedural/PTAdd2.mat
+  uploadId: 757993

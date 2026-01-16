@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 94fe457bdddfc27428ea2e2690e21897
+timeCreated: 1430643549
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Materials/Clouds/Cloud4 Mat.mat
+  uploadId: 757993

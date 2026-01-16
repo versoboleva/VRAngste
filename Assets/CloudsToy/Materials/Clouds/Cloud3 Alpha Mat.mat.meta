@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fe8463d6805fbd344aff744360eff2fb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Materials/Clouds/Cloud3 Alpha Mat.mat
+  uploadId: 757993

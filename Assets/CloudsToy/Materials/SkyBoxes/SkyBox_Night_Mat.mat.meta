@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2517a1035fa48fe4f960e8de4174a16e
+timeCreated: 1530093437
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Materials/SkyBoxes/SkyBox_Night_Mat.mat
+  uploadId: 757993

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ce6ad3d6ede1ed34e975881893865212
+timeCreated: 1429464325
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Shaders/Lit Shaders/CloudRealisticLit.shader
+  uploadId: 757993
