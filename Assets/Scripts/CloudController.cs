@@ -1,95 +1,46 @@
 using UnityEngine;
+using JocyfCloudsToy;
 
 public class CloudController : MonoBehaviour
 {
-    public ParticleSystem cloudParticles;
+    private CloudsToy cloudSystem;
 
     [Range(0, 3)]
     public int cloudLevel = 0;
 
-    // Fixed cloud color
-    public Color cloudColor = new Color(0.9f, 0.9f, 0.9f, 1f);
+    private int lastCloudLevel = -1;
 
     private void Awake()
     {
-        if (cloudParticles == null)
-            cloudParticles = GetComponent<ParticleSystem>();
+        cloudSystem = GetComponent<CloudsToy>();
 
-        if (cloudParticles == null)
+        if (cloudSystem == null)
         {
-            Debug.LogError("CloudController: No ParticleSystem assigned!");
+            Debug.LogError("CloudController: No CloudsToy component found on this GameObject!");
             enabled = false;
             return;
         }
-
-        if (!cloudParticles.isPlaying)
-            cloudParticles.Play();
     }
-
-    void LateUpdate()
+    private void Update()
     {
-        ParticleSystem.Particle[] particles = new ParticleSystem.Particle[cloudParticles.main.maxParticles];
-        int count = cloudParticles.GetParticles(particles);
-
-        for (int i = 0; i < count; i++)
+        if (cloudLevel != lastCloudLevel)
         {
-            particles[i].rotation3D = new Vector3(0, particles[i].rotation3D.y, 0);
+            SetCloudDensity(cloudLevel);
+            lastCloudLevel = cloudLevel;
         }
-
-        cloudParticles.SetParticles(particles, count);
     }
 
     public void SetCloudDensity(int level)
     {
-        if (cloudParticles == null) return;
+        if (cloudSystem == null) return;
 
         cloudLevel = Mathf.Clamp(level, 0, 3);
-        float t = cloudLevel / 3f;   
 
-        var emission = cloudParticles.emission;
-        var main = cloudParticles.main;
-        var velocity = cloudParticles.velocityOverLifetime;
+        int[] widthLevels = { 70, 178, 356, 534 };
+        int targetWidth = widthLevels[cloudLevel];
 
-        // Level 0 → NO CLOUDS
-        if (cloudLevel == 0)
-        {
-            emission.rateOverTime = 0f;
-            cloudParticles.Clear();
-            return;
-        }
+        cloudSystem.MaxWidthCloud = targetWidth;
 
-        // Emission levels
-        float minEmission = 0.01f;
-        float maxEmission = 2.5f;
-        emission.rateOverTime = Mathf.Lerp(minEmission, maxEmission, t);
-
-        // Velocity (wind speed)
-        float minVelocity = 10f;
-        float maxVelocity = 15f;
-        velocity.x = Mathf.Lerp(minVelocity, maxVelocity, t);
-        velocity.y = 0f;
-        velocity.z = 0f;
-
-        // Lifetime
-        float minLifetime = 30f;
-        float maxLifetime = 100f;
-        main.startLifetime = Mathf.Lerp(minLifetime, maxLifetime, t);
-
-        // Size randomization
-        main.startSize = new ParticleSystem.MinMaxCurve(100f, 200f); 
-
-        // Keep color fixed
-        main.startColor = cloudColor;
-
-        if (!cloudParticles.isPlaying)
-            cloudParticles.Play();
-
-        Debug.Log(
-            $"Cloud Level: {cloudLevel} | " +
-            $"Emission: {emission.rateOverTime.constant} | " +
-            $"VelX: {velocity.x.constant} | " +
-            $"Lifetime: {main.startLifetime.constant} | " +
-            $"Size: {main.startSize.constantMin}-{main.startSize.constantMax}"
-        );
+        Debug.Log($"[CloudController] Level: {cloudLevel} | Width set to: {targetWidth} | CloudsToy.MaxWidthCloud is now: {cloudSystem.MaxWidthCloud}");
     }
 }

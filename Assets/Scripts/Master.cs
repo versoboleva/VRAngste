@@ -195,9 +195,6 @@ public class Master : MonoBehaviour
         ApiClient.Instance.Connect(this.nonce, this.host);
     }
 
-    
-
-
 }
 
     

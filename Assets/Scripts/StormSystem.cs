@@ -12,10 +12,10 @@ public class StormSystem : MonoBehaviour
     private Skylight Flash;
     private SoundSystem Sound;
     private CloudController clouds;
-    
-    
-    public Vector3 position = new Vector3(0,40,0);
-    private Vector3 positionCheck = new Vector3(0,40,0);
+
+
+    public Vector3 position = new Vector3(0, 40, 0);
+    private Vector3 positionCheck = new Vector3(0, 40, 0);
 
     public int scale = 1;
     private int scaleCheck = 1;
@@ -36,7 +36,7 @@ public class StormSystem : MonoBehaviour
 
     private void Start()
     {
-        if(Flash == null)
+        if (Flash == null)
         {
             Flash = FindAnyObjectByType<Skylight>();
         }
@@ -56,7 +56,7 @@ public class StormSystem : MonoBehaviour
         {
             LightningController = FindAnyObjectByType<LightningController>();
         }
-       if (clouds == null)
+        if (clouds == null)
         {
             clouds = GameObject.FindGameObjectWithTag("Clouds")?.GetComponent<CloudController>();
         }
@@ -64,7 +64,7 @@ public class StormSystem : MonoBehaviour
 
 
         LightningController.position = position;
-        
+
         LightningController.scale = new Vector3(scale * 10, scale * 10, 1);
 
         LightningController.emissionRate = emitionLightning;
@@ -97,7 +97,7 @@ public class StormSystem : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if(position != positionCheck)
+        if (position != positionCheck)
         {
             MoveToPosition();
         }
@@ -137,20 +137,20 @@ public class StormSystem : MonoBehaviour
     }
     public void SetStorm(float distance, int wolken, int intervalBlitz, int regen, int helligkeitBlitz)
     {
-        position = new Vector3(0, 40, distance*100);
+        position = new Vector3(0, 40, distance * 100);
 
         cloudLevel = wolken;
-        
-        emitionLightning = intervalBlitz/1;
-        
+
+        emitionLightning = intervalBlitz / 1;
+
         emitionRain = regen;
 
-        flashIntencity = helligkeitBlitz /2;
+        flashIntencity = helligkeitBlitz / 2;
     }
 
-    public void SetDistance( float distance)
+    public void SetDistance(float distance)
     {
-        position = new Vector3(0, 40, distance*100);
+        position = new Vector3(0, 40, distance * 100);
     }
 
     public void SetWolken(int wolken)
@@ -159,7 +159,7 @@ public class StormSystem : MonoBehaviour
 
         if (clouds != null)
         {
-            clouds.SetCloudDensity(wolken);   
+            clouds.SetCloudDensity(wolken);
         }
     }
 
@@ -181,7 +181,7 @@ public class StormSystem : MonoBehaviour
 
     private void MoveToPosition()
     {
-        if (LightningController != null && LightningController.position != position) 
+        if (LightningController != null && LightningController.position != position)
         {
             LightningController.position = Vector3.MoveTowards(LightningController.position, position, speed * Time.deltaTime);
         }
@@ -199,7 +199,7 @@ public class StormSystem : MonoBehaviour
         if (emitionRain == 2) rate = 500;
         if (emitionRain == 3) rate = 1000;
 
-        StartCoroutine(LerpRainEmission(rate, 5f));  
+        StartCoroutine(LerpRainEmission(rate, 5f));
     }
 
     private IEnumerator LerpRainEmission(float targetRate, float duration)
