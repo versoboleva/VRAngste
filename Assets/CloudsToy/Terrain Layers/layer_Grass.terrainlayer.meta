@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 90ad2aecf52495e4fa90214ea20c26b9
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Terrain Layers/layer_Grass.terrainlayer
+  uploadId: 757993

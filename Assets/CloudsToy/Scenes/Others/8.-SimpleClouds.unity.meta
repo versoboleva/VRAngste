@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4fc8a1bd69c239e438d8080a428b0636
+timeCreated: 1575896502
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Scenes/Others/8.-SimpleClouds.unity
+  uploadId: 757993

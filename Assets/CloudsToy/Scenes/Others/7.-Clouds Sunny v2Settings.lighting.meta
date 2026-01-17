@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0e57c9e20e5946046aeb427d2c896a55
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Scenes/Others/7.-Clouds Sunny v2Settings.lighting
+  uploadId: 757993

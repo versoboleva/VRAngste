@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cc3cb2b9e129dc24d8795e15e3a1c400
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Scenes/0.-Main MenuSettings.lighting
+  uploadId: 757993

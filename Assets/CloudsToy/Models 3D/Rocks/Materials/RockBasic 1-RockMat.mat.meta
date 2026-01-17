@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 905456b643769b543aeccab1e911a5b5
+timeCreated: 1530529822
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Models 3D/Rocks/Materials/RockBasic 1-RockMat.mat
+  uploadId: 757993

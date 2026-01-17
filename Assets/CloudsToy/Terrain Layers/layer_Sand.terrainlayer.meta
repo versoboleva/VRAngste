@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f02c2cf3615a1c941aa9939b4083c6f5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Terrain Layers/layer_Sand.terrainlayer
+  uploadId: 757993

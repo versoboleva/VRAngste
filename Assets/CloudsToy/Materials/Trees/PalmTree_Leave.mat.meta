@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b21f343d7d9c0344b9c2da71e4626da5
+timeCreated: 1529581312
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Materials/Trees/PalmTree_Leave.mat
+  uploadId: 757993

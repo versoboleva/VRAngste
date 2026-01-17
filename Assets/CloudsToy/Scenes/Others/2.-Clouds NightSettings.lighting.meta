@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 51b0a1beb0a40224a8f8b7c28452cf12
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Scenes/Others/2.-Clouds NightSettings.lighting
+  uploadId: 757993

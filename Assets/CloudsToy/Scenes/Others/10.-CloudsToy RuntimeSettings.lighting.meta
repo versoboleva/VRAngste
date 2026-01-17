@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d2b302eca9a51f04b9b4f3423d23f8d5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Scenes/Others/10.-CloudsToy RuntimeSettings.lighting
+  uploadId: 757993

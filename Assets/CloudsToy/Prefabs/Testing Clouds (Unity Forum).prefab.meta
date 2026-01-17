@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 918bdecd99e60d941b09d6410cd08208
+timeCreated: 1529600408
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Prefabs/Testing Clouds (Unity Forum).prefab
+  uploadId: 757993

@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 4ba2bbd92e1c5da4db0c949dcb932ec0
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/FPS Basics/FPS Prefabs/First Person Controller.prefab
+  uploadId: 757993

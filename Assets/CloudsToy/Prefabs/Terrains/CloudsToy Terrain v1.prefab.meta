@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 37a6d9e7f1790044a9d431b7bb9224e7
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Prefabs/Terrains/CloudsToy Terrain v1.prefab
+  uploadId: 757993
