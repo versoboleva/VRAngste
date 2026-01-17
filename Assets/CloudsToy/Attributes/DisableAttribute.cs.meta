@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 3952e1ae434b3754babc932309efabdd
+timeCreated: 1520962964
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Attributes/DisableAttribute.cs
+  uploadId: 757993

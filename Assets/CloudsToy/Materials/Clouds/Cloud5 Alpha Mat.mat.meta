@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c995f7cb6479b2e47aacab048579f53a
+timeCreated: 1430643290
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Materials/Clouds/Cloud5 Alpha Mat.mat
+  uploadId: 757993

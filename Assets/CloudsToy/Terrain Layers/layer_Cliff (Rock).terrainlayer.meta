@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5ab037bcc30f6054e8519699a75df90d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Terrain Layers/layer_Cliff (Rock).terrainlayer
+  uploadId: 757993

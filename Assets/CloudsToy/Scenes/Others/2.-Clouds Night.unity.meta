@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ad8c9e8f3f7dd4b11b71de9e83351be7
+timeCreated: 1504193279
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Scenes/Others/2.-Clouds Night.unity
+  uploadId: 757993

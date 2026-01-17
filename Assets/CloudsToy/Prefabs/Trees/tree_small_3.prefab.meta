@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d5b6fc5ba9eee1243ad10ad7f0f28c3b
+timeCreated: 1530620077
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Prefabs/Trees/tree_small_3.prefab
+  uploadId: 757993

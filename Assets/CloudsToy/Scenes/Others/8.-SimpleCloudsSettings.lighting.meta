@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5e98c1aed7e57f34f8b9d6dbc2f22e56
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Scenes/Others/8.-SimpleCloudsSettings.lighting
+  uploadId: 757993

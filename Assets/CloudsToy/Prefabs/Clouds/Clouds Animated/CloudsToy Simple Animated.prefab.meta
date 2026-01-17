@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 81e93e778d50cf5448f706915f2c5538
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Prefabs/Clouds/Clouds Animated/CloudsToy Simple Animated.prefab
+  uploadId: 757993

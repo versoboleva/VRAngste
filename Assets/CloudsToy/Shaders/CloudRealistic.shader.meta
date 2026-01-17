@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 7ad368ed770217c41b82395d446f2386
+timeCreated: 1429464325
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Shaders/CloudRealistic.shader
+  uploadId: 757993
