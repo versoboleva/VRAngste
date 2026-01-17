@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System;
 
 public class LightningController : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class LightningController : MonoBehaviour
     private bool isSceneReady = false;
 
     
-    public int emissionRate = 100;
+    public TimeSpan lightningInterval = TimeSpan.FromSeconds(100);
+    public DateTime nextLightningTime { get; private set; }
 
     private float timer = 0f;
 
@@ -42,22 +44,19 @@ public class LightningController : MonoBehaviour
 
     private void Awake()
     {
-        LightningController[] controllers = Object.FindObjectsByType<LightningController>(FindObjectsSortMode.None);
+        LightningController[] controllers = LightningController.FindObjectsByType<LightningController>(FindObjectsSortMode.None);
 
         if (controllers.Length > 1)
         {
             Destroy(gameObject); // destroy duplicate
             return;
         }
-
-
         DontDestroyOnLoad(gameObject);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         StartCoroutine(SetupSceneObjects());
-
     }
 
     private void Update()
@@ -66,10 +65,10 @@ public class LightningController : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (timer >= emissionRate && emissionRate > 0)
+        if (DateTime.UtcNow >= nextLightningTime)
         {
             EmitLightning();
-            timer = 0f;
+            ScheduleNextLightning();
         }
     }
 
@@ -82,7 +81,26 @@ public class LightningController : MonoBehaviour
         var shape = lightningPS.shape;
         shape.scale = scale;
     }
-
+    private void ScheduleNextLightning()
+    {
+        nextLightningTime = DateTime.UtcNow + lightningInterval;
+        Debug.Log($"Lightning interval set to {lightningInterval}s. Next strike at {nextLightningTime}");
+        //send time
+    }
+    public void SetLightningInterval(int seconds)
+    {
+        if (seconds <= 0)
+        {
+            Debug.LogWarning("Lightning interval must be greater than 0 seconds.");
+            return;
+        }
+        if (lightningInterval != TimeSpan.FromSeconds(seconds))
+        {
+            lightningInterval = TimeSpan.FromSeconds(seconds);
+            ScheduleNextLightning();
+            Debug.Log($"Lightning interval set to {seconds}s. Next strike at {nextLightningTime}");
+        }
+    }
     private void EmitLightning()
     {
         if (lightningPS == null) return;
@@ -107,13 +125,16 @@ public class LightningController : MonoBehaviour
         if (soundSystem != null)
             soundSystem.PlayThunder(spawnPos);
 
-        Debug.Log("Lightning emitted at: " + spawnPos);
+        Debug.Log("Lightning emitted at: " + spawnPos + "Time:" + DateTime.UtcNow);
     }
 
     private IEnumerator SetupSceneObjects()
     {
-        // Wait one frame to ensure scene objects are initialized
+        // Wait one frame to ensure scene objects are initialized then reset
         yield return null;
+        lightningPS = null;
+        skyLight = null;
+        soundSystem = null;
 
         lightningPS = GameObject.FindGameObjectWithTag("Lightning")?.GetComponent<ParticleSystem>();
         skyLight = FindAnyObjectByType<Skylight>();
@@ -130,6 +151,8 @@ public class LightningController : MonoBehaviour
 
         if (skyLight == null) Debug.LogWarning("SkyLight not found in scene");
         if (soundSystem == null) Debug.LogWarning("SoundSystem not found in scene");
+        nextLightningTime = DateTime.UtcNow + lightningInterval;
+
 
         isSceneReady = true;
     }

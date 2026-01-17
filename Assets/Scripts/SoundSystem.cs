@@ -10,10 +10,6 @@ public class SoundSystem : MonoBehaviour
     public AudioClip[] rainOutsideSounds = new AudioClip[4];
     public AudioClip[] rainCarSounds = new AudioClip[4];
     public AudioClip[] thunder;
-    public AudioClip[] windInsideSounds = new AudioClip[4];
-    public AudioClip[] windOutsideSounds = new AudioClip[4];
-    public AudioClip[] windCarSounds = new AudioClip[4];
-    private AudioClip[] currentWind;
     private AudioClip[] currentRain;
     public int currentScene = 0;
     public AudioSource rainSource;
@@ -22,24 +18,21 @@ public class SoundSystem : MonoBehaviour
     public Transform player;
     public ParticleSystem Particlerain;
     public float speedOfSound = 100f;
-    public int windIntencity = 0;
     public int rainIntencity = 0;
     public float thunderVolume = 0;
 
-    
+
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -48,45 +41,40 @@ public class SoundSystem : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-    
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         StartCoroutine(SetupSceneObjects());
     }
-
     private IEnumerator SetupSceneObjects()
     {
-        yield return null;
+        yield return null; // wait for scene init
+
+        player = null;
+        Particlerain = null;
 
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         Particlerain = GameObject.FindGameObjectWithTag("RainSystem")?.GetComponent<ParticleSystem>();
 
-        SetScene(); 
+        SetScene();
 
         if (player != null)
         {
-            rainSource.transform.position = player.position;
-            windSource.transform.position = player.position;
+            if (rainSource != null)
+                rainSource.transform.position = player.position;
         }
+        rainIntencity = 0;
+
 
         PlayRain();
-        //PlayWind();
     }
 
     private void FixedUpdate()
     {
-        rainSource.transform.position = player.position;
-        windSource.transform.position = player.position;
+        if (player == null) return;
+
+        if (rainSource != null)
+            rainSource.transform.position = player.position;
     }
 
     private void SetThunderVolume()
@@ -115,11 +103,6 @@ public class SoundSystem : MonoBehaviour
             this.rainIntencity = rainIntencity;
             PlayRain();
         }
-        if(this.windIntencity != windIntencity)
-        {
-            this.windIntencity = windIntencity;
-            //PlayWind();
-        }
         if (thunderVolume != donnerVolume / 100f)
         {
             thunderVolume = donnerVolume / 100f;
@@ -136,15 +119,6 @@ public class SoundSystem : MonoBehaviour
         }
     }
 
-    public void SetWind(int windIntencity)
-    {
-        if (this.windIntencity != windIntencity)
-        {
-            this.windIntencity = windIntencity;
-            //PlayWind();
-        }
-    }
-
     public void SetThunder(float donnerVolume)
     {
         if (thunderVolume != donnerVolume)
@@ -156,33 +130,27 @@ public class SoundSystem : MonoBehaviour
 
     private void SetScene()
     {
+        rainIntencity = 0;
+        thunderVolume = 0;
         switch (currentScene)
         {
             case 0:
                 currentRain = null;
-                currentWind = null;
                 break;
             case 1:
                 currentRain = rainInsideSounds;
-                currentWind = windInsideSounds;
                 break;
             case 2:
                 currentRain = rainOutsideSounds;
-                currentWind = windOutsideSounds;
                 break;
             case 3:
                 currentRain = rainCarSounds;
-                currentWind = windCarSounds;
                 break;
             default:
                 Debug.LogError($"Invalid currentScene: {currentScene}");
                 currentRain = null;
-                currentWind = null;
                 return;
         }
-
-        if (currentRain == null || currentRain.Length == 0)
-            Debug.LogError("CurrentRain array is empty! Assign AudioClips in Inspector.");
     }
 
     private void PlayRain()

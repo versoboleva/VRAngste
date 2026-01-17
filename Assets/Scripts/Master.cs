@@ -21,7 +21,6 @@ public class Master : MonoBehaviour
     public TMP_InputField nonceField;
 
     private int sceneNr;
-    private int windIntencity;
     private float thunderVolume;
     private float distance;
     private int rainIntencity;
@@ -48,7 +47,7 @@ public class Master : MonoBehaviour
         {
             api = FindAnyObjectByType<ApiClient>();
         }
-        //ConnectToServer();
+        ConnectToServer();
         ApiClient.Instance.OnBytesReceived += HandleEnvelope; // <- call function on event/does the same as https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
     }
 
@@ -88,12 +87,6 @@ public class Master : MonoBehaviour
                 rainIntencity = (int) envelope.RainSetting.Level;
                 storm.SetRegen(rainIntencity);
                 Debug.Log("Rain level:" + rainIntencity);
-                break;
-
-            case Envelope.PayloadOneofCase.WindSetting: 
-                windIntencity = (int) envelope.WindSetting.Level;
-                sound.SetWind(windIntencity);
-                Debug.Log("Wind level:" + windIntencity);
                 break;
 
             case Envelope.PayloadOneofCase.ThunderSetting: 

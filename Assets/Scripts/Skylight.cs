@@ -40,6 +40,7 @@ public class Skylight : MonoBehaviour
             cam = Object.FindAnyObjectByType<Camera>();
             if (cam == null)
                 Debug.LogWarning("Skylight: No MainCamera found in scene " + scene.name);
+            originalIntensity = RenderSettings.ambientIntensity;
         }
     }
     public void TriggerFlash(Vector3 lightningPos)

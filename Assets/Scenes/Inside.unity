@@ -22252,11 +22252,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4941658241568906763, guid: 575577e3eaea4434eb0223ebd40d2b41, type: 3}
       propertyPath: emitionRain
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4941658241568906763, guid: 575577e3eaea4434eb0223ebd40d2b41, type: 3}
       propertyPath: emitionLightning
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 9020363832356853611, guid: 575577e3eaea4434eb0223ebd40d2b41, type: 3}
       propertyPath: m_Name
@@ -23384,6 +23384,10 @@ PrefabInstance:
     - target: {fileID: 4672331071588002663, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
+      propertyPath: nonce
+      value: KaOl
       objectReference: {fileID: 0}
     - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
       propertyPath: sound
