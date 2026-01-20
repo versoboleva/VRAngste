@@ -103,7 +103,6 @@ public class Master : MonoBehaviour
             case Envelope.PayloadOneofCase.SceneChangeSetting:
                 sceneNr = (int) envelope.SceneChangeSetting.Index; 
                 sceneSetter.ChangeScene(sceneNr);
-                sound.currentScene = sceneNr;
                 Debug.Log("Scene index received: " + sceneNr);
                 break;
 

@@ -91,6 +91,8 @@ public class SoundSystem : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         Particlerain = GameObject.FindGameObjectWithTag("RainSystem")?.GetComponent<ParticleSystem>();
 
+        currentScene = GetSceneIndex();
+
         SetScene();
 
         if (player != null)
@@ -124,34 +126,6 @@ public class SoundSystem : MonoBehaviour
     {
         rainIntencity = intencity;
         PlayRain();
-    }
-
-    public void SetSoundSystem(int sceneNr, int rainIntencity, int windIntencity, int donnerVolume)
-    {
-        if(currentScene != sceneNr)
-        {
-            currentScene = sceneNr;
-            SetScene();
-        }
-        if (this.rainIntencity != rainIntencity)
-        {
-            this.rainIntencity = rainIntencity;
-            PlayRain();
-        }
-        if (thunderVolume != donnerVolume / 100f)
-        {
-            thunderVolume = donnerVolume / 100f;
-            SetThunderVolume();
-        }
-    }
-
-    public void SetSceneNr(int sceneNr)
-    {
-        if (currentScene != sceneNr)
-        {
-            currentScene = sceneNr;
-            SetScene();
-        }
     }
 
     public void SetThunder(float donnerVolume)
@@ -193,7 +167,19 @@ public class SoundSystem : MonoBehaviour
                 return;
         }
     }
+    public static int GetSceneIndex()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
 
+        switch (sceneName)
+        {
+            case "Safespace": return 0;
+            case "Innen": return 1;
+            case "Ausen": return 2;
+            case "Car": return 3;
+            default: return 0; // Default auf 0 = "Safespace"
+        }
+    }
     private void PlayRain()
     {
         if (rainSource == null) return;

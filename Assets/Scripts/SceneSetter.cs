@@ -17,11 +17,13 @@ public class SceneSetter : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Keep across scenes
+            DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
         if (master == null)
         {
@@ -32,12 +34,14 @@ public class SceneSetter : MonoBehaviour
             sound = FindAnyObjectByType<SoundSystem>();
         }
         rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDestroy()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -71,7 +75,10 @@ public class SceneSetter : MonoBehaviour
     
     public void ChangeScene(int sceneNumber)
     {
-        StartCoroutine(ChangeSceneCoroutine(sceneNumber));
+        if (Instance != null)
+        {
+            StartCoroutine(Instance.ChangeSceneCoroutine(sceneNumber));
+        }
     }
 
 
