@@ -3,9 +3,13 @@ package dev.group6.vrappcontroller.model
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.group6.vrappcontroller.server.*
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 
 /**
  * Model for handling the slider values.
@@ -23,6 +27,8 @@ class ControlModel() : ViewModel() {
     val lightningBrightness: MutableStateFlow<Float> = _lightningBrightness
     var _lightningDistance = MutableStateFlow(1.0f)
     val lightningDistance: MutableStateFlow<Float> = _lightningDistance
+    var _stormSize = MutableStateFlow(1.0f)
+    val stormSize: MutableStateFlow<Float> = _stormSize
 
     var _rain = MutableStateFlow(0)
     val rain: MutableStateFlow<Int> = _rain
@@ -31,11 +37,22 @@ class ControlModel() : ViewModel() {
     var _clouds = MutableStateFlow(0)
     val clouds: MutableStateFlow<Int> = _clouds
 
-    var _lightningInterval = MutableStateFlow(10)
+    var _lightningInterval = MutableStateFlow(100)
     val lightningInterval: MutableStateFlow<Int> = _lightningInterval
 
     var _selectedScene = MutableStateFlow(0)
     val selectedScene: MutableStateFlow<Int> = _selectedScene
+
+    var _nextThunderTimestamp = MutableStateFlow(0L)
+    val nextThunderTimestamp: MutableStateFlow<Long> = _nextThunderTimestamp
+
+    var _maxThunderCountdown: MutableStateFlow<Long> = MutableStateFlow(1L)
+    val maxThunderCountdown: MutableStateFlow<Long> = _maxThunderCountdown
+
+    private var thunderCountdownJob: Job? = null
+
+    private val _remainingThunderMs = MutableStateFlow(0L)
+    val remainingThunderMs: MutableStateFlow<Long> = _remainingThunderMs
 
     init {
         _thunderVolume.value = 1.0f
@@ -68,6 +85,21 @@ class ControlModel() : ViewModel() {
                 lightning_distance_setting = LightningDistanceSetting(_lightningDistance.value)
             )
         )
+    }
+
+    fun resetToDefault() {
+        setThunderVolume(1.0f)
+        setLightningBrightness(1.0f)
+        setLightningDistance(1.0f)
+        setStormSize(1.0f)
+        setRain(0)
+        setWind(0)
+        setClouds(0)
+        setLightningInterval(100)
+    }
+
+    fun setStormSize(value: Float) {
+        _stormSize.value = value
     }
 
     fun setRain(value: Int) {
@@ -119,5 +151,33 @@ class ControlModel() : ViewModel() {
         viewModelScope.launch {
             server.broadcast(envelope)
         }
+    }
+
+    @OptIn(ExperimentalTime::class)
+    fun setNextTimerTimestamp(timestamp: Long) {
+        _nextThunderTimestamp.value = timestamp
+        _maxThunderCountdown.value = timestamp - Clock.System.now().toEpochMilliseconds()
+
+        thunderCountdownJob?.cancel()
+        thunderCountdownJob = viewModelScope.launch {
+            while (true) {
+                val now = Clock.System.now().toEpochMilliseconds()
+                val remaining = timestamp - now
+
+                if (remaining <= 0) {
+                    _remainingThunderMs.value = 0L
+                    break
+                }
+
+                _remainingThunderMs.value = remaining
+                delay(1000) // 1s Takt
+            }
+        }
+    }
+
+    fun stopThunderCountdown() {
+        thunderCountdownJob?.cancel()
+        _remainingThunderMs.value = 0L
+        _nextThunderTimestamp.value = 0L
     }
 }

@@ -1,5 +1,6 @@
 package dev.group6.vrappcontroller.server
 
+import dev.group6.vrappcontroller.model.ControlModel
 import io.ktor.network.selector.*
 import io.ktor.network.sockets.*
 import io.ktor.utils.io.*
@@ -32,7 +33,7 @@ fun bytesToInt(bytes: ByteArray): Int {
  * @param port The port number to listen on. Must be a 16-bit unsigned integer (U16).
  * @param nonce A 4-character ASCII string used for handshake.
  */
-class Server(private val port: Int, private val nonce: String) {
+class Server(private val port: Int, private val nonce: String, private var controlModel: ControlModel?) {
     private var serverJob: Job? = null
     private val clients = atomic<List<ClientHandler>>(emptyList())
     private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
@@ -126,7 +127,7 @@ class Server(private val port: Int, private val nonce: String) {
 
                     val msg = ProtoBuf.decodeFromByteArray<Envelope>(data)
 
-                    fromEnvelope(msg)
+                    fromEnvelope(msg, controlModel)
                 }
             } catch (_: Exception) {
             } finally {

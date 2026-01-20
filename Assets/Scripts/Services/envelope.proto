@@ -62,8 +62,7 @@ message LightningReport {
 
 message AnnounceLightningReport {
   uint64 distance = 1;
-  uint64 duration = 2;
-  uint64 duration_until_start = 3;
+  uint64 timestamp = 2;
 }
 
 message ThunderReport {

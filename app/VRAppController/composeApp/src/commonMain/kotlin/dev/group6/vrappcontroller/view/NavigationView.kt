@@ -38,12 +38,6 @@ fun NavigationView(
                 label = { Text("Steuerung") }
             )
             NavigationRailItem(
-                selected = selected == 1,
-                onClick = { selected = 1 },
-                icon = { Icon(Icons.Default.Timeline, null) },
-                label = { Text("Daten") }
-            )
-            NavigationRailItem(
                 selected = false,
                 onClick = reopenServerPopup,
                 icon = { Icon(Icons.Default.Wifi, null) },
@@ -81,8 +75,6 @@ fun NavigationView(
                     }
                 }
             }
-
-            1 -> DataView(dataModel)
         }
     }
 }

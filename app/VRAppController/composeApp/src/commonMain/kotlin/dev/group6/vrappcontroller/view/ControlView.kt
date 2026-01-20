@@ -1,6 +1,5 @@
 package dev.group6.vrappcontroller.view
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
@@ -9,12 +8,16 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -23,8 +26,12 @@ import androidx.compose.ui.unit.dp
 import dev.group6.vrappcontroller.HorizontalScrollbar
 import dev.group6.vrappcontroller.VerticalScrollbar
 import dev.group6.vrappcontroller.model.ControlModel
+import kotlinx.coroutines.delay
 import kotlin.math.roundToInt
+import kotlin.time.Clock
+import kotlin.time.ExperimentalTime
 
+@OptIn(ExperimentalTime::class)
 @Composable
 fun ControlView(
     viewModel: ControlModel
@@ -44,55 +51,43 @@ fun ControlView(
     val verticalScrollState = rememberScrollState(0)
 
     val selectedScene by viewModel.selectedScene.collectAsState()
+    val remainingThunderMs by viewModel.remainingThunderMs.collectAsState()
+    val nextThunderTimestamp by viewModel.nextThunderTimestamp.collectAsState()
+    val maxThunderCountdown by viewModel.maxThunderCountdown.collectAsState()
 
     Row {
         Column(
-            modifier = Modifier.weight(1f).fillMaxHeight().verticalScroll(verticalScrollState).padding(32.dp),
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight()
+                .verticalScroll(verticalScrollState)
+                .padding(32.dp),
         ) {
-            Category("Blitz/Donner") {
-                SubCategory("Lautstärke Donner") {
-                    Slider(
-                        value = thunderVolume,
-                        onValueChange = viewModel::setThunderVolume,
-                    )
-                    Text("${(thunderVolume * 100).roundToInt()}%")
-                }
-                SubCategory("Helligkeit Blitz") {
-                    Slider(
-                        value = lightningBrightness,
-                        onValueChange = viewModel::setLightningBrightness,
-                    )
-                    Text("${(lightningBrightness * 100).roundToInt()}%")
-                }
-                SubCategory("Distanz Blitz") {
-                    Slider(
-                        value = lightningDistance,
-                        onValueChange = viewModel::setLightningDistance,
-                    )
-                    Text("${(lightningDistance * 100).roundToInt()}m")
-                }
+            Category("Timer") {
 
+                ThunderDisplay(remainingThunderMs, maxThunderCountdown)
             }
-            Category("Wetter") {
-                SubCategory("Regen") {
-                    StrengthSlider(
-                        value = rain,
-                        onValueChange = viewModel::setRain,
+            Category("Szenen Wechsel") {
+                FlowRow(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(16.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    SceneCard(
+                        "Leere Szene",
+                        { viewModel.setSelectedScene(0); viewModel.resetToDefault() },
+                        selectedScene == 0
                     )
-                }
-                SubCategory("Wind") {
-                    StrengthSlider(
-                        value = wind,
-                        onValueChange = viewModel::setWind,
+                    SceneCard("Haus", { viewModel.setSelectedScene(1); viewModel.resetToDefault() }, selectedScene == 1)
+                    SceneCard(
+                        "Terrasse",
+                        { viewModel.setSelectedScene(2); viewModel.resetToDefault() },
+                        selectedScene == 2
                     )
-                }
-                SubCategory("Wolken") {
-                    StrengthSlider(
-                        value = clouds,
-                        onValueChange = viewModel::setClouds,
-                    )
+                    SceneCard("Auto", { viewModel.setSelectedScene(3); viewModel.resetToDefault() }, selectedScene == 3)
                 }
             }
+
             Category("Interval") {
                 SubCategory("Intervall Blitz") {
                     Slider(
@@ -103,37 +98,25 @@ fun ControlView(
                     Text("Blitzschläge alle ${lightningInterval}s")
                 }
             }
-            Category("Szenen Wechsel") {
-                Column {
-                    Row(
-                        modifier = Modifier.fillMaxWidth().horizontalScroll(horizontalScrollState),
-                    ) {
-                        SceneCard(
-                            "Leere Szene",
-                            onClick = { viewModel.setSelectedScene(0) },
-                            selected = selectedScene == 0
-                        )
-                        Spacer(modifier = Modifier.width(16.dp))
-                        SceneCard(
-                            "Haus",
-                            onClick = { viewModel.setSelectedScene(1) },
-                            selected = selectedScene == 1
-                        )
-                        Spacer(modifier = Modifier.width(16.dp))
-                        SceneCard(
-                            "Terrasse",
-                            onClick = { viewModel.setSelectedScene(2) },
-                            selected = selectedScene == 2
-                        )
-                        Spacer(modifier = Modifier.width(16.dp))
-                        SceneCard(
-                            "Auto",
-                            onClick = { viewModel.setSelectedScene(3) },
-                            selected = selectedScene == 3
-                        )
-                    }
-                    Spacer(modifier = Modifier.height(8.dp))
-                    HorizontalScrollbar(horizontalScrollState)
+
+            Category("Wetter") {
+                SubCategory("Regen") { StrengthSlider(rain, viewModel::setRain) }
+                SubCategory("Wind") { StrengthSlider(wind, viewModel::setWind) }
+                SubCategory("Wolken") { StrengthSlider(clouds, viewModel::setClouds) }
+            }
+
+            Category("Blitz/Donner") {
+                SubCategory("Lautstärke Donner") {
+                    Slider(thunderVolume, viewModel::setThunderVolume)
+                    Text("${(thunderVolume * 100).roundToInt()}%")
+                }
+                SubCategory("Helligkeit Blitz") {
+                    Slider(lightningBrightness, viewModel::setLightningBrightness)
+                    Text("${(lightningBrightness * 100).roundToInt()}%")
+                }
+                SubCategory("Distanz Blitz") {
+                    Slider(lightningDistance, viewModel::setLightningDistance)
+                    Text("${(lightningDistance * 100).roundToInt()}m")
                 }
             }
         }
@@ -225,5 +208,29 @@ fun SceneCard(name: String, onClick: () -> Unit, selected: Boolean = false) {
         Box(modifier = Modifier.fillMaxSize().padding(48.dp), contentAlignment = Alignment.Center) {
             Text(text = name)
         }
+    }
+}
+
+@Composable
+fun ThunderDisplay(
+    remainingThunderMs: Long,
+    maxThunderCountdown: Long
+) {
+    Column(
+        modifier = Modifier.padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ) {
+        LinearProgressIndicator(
+            progress = remainingThunderMs.toFloat() / maxThunderCountdown.toFloat(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(12.dp),
+            color = MaterialTheme.colorScheme.primary,
+            trackColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f)
+        )
+        Text(
+            text = "Nächster Donner in ${remainingThunderMs / 1000}s",
+            style = MaterialTheme.typography.bodyMedium
+        )
     }
 }

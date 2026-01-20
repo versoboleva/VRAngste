@@ -13,6 +13,8 @@ plugins {
 }
 
 kotlin {
+    jvmToolchain(21)
+
     androidTarget {
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
@@ -106,6 +108,10 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "dev.group6.vrappcontroller"
             packageVersion = "1.0.0"
+        }
+
+        buildTypes.release.proguard {
+            isEnabled = false
         }
     }
 }

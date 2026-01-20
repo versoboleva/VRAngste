@@ -13,17 +13,18 @@ import dev.group6.vrappcontroller.model.ControlModel
 import dev.group6.vrappcontroller.model.DataModel
 import dev.group6.vrappcontroller.model.ServerPopupModel
 import dev.group6.vrappcontroller.model.StreamModel
+import dev.group6.vrappcontroller.server.ServerInstance
 import dev.group6.vrappcontroller.ui.theme.AppTheme
 import dev.group6.vrappcontroller.view.NavigationView
 import dev.group6.vrappcontroller.view.ServerPopupView
 
 @Composable
 fun App() {
-
     val controlModel = ControlModel()
     val dataModel = DataModel()
     val streamModel = StreamModel()
     val serverPopupModel = ServerPopupModel()
+    ServerInstance.ControlModel = controlModel
 
     var isServerPopupVisible by remember { mutableStateOf(true) }
 

@@ -34,9 +34,8 @@ data class SceneChangeSetting(@ProtoNumber(1) val index: UInt)
 @OptIn(ExperimentalSerializationApi::class)
 @Serializable
 data class AnnounceLightningReport(
-    @ProtoNumber(1) val distance: ULong,
-    @ProtoNumber(2) val duration: ULong,
-    @ProtoNumber(3) val duration_until_start: ULong
+    @ProtoNumber(1) val distance: ULong, // Distance to lightning
+    @ProtoNumber(2) val timestamp: ULong, // When the next lightning strikes
 )
 
 @OptIn(ExperimentalSerializationApi::class)

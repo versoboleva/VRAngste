@@ -46,11 +46,10 @@ public static partial class EnvelopeReflection {
           "KAIiKgoZTGlnaHRuaW5nRnJlcXVlbmN5U2V0dGluZxINCgVzY2FsZRgBIAEo",
           "AiIpChhMaWdodG5pbmdEaXN0YW5jZVNldHRpbmcSDQoFc2NhbGUYASABKAIi",
           "NQoPTGlnaHRuaW5nUmVwb3J0EhAKCGRpc3RhbmNlGAEgASgEEhAKCGR1cmF0",
-          "aW9uGAIgASgEIlsKF0Fubm91bmNlTGlnaHRuaW5nUmVwb3J0EhAKCGRpc3Rh",
-          "bmNlGAEgASgEEhAKCGR1cmF0aW9uGAIgASgEEhwKFGR1cmF0aW9uX3VudGls",
-          "X3N0YXJ0GAMgASgEIiIKDVRodW5kZXJSZXBvcnQSEQoJaW50ZW5zaXR5GAEg",
-          "ASgCIgwKClBhbmljRXZlbnQiDQoLTG9naW5GYWlsZWQiDgoMTG9naW5TdWNj",
-          "ZXNzYgZwcm90bzM="));
+          "aW9uGAIgASgEIj4KF0Fubm91bmNlTGlnaHRuaW5nUmVwb3J0EhAKCGRpc3Rh",
+          "bmNlGAEgASgEEhEKCXRpbWVzdGFtcBgCIAEoBCIiCg1UaHVuZGVyUmVwb3J0",
+          "EhEKCWludGVuc2l0eRgBIAEoAiIMCgpQYW5pY0V2ZW50Ig0KC0xvZ2luRmFp",
+          "bGVkIg4KDExvZ2luU3VjY2Vzc2IGcHJvdG8z"));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -64,7 +63,7 @@ public static partial class EnvelopeReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::LightningFrequencySetting), global::LightningFrequencySetting.Parser, new[]{ "Scale" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LightningDistanceSetting), global::LightningDistanceSetting.Parser, new[]{ "Scale" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LightningReport), global::LightningReport.Parser, new[]{ "Distance", "Duration" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::AnnounceLightningReport), global::AnnounceLightningReport.Parser, new[]{ "Distance", "Duration", "DurationUntilStart" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::AnnounceLightningReport), global::AnnounceLightningReport.Parser, new[]{ "Distance", "Timestamp" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::ThunderReport), global::ThunderReport.Parser, new[]{ "Intensity" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PanicEvent), global::PanicEvent.Parser, null, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::LoginFailed), global::LoginFailed.Parser, null, null, null, null, null),
@@ -2860,8 +2859,7 @@ public sealed partial class AnnounceLightningReport : pb::IMessage<AnnounceLight
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public AnnounceLightningReport(AnnounceLightningReport other) : this() {
     distance_ = other.distance_;
-    duration_ = other.duration_;
-    durationUntilStart_ = other.durationUntilStart_;
+    timestamp_ = other.timestamp_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
 
@@ -2883,27 +2881,15 @@ public sealed partial class AnnounceLightningReport : pb::IMessage<AnnounceLight
     }
   }
 
-  /// <summary>Field number for the "duration" field.</summary>
-  public const int DurationFieldNumber = 2;
-  private ulong duration_;
+  /// <summary>Field number for the "timestamp" field.</summary>
+  public const int TimestampFieldNumber = 2;
+  private ulong timestamp_;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ulong Duration {
-    get { return duration_; }
+  public ulong Timestamp {
+    get { return timestamp_; }
     set {
-      duration_ = value;
-    }
-  }
-
-  /// <summary>Field number for the "duration_until_start" field.</summary>
-  public const int DurationUntilStartFieldNumber = 3;
-  private ulong durationUntilStart_;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public ulong DurationUntilStart {
-    get { return durationUntilStart_; }
-    set {
-      durationUntilStart_ = value;
+      timestamp_ = value;
     }
   }
 
@@ -2923,8 +2909,7 @@ public sealed partial class AnnounceLightningReport : pb::IMessage<AnnounceLight
       return true;
     }
     if (Distance != other.Distance) return false;
-    if (Duration != other.Duration) return false;
-    if (DurationUntilStart != other.DurationUntilStart) return false;
+    if (Timestamp != other.Timestamp) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
 
@@ -2933,8 +2918,7 @@ public sealed partial class AnnounceLightningReport : pb::IMessage<AnnounceLight
   public override int GetHashCode() {
     int hash = 1;
     if (Distance != 0UL) hash ^= Distance.GetHashCode();
-    if (Duration != 0UL) hash ^= Duration.GetHashCode();
-    if (DurationUntilStart != 0UL) hash ^= DurationUntilStart.GetHashCode();
+    if (Timestamp != 0UL) hash ^= Timestamp.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
     }
@@ -2957,13 +2941,9 @@ public sealed partial class AnnounceLightningReport : pb::IMessage<AnnounceLight
       output.WriteRawTag(8);
       output.WriteUInt64(Distance);
     }
-    if (Duration != 0UL) {
+    if (Timestamp != 0UL) {
       output.WriteRawTag(16);
-      output.WriteUInt64(Duration);
-    }
-    if (DurationUntilStart != 0UL) {
-      output.WriteRawTag(24);
-      output.WriteUInt64(DurationUntilStart);
+      output.WriteUInt64(Timestamp);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(output);
@@ -2979,13 +2959,9 @@ public sealed partial class AnnounceLightningReport : pb::IMessage<AnnounceLight
       output.WriteRawTag(8);
       output.WriteUInt64(Distance);
     }
-    if (Duration != 0UL) {
+    if (Timestamp != 0UL) {
       output.WriteRawTag(16);
-      output.WriteUInt64(Duration);
-    }
-    if (DurationUntilStart != 0UL) {
-      output.WriteRawTag(24);
-      output.WriteUInt64(DurationUntilStart);
+      output.WriteUInt64(Timestamp);
     }
     if (_unknownFields != null) {
       _unknownFields.WriteTo(ref output);
@@ -3000,11 +2976,8 @@ public sealed partial class AnnounceLightningReport : pb::IMessage<AnnounceLight
     if (Distance != 0UL) {
       size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Distance);
     }
-    if (Duration != 0UL) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Duration);
-    }
-    if (DurationUntilStart != 0UL) {
-      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(DurationUntilStart);
+    if (Timestamp != 0UL) {
+      size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Timestamp);
     }
     if (_unknownFields != null) {
       size += _unknownFields.CalculateSize();
@@ -3021,11 +2994,8 @@ public sealed partial class AnnounceLightningReport : pb::IMessage<AnnounceLight
     if (other.Distance != 0UL) {
       Distance = other.Distance;
     }
-    if (other.Duration != 0UL) {
-      Duration = other.Duration;
-    }
-    if (other.DurationUntilStart != 0UL) {
-      DurationUntilStart = other.DurationUntilStart;
+    if (other.Timestamp != 0UL) {
+      Timestamp = other.Timestamp;
     }
     _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
   }
@@ -3051,11 +3021,7 @@ public sealed partial class AnnounceLightningReport : pb::IMessage<AnnounceLight
           break;
         }
         case 16: {
-          Duration = input.ReadUInt64();
-          break;
-        }
-        case 24: {
-          DurationUntilStart = input.ReadUInt64();
+          Timestamp = input.ReadUInt64();
           break;
         }
       }
@@ -3082,11 +3048,7 @@ public sealed partial class AnnounceLightningReport : pb::IMessage<AnnounceLight
           break;
         }
         case 16: {
-          Duration = input.ReadUInt64();
-          break;
-        }
-        case 24: {
-          DurationUntilStart = input.ReadUInt64();
+          Timestamp = input.ReadUInt64();
           break;
         }
       }

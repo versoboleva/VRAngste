@@ -1,5 +1,6 @@
 package dev.group6.vrappcontroller.server
 
+import dev.group6.vrappcontroller.model.ControlModel
 import dev.group6.vrappcontroller.stream.module
 import io.ktor.server.application.Application
 import io.ktor.server.cio.CIO
@@ -13,10 +14,11 @@ object ServerInstance {
     val nonce: String
     private var ktorEngine: EmbeddedServer<CIOApplicationEngine, CIOApplicationEngine.Configuration>? = null
 
+    public var ControlModel: ControlModel? = null
     init {
         val randomNonce = generateNonce()
         nonce = randomNonce
-        server = Server(port = 35614, nonce = randomNonce)
+        server = Server(port = 35614, nonce = randomNonce, ControlModel)
         println("Server created on port 35614 with nonce: $randomNonce")
     }
 
