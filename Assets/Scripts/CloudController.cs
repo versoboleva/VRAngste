@@ -51,6 +51,7 @@ public class CloudController : MonoBehaviour
 
         foreach (var psr in renderers)
         {
+            psr.renderMode = ParticleSystemRenderMode.Billboard;
             psr.alignment = ParticleSystemRenderSpace.World;
             psr.allowRoll = false;
         }
