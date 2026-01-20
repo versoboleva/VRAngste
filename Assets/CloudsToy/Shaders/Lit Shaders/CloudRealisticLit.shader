@@ -23,6 +23,9 @@ Category {
 			#pragma fragmentoption ARB_precision_hint_fastest
 			#pragma multi_compile_particles
 			#pragma multi_compile_fog
+			#pragma multi_compile_instancing
+			#pragma multi_compile _ UNITY_SINGLE_PASS_STEREO
+
 			
 			#include "UnityCG.cginc"
 
@@ -35,6 +38,8 @@ Category {
 				fixed4 color : COLOR;
 				float2 texcoord : TEXCOORD0;
 				float3 normal : NORMAL;
+
+				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f {
@@ -42,6 +47,7 @@ Category {
 				fixed4 color : COLOR;
 				float2 texcoord : TEXCOORD0;
 				float2 DisCoord : TEXCOORD1;
+				UNITY_VERTEX_OUTPUT_STEREO
 				UNITY_FOG_COORDS(1)
 				#ifdef SOFTPARTICLES_ON
 				float4 projPos : TEXCOORD2;
@@ -57,19 +63,28 @@ Category {
 
 			v2f vert (appdata_t v)
 			{
+				UNITY_SETUP_INSTANCE_ID(v);
+
 				v2f o;
+				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
 				o.vertex = UnityObjectToClipPos(v.vertex);
+
 				#ifdef SOFTPARTICLES_ON
-				o.projPos = ComputeScreenPos (o.vertex);
+				o.projPos = ComputeScreenPos(o.vertex);
 				COMPUTE_EYEDEPTH(o.projPos.z);
 				#endif
+
 				o.color = v.color;
 				o.texcoord = TRANSFORM_TEX(v.texcoord,_MainTex);
-
 				o.DisCoord = TRANSFORM_TEX(v.texcoord,_Dist);
+
 				o.normal = normalize(v.normal);
-         		o.ViewT = normalize(ObjSpaceViewDir(v.vertex));
-         		o.VL = ShadeVertexLights(v.vertex, dot(o.normal,o.ViewT));
+
+				// IMPORTANT: view direction must be per-eye (this macro handles it)
+				o.ViewT = normalize(ObjSpaceViewDir(v.vertex));
+
+				o.VL = ShadeVertexLights(v.vertex, dot(o.normal, o.ViewT));
 
 				UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;

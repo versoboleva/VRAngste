@@ -5113,9 +5113,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 0
-      minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.76517445, g: 0.881055, b: 0.8962264, a: 0.3764706}
+      minMaxState: 2
+      minColor: {r: 0.28934377, g: 0.28813633, b: 0.3490566, a: 0.69411767}
+      maxColor: {r: 0.33481663, g: 0.39185604, b: 0.41509432, a: 0.8156863}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5562,9 +5562,9 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 10, y: 10, z: 1}
+    m_Position: {x: -0.7239213, y: 12.196527, z: -7.68587}
+    m_Rotation: {x: 0.0027915512, y: 0, z: 0}
+    m_Scale: {x: 10, y: 10.000001, z: 6.4798007}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -5762,7 +5762,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 500
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -8707,7 +8707,7 @@ ParticleSystem:
     enabled: 1
     subEmitters:
     - serializedVersion: 3
-      emitter: {fileID: 2883756157604182542}
+      emitter: {fileID: 0}
       type: 1
       properties: 0
       emitProbability: 1

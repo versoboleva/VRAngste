@@ -7,6 +7,8 @@ public class Skylight : MonoBehaviour
     public float flashIntensity = 1.5f; 
     public float fadeSpeed = 25f;       
     public Camera cam;
+    public Light lightningLight;
+    public Light cloudLight;
 
     float originalIntensity;
 
@@ -50,30 +52,53 @@ public class Skylight : MonoBehaviour
             Debug.LogWarning("Skylight: No camera assigned! Flash skipped.");
             return;
         }
+        cloudLight.transform.position = lightningPos;
 
         float distance = Vector3.Distance(cam.transform.position, lightningPos);
-        float distanceFactor = 1f / (1f + distance * 0.01f);
+        float distanceFactor = 1f / (1f + distance * 0.001f);
         float finalIntensity = originalIntensity + flashIntensity * distanceFactor;
-
+        StartCoroutine(CloudRoutine(flashIntensity));
         StartCoroutine(FlashRoutine(finalIntensity));
     }
 
     IEnumerator FlashRoutine(float targetIntensity)
     {
-        RenderSettings.ambientIntensity = targetIntensity;
+        if (lightningLight == null) yield break;
 
-        yield return new WaitForSeconds(0.15f); 
+        float original = lightningLight.intensity;
+        lightningLight.intensity = targetIntensity;
 
-        while (RenderSettings.ambientIntensity > originalIntensity + 0.01f)
+        yield return new WaitForSeconds(0.15f);
+
+        while (lightningLight.intensity > original + 0.01f)
         {
-            RenderSettings.ambientIntensity = Mathf.Lerp(
-                RenderSettings.ambientIntensity,
-                originalIntensity,
+            lightningLight.intensity = Mathf.Lerp(
+                lightningLight.intensity,
+                original,
                 Time.deltaTime * fadeSpeed
             );
             yield return null;
         }
 
-        RenderSettings.ambientIntensity = originalIntensity;
+        lightningLight.intensity = original;
+    }
+
+    IEnumerator CloudRoutine(float targetIntensity)
+    {
+        if (cloudLight == null) yield break;
+
+        cloudLight.intensity = targetIntensity * 10000;
+
+        while (cloudLight.intensity > 0)
+        {
+            cloudLight.intensity = Mathf.Lerp(
+                cloudLight.intensity,
+                0,
+                Time.deltaTime * fadeSpeed
+            );
+            yield return null;
+        }
+
+        cloudLight.intensity = 0;
     }
 }

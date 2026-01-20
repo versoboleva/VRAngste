@@ -44,8 +44,8 @@ public class SceneSetter : MonoBehaviour
         switch (sceneNumber)
         {
             case 0: return "Safespace";
-            case 1: return "Inside";
-            case 2: return "Outside";
+            case 1: return "Innen";
+            case 2: return "Ausen";
             case 3: return "Car";
             default: return "Safespace"; // fallback
         }

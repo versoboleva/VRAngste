@@ -8,15 +8,14 @@ public class StormSystem : MonoBehaviour
 {
     private LightningController LightningController;
     private ParticleSystem Rain;
-    private ParticleSystem PorchDroplets;
     private Skylight Flash;
     private SoundSystem Sound;
     private CloudController clouds;
     private Coroutine rainCorutine;
     
     
-    public Vector3 position = new Vector3(0,40,0);
-    private Vector3 positionCheck = new Vector3(0,40,0);
+    public Vector3 position = new Vector3(0, 266, 0);
+    private Vector3 positionCheck = new Vector3(0, 266, 0);
 
     public int scale = 1;
     private int scaleCheck = 1;
@@ -37,17 +36,13 @@ public class StormSystem : MonoBehaviour
 
     private void Start()
     {
-        if(Flash == null)
+        if (Flash == null)
         {
             Flash = FindAnyObjectByType<Skylight>();
         }
         if (Rain == null)
         {
             Rain = GameObject.FindGameObjectWithTag("RainSystem")?.GetComponent<ParticleSystem>();
-        }
-        if (PorchDroplets == null)
-        {
-            PorchDroplets = GameObject.FindGameObjectWithTag("PorchDroplets")?.GetComponent<ParticleSystem>();
         }
         if (Sound == null)
         {
@@ -62,7 +57,7 @@ public class StormSystem : MonoBehaviour
             clouds = GameObject.FindGameObjectWithTag("Clouds")?.GetComponent<CloudController>();
         }
         LightningController.position = position;
-        
+
         LightningController.scale = new Vector3(scale * 10, scale * 10, 1);
 
         LightningController.SetLightningInterval(emitionLightning);
@@ -93,7 +88,6 @@ public class StormSystem : MonoBehaviour
 
         Flash = FindAnyObjectByType<Skylight>();
         Rain = GameObject.FindGameObjectWithTag("RainSystem")?.GetComponent<ParticleSystem>();
-        PorchDroplets = GameObject.FindGameObjectWithTag("PorchDroplets")?.GetComponent<ParticleSystem>();
         LightningController = FindAnyObjectByType<LightningController>();
         Sound = FindAnyObjectByType<SoundSystem>();
         clouds = GameObject.FindGameObjectWithTag("Clouds")?.GetComponent<CloudController>();
@@ -105,7 +99,7 @@ public class StormSystem : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if(position != positionCheck)
+        if (position != positionCheck)
         {
             MoveToPosition();
         }
@@ -144,20 +138,27 @@ public class StormSystem : MonoBehaviour
     }
     public void SetStorm(float distance, int wolken, int intervalBlitz, int regen, int helligkeitBlitz)
     {
-        position = new Vector3(0, 40, distance*100);
+        position = new Vector3(0, 266, distance * 100);
 
         cloudLevel = wolken;
-        
-        emitionLightning = intervalBlitz/1;
-        
+
+        emitionLightning = intervalBlitz / 1;
+
         emitionRain = regen;
 
-        flashIntencity = helligkeitBlitz /2;
+        flashIntencity = helligkeitBlitz / 2;
     }
 
-    public void SetDistance( float distance)
+    public void SetDistance(float distance)
     {
-        position = new Vector3(0, 40, distance*100);
+        if (SceneManager.GetActiveScene().name == "Car")
+        {
+            position = new Vector3(-distance * 50, 266, -distance * 50);
+        }
+        else
+        {
+             position = new Vector3(0, 266, distance * 100);
+        }
     }
 
     public void SetWolken(int wolken)
@@ -166,7 +167,7 @@ public class StormSystem : MonoBehaviour
 
         if (clouds != null)
         {
-            clouds.SetCloudDensity(wolken);   
+            clouds.SetCloudDensity(wolken);
         }
     }
 
@@ -187,7 +188,7 @@ public class StormSystem : MonoBehaviour
 
     private void MoveToPosition()
     {
-        if (LightningController != null && LightningController.position != position) 
+        if (LightningController != null && LightningController.position != position)
         {
             LightningController.position = Vector3.MoveTowards(LightningController.position, position, speed * Time.deltaTime);
         }

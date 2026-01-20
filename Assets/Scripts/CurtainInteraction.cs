@@ -13,7 +13,7 @@ public class CurtainInteraction : MonoBehaviour
     private Vector3 closedPosition;
     private Quaternion closedRotation;
 
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
         if (animator == null)
