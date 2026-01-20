@@ -1,7 +1,4 @@
-using UnityEditor;
 using UnityEngine;
-using UnityEditor.PackageManager;
-using UnityEditor.PackageManager.Requests;
 using NUnit;
 using TMPro;
 using System;
@@ -19,6 +16,7 @@ public class Master : MonoBehaviour
 
     public TMP_InputField hostField;
     public TMP_InputField nonceField;
+    public TMP_InputField portField;
 
     private int sceneNr;
     private float thunderVolume;

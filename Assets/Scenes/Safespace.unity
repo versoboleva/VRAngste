@@ -1142,6 +1142,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4114168081763741538, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114168081763741538, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114168081763741538, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114168081763741538, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4262082932763188258, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1270,6 +1286,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4421054594961953024, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5305761984992304732, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
       propertyPath: m_Name
       value: World Keyboard Example
@@ -1355,6 +1375,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7046692841152632220, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7238275762836070371, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7238275762836070371, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7238275762836070371, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7238275762836070371, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
@@ -1554,16 +1590,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
       propertyPath: host
-      value: 192.168.2.32
+      value: 192.168.185.253
       objectReference: {fileID: 0}
     - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
       propertyPath: nonce
-      value: jBAF
+      value: q4uv
       objectReference: {fileID: 0}
     - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
       propertyPath: hostField
       value: 
       objectReference: {fileID: 21105010}
+    - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
+      propertyPath: portField
+      value: 
+      objectReference: {fileID: 1162782846}
     - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
       propertyPath: nonceField
       value: 
@@ -1797,6 +1837,17 @@ MonoBehaviour:
 --- !u!114 &939588354 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2075028214261897345, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+  m_PrefabInstance: {fileID: 28783838}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1162782846 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2355779590606481773, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
   m_PrefabInstance: {fileID: 28783838}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

@@ -18,18 +18,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Inside.unity
     guid: 33de1ac0bf3ed0844a54e7e2b18e2919
   - enabled: 1
-    path: Assets/Scenes/Car.unity
-    guid: a56e9d4b64c2f6547bf773806e967324
-  - enabled: 1
-    path: Assets/Scenes/Outside.unity
-    guid: ceab141b8aad1f9478b30f12e8286f77
-  - enabled: 1
     path: Assets/Scenes/Safespace.unity
     guid: 9a1b9044ad522ec419b70b7213e3b63b
   - enabled: 1
+    path: Assets/Scenes/Car.unity
+    guid: a56e9d4b64c2f6547bf773806e967324
+  - enabled: 0
+    path: Assets/Scenes/Outside.unity
+    guid: ceab141b8aad1f9478b30f12e8286f77
+  - enabled: 1
     path: Assets/Scenes/Ausen.unity
     guid: 511645503ca49b5498d3c8c329829476
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Inside 1.unity
     guid: 7852abea1e8ca664ea4b50e6af9912b3
   - enabled: 1
