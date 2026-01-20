@@ -435,42 +435,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rainInsideSounds:
-  - {fileID: 8300000, guid: 3bad5e01f1604f4459d754cbb8cd4c24, type: 3}
-  - {fileID: 8300000, guid: 824ee120b75086e41a46e4835fe4b99f, type: 3}
-  - {fileID: 8300000, guid: 7d28fe9be9c591846b905b4ba016e648, type: 3}
-  - {fileID: 8300000, guid: 7e112df2f1a1c1c4d8535b64173ad10a, type: 3}
+  - {fileID: 8300000, guid: eebef1cb6e32d4d478e5b3eb3eabe14c, type: 3}
+  - {fileID: 8300000, guid: 5b8b409d2e9e3fe4c82f2b944f5133bd, type: 3}
+  - {fileID: 8300000, guid: 34219a100367a004e904c6e806e676ed, type: 3}
+  - {fileID: 8300000, guid: 1a2f4a3d0e70ae043909b2352f2eef28, type: 3}
   rainOutsideSounds:
-  - {fileID: 8300000, guid: 10bcaed187184f142a15c6513b88cf2c, type: 3}
-  - {fileID: 8300000, guid: 92f1127d840496a478f1b12992a51476, type: 3}
-  - {fileID: 8300000, guid: 7d28fe9be9c591846b905b4ba016e648, type: 3}
-  - {fileID: 8300000, guid: 3e7c9d4f9f33d4446aaf5ce6e9adb76f, type: 3}
+  - {fileID: 8300000, guid: b3e0da30e251e0649b07a9df5f78de48, type: 3}
+  - {fileID: 8300000, guid: 63e11a7936a9baa46bb04bec793395f3, type: 3}
+  - {fileID: 8300000, guid: 035c6da0cdb3b3144b920b8102cf49e1, type: 3}
+  - {fileID: 8300000, guid: 18ee119746662a84bad0d7b49a72143b, type: 3}
   rainCarSounds:
-  - {fileID: 8300000, guid: 3bad5e01f1604f4459d754cbb8cd4c24, type: 3}
-  - {fileID: 8300000, guid: 92f1127d840496a478f1b12992a51476, type: 3}
-  - {fileID: 8300000, guid: 3e7c9d4f9f33d4446aaf5ce6e9adb76f, type: 3}
-  - {fileID: 8300000, guid: 87cad788051c2ea4f9672465cdec1e83, type: 3}
-  thunder:
-  - {fileID: 8300000, guid: c1bebf1481ef573448e3e2ad447bada6, type: 3}
-  - {fileID: 8300000, guid: 220a5d7eec3471b41bc0e140aaa8f1d4, type: 3}
-  - {fileID: 8300000, guid: 862af5a019c0d7846985cb99add5e7a4, type: 3}
-  - {fileID: 8300000, guid: 1dd366577141b744b96da45a2552eed7, type: 3}
-  - {fileID: 8300000, guid: 6e1b1954704f5694081f5a673ae93b05, type: 3}
-  - {fileID: 8300000, guid: 62e97555c8df31a4a96b73235ab0b5ad, type: 3}
-  windInsideSounds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  windOutsideSounds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  windCarSounds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8300000, guid: b19807757ecd6f043985af4f4868ce9b, type: 3}
+  - {fileID: 8300000, guid: 19ecd30215353de43b66e93522eef940, type: 3}
+  - {fileID: 8300000, guid: 3c56a6ace9b76dd42960d537cfec907b, type: 3}
+  - {fileID: 8300000, guid: c92f00ea04f9f174c87ec6656db2354b, type: 3}
+  thunderInside:
+  - {fileID: 8300000, guid: c54ce4d8e21a7cd408e77b46aff68ec3, type: 3}
+  - {fileID: 8300000, guid: ba89c5bc09ca12c4c8b35c3f4a73852e, type: 3}
+  - {fileID: 8300000, guid: 23ae35a4f0deedd4faf5c932f1950585, type: 3}
+  thunderOutside:
+  - {fileID: 8300000, guid: 20ae23260ed04594e914caa4883d64d4, type: 3}
+  - {fileID: 8300000, guid: b2d3935fde4f5824295433b807eb5b6c, type: 3}
+  - {fileID: 8300000, guid: e8e4b58458bbab14cb0f69748c00c449, type: 3}
+  - {fileID: 8300000, guid: 715b743d9b28dce4990b28bb7cd4a7e0, type: 3}
   currentScene: 1
   rainSource: {fileID: 1012412977351857167}
   windSource: {fileID: 7009680105727195256}
@@ -478,6 +465,5 @@ MonoBehaviour:
   player: {fileID: 0}
   Particlerain: {fileID: 0}
   speedOfSound: 100
-  windIntencity: 0
   rainIntencity: 0
   thunderVolume: 1
