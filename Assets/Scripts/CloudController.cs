@@ -10,7 +10,7 @@ public class CloudController : MonoBehaviour
 
     private int lastCloudLevel = -1;
 
-    private void Start()
+    private void Awake()
     {
         cloudSystem = GetComponent<CloudsToy>();
 
@@ -52,18 +52,8 @@ public class CloudController : MonoBehaviour
         foreach (var psr in renderers)
         {
             psr.allowRoll = false;
-            psr.alignment = ParticleSystemRenderSpace.World;
-            psr.renderMode = ParticleSystemRenderMode.Mesh; // wenn Mesh verwendet wird
         }
 
-        ParticleSystem[] systems = cloudSystem.GetComponentsInChildren<ParticleSystem>();
-        foreach (var ps in systems)
-        {
-            var main = ps.main;
-            main.simulationSpace = ParticleSystemSimulationSpace.World;
-        }
-
-        Debug.Log("[CloudController] Disabled 'Allow Roll' and set World alignment for all cloud particle systems.");
+        Debug.Log("[CloudController] Disabled 'Allow Roll' on all cloud particle systems.");
     }
-
 }
