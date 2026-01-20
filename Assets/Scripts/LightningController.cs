@@ -8,8 +8,9 @@ public class LightningController : MonoBehaviour
     public ParticleSystem lightningPS;
     public Skylight skyLight;
     public SoundSystem soundSystem;
-    public Vector3 position = new Vector3(0, 40, 0);
-    public Vector3 scale = new Vector3(10, 10, 1);
+    public StormSystem stormSystem;
+    public Vector3 position;
+    public Vector3 scale = new Vector3(50, 50, 1);
     private bool isSceneReady = false;
 
     
@@ -23,6 +24,7 @@ public class LightningController : MonoBehaviour
         lightningPS ??= GameObject.FindGameObjectWithTag("Lightning")?.GetComponent<ParticleSystem>();
         skyLight ??= FindAnyObjectByType<Skylight>();
         soundSystem ??= FindAnyObjectByType<SoundSystem>();
+        stormSystem ??= FindAnyObjectByType<StormSystem>();
 
         if (lightningPS != null)
         {
@@ -76,7 +78,7 @@ public class LightningController : MonoBehaviour
     {
         if (lightningPS == null) return;
 
-        lightningPS.transform.position = position;
+        lightningPS.transform.position = stormSystem.position;
 
         var shape = lightningPS.shape;
         shape.scale = scale;
@@ -135,10 +137,12 @@ public class LightningController : MonoBehaviour
         lightningPS = null;
         skyLight = null;
         soundSystem = null;
+        stormSystem = null;
 
         lightningPS = GameObject.FindGameObjectWithTag("Lightning")?.GetComponent<ParticleSystem>();
         skyLight = FindAnyObjectByType<Skylight>();
         soundSystem = FindAnyObjectByType<SoundSystem>();
+        stormSystem ??= FindAnyObjectByType<StormSystem>();
 
         timer = 0f;
 

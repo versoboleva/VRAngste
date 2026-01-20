@@ -20,6 +20,7 @@ public class CloudController : MonoBehaviour
             enabled = false;
             return;
         }
+        DisableCloudRoll();
     }
     private void Update()
     {
@@ -42,5 +43,17 @@ public class CloudController : MonoBehaviour
         cloudSystem.MaxWidthCloud = targetWidth;
 
         Debug.Log($"[CloudController] Level: {cloudLevel} | Width set to: {targetWidth} | CloudsToy.MaxWidthCloud is now: {cloudSystem.MaxWidthCloud}");
+    }
+
+    private void DisableCloudRoll()
+    {
+        ParticleSystemRenderer[] renderers = cloudSystem.GetComponentsInChildren<ParticleSystemRenderer>();
+
+        foreach (var psr in renderers)
+        {
+            psr.allowRoll = false;
+        }
+
+        Debug.Log("[CloudController] Disabled 'Allow Roll' on all cloud particle systems.");
     }
 }

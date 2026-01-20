@@ -45,7 +45,7 @@ public class SceneSetter : MonoBehaviour
         {
             case 0: return "Safespace";
             case 1: return "Innen";
-            case 2: return "Outside";
+            case 2: return "Ausen";
             case 3: return "Car";
             default: return "Safespace"; // fallback
         }
