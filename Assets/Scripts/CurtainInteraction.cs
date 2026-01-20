@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.XR;
 
 public class CurtainInteraction : MonoBehaviour
 {
@@ -9,9 +10,11 @@ public class CurtainInteraction : MonoBehaviour
     [SerializeField] private string openClip = "Curtain_Open";
     [SerializeField] private string closeClip = "Curtain_Close";
 
-    // Store the curtain's closed pose
     private Vector3 closedPosition;
     private Quaternion closedRotation;
+
+    private InputDevice rightHand;
+    private bool lastGripPressed = false;
 
     void Awake()
     {
@@ -19,41 +22,47 @@ public class CurtainInteraction : MonoBehaviour
         if (animator == null)
         {
             Debug.LogError("CurtainInteraction: Animator not found!");
+            enabled = false;
             return;
         }
 
-        // Save closed pose from scene (default in editor)
         closedPosition = transform.localPosition;
         closedRotation = transform.localRotation;
 
-        // Disable Animator so no animation plays at start
         animator.enabled = false;
 
-        // Make sure curtain starts closed visually
         transform.localPosition = closedPosition;
         transform.localRotation = closedRotation;
 
-        isOpen = false;
+        TryResolveRightHand();
     }
 
     void Update()
     {
-        if (playerNearby && Input.GetKeyDown(KeyCode.E))
-        {
-            // Enable animator only when animating
-            animator.enabled = true;
+        if (!rightHand.isValid)
+            TryResolveRightHand();
 
-            if (!isOpen)
-            {
-                animator.Play(openClip, 0, 0f);
-                isOpen = true;
-            }
-            else
-            {
-                animator.Play(closeClip, 0, 0f);
-                isOpen = false;
-            }
+        if (!playerNearby)
+            return;
+
+        bool gripPressed = false;
+        if (rightHand.isValid)
+            rightHand.TryGetFeatureValue(CommonUsages.gripButton, out gripPressed);
+
+        // "GetDown" Verhalten: nur beim Übergang false -> true
+        if (gripPressed && !lastGripPressed)
+        {
+            animator.enabled = true;
+            animator.Play(isOpen ? closeClip : openClip, 0, 0f);
+            isOpen = !isOpen;
         }
+
+        lastGripPressed = gripPressed;
+    }
+
+    private void TryResolveRightHand()
+    {
+        rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
     }
 
     private void OnTriggerEnter(Collider other)

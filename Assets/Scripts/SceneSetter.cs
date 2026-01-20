@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 public class SceneSetter : MonoBehaviour
 {
     public static SceneSetter Instance;
     public Master master;
+
+    private InputDevice rightHand;
+    private bool lastTriggerPressed = false;
 
     private void Awake()
     {
@@ -21,10 +25,28 @@ public class SceneSetter : MonoBehaviour
         {
             master = FindAnyObjectByType<Master>();
         }
+        rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
     }
 
+    void Update()
+{
+    if (!rightHand.isValid)
+        rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+
+    bool triggerPressed = false;
+
+    if (rightHand.isValid)
+        rightHand.TryGetFeatureValue(CommonUsages.triggerButton, out triggerPressed);
+
+    if (triggerPressed && !lastTriggerPressed)
+    {
+        Debug.Log("Right Trigger pressed → loading scene 1");
+        ChangeScene(0);
+    }
+
+    lastTriggerPressed = triggerPressed;
+}
     
-    // Call this function to switch scene by number
     public void ChangeScene(int sceneNumber)
     {
         string sceneName = GetSceneName(sceneNumber);
@@ -47,7 +69,7 @@ public class SceneSetter : MonoBehaviour
             case 1: return "Innen";
             case 2: return "Ausen";
             case 3: return "Car";
-            default: return "Safespace"; // fallback
+            default: return "Safespace";
         }
     }
 }
