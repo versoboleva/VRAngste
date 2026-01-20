@@ -9,7 +9,9 @@ public class SoundSystem : MonoBehaviour
     public AudioClip[] rainInsideSounds = new AudioClip[4];
     public AudioClip[] rainOutsideSounds = new AudioClip[4];
     public AudioClip[] rainCarSounds = new AudioClip[4];
-    public AudioClip[] thunder;
+    public AudioClip[] thunderInside;
+    public AudioClip[] thunderOutside;
+    private AudioClip[] currentThunder;
     private AudioClip[] currentRain;
     public int currentScene = 0;
     public AudioSource rainSource;
@@ -136,15 +138,19 @@ public class SoundSystem : MonoBehaviour
         {
             case 0:
                 currentRain = null;
+                currentThunder = null;
                 break;
             case 1:
                 currentRain = rainInsideSounds;
+                currentThunder = thunderInside;
                 break;
             case 2:
                 currentRain = rainOutsideSounds;
+                currentThunder = thunderOutside;
                 break;
             case 3:
                 currentRain = rainCarSounds;
+                currentThunder = thunderInside;
                 break;
             default:
                 Debug.LogError($"Invalid currentScene: {currentScene}");
@@ -170,17 +176,17 @@ public class SoundSystem : MonoBehaviour
 
     public void PlayThunder(Vector3 lightningPos)
     {
-        if (thunder.Length == 0 || thunderSource == null || player == null)
+        if (currentThunder.Length == 0 || thunderSource == null || player == null)
             return;
 
         
-        int index = Random.Range(0, thunder.Length);
+        int index = Random.Range(0, currentThunder.Length);
 
         float distance = Vector3.Distance(player.position, lightningPos);
 
         float delay = distance / speedOfSound;
 
-        StartCoroutine(PlayThunderDelayed(thunder[index], delay, lightningPos));
+        StartCoroutine(PlayThunderDelayed(currentThunder[index], delay, lightningPos));
     }
 
     private IEnumerator PlayThunderDelayed(AudioClip clip, float delay, Vector3 lightningPos)
