@@ -13,6 +13,7 @@ public class Master : MonoBehaviour
     public SceneSetter sceneSetter;
     public string host = "127.0.0.1";
     public string nonce = "ABCD";
+    public string port = "35614";
 
     public TMP_InputField hostField;
     public TMP_InputField nonceField;
@@ -101,7 +102,7 @@ public class Master : MonoBehaviour
 
             case Envelope.PayloadOneofCase.SceneChangeSetting:
                 sceneNr = (int) envelope.SceneChangeSetting.Index; 
-                sceneSetter.ChangeScene(sceneNr); 
+                sceneSetter.ChangeScene(sceneNr);
                 sound.currentScene = sceneNr;
                 Debug.Log("Scene index received: " + sceneNr);
                 break;
@@ -176,13 +177,17 @@ public class Master : MonoBehaviour
         // Lies direkt aus dem InputField
         string hostText = hostField.text;
         string nonceText = nonceField.text;
+        string portText = portField.text;
 
         this.host = hostText;
         this.nonce = nonceText;
+        this.port = portText;
 
         Debug.Log("Host set to: " + hostText);
         Debug.Log("Nonce set to: " + nonceText);
+        Debug.Log("Port set to: " + portText);
 
+        api.SetPort(this.port);
         ApiClient.Instance.Connect(this.nonce, this.host);
     }
 

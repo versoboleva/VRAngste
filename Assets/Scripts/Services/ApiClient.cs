@@ -5,6 +5,7 @@ using System.Threading;
 using UnityEngine;
 using System.Collections.Concurrent;
 using Google.Protobuf;
+using JetBrains.Annotations;
 
 public class ApiClient : MonoBehaviour
 {
@@ -170,5 +171,13 @@ public class ApiClient : MonoBehaviour
     private void OnApplicationQuit()
     {
         Disconnect();
+    }
+
+    public void SetPort(string portString)
+    {
+        if (int.TryParse(portString, out this.port))
+{
+            Debug.Log("Port als Integer: " + this.port);
+}
     }
 }
