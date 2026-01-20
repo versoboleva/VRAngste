@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
+using System.Collections;
 
 public class SceneSetter : MonoBehaviour
 {
     public static SceneSetter Instance;
     public Master master;
+    public SoundSystem sound;
 
     private InputDevice rightHand;
     private bool lastTriggerPressed = false;
@@ -25,7 +27,27 @@ public class SceneSetter : MonoBehaviour
         {
             master = FindAnyObjectByType<Master>();
         }
+        if(sound == null)
+        {
+            sound = FindAnyObjectByType<SoundSystem>();
+        }
         rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Reset sound reference after scene change
+        if (sound == null)
+            sound = FindAnyObjectByType<SoundSystem>();
+
+        if (sound == null)
+            Debug.LogWarning("SoundSystem not found in scene: " + scene.name);
     }
 
     void Update()
@@ -49,17 +71,30 @@ public class SceneSetter : MonoBehaviour
     
     public void ChangeScene(int sceneNumber)
     {
-        string sceneName = GetSceneName(sceneNumber);
-        if (Application.CanStreamedLevelBeLoaded(sceneName))
+        StartCoroutine(ChangeSceneCoroutine(sceneNumber));
+    }
+
+
+    private IEnumerator ChangeSceneCoroutine(int sceneNumber)
+    {
+        if (sound != null)
         {
-            SceneManager.LoadScene(sceneName);
-            Debug.Log("Scene changed to: " + sceneName);
+            sound.StopAudio();
         }
-        else
+        
+        yield return new WaitForSeconds(1);
+
+        string sceneName = GetSceneName(sceneNumber);
+
+        if (!Application.CanStreamedLevelBeLoaded(sceneName))
         {
             Debug.LogWarning("Scene number " + sceneNumber + " not found. Make sure it's in Build Settings!");
+            yield break; // Stop coroutine
         }
+        Debug.Log("Changing scene to: " + sceneName);
+        SceneManager.LoadScene(sceneName);
     }
+
 
     private string GetSceneName(int sceneNumber)
     {

@@ -66,6 +66,21 @@ public class SoundSystem : MonoBehaviour
             thunderSource.clip = null;
         }
     }
+
+    public void StopAudio()
+    {
+        if (rainSource != null)
+        {
+            rainSource.Stop();
+            rainSource.clip = null;
+        }
+
+        if (thunderSource != null)
+        {
+            thunderSource.Stop();
+            thunderSource.clip = null;
+        }
+    }
     private IEnumerator SetupSceneObjects()
     {
         yield return null; // wait for scene init
