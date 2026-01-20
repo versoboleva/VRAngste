@@ -46,7 +46,25 @@ public class SoundSystem : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        ResetAudioForSceneChange();
         StartCoroutine(SetupSceneObjects());
+    }
+
+    private void ResetAudioForSceneChange()
+    {
+        StopAllCoroutines();
+
+        if (rainSource != null)
+        {
+            rainSource.Stop();
+            rainSource.clip = null;
+        }
+        
+        if (thunderSource != null)
+        {
+            thunderSource.Stop();
+            thunderSource.clip = null;
+        }
     }
     private IEnumerator SetupSceneObjects()
     {
@@ -139,6 +157,8 @@ public class SoundSystem : MonoBehaviour
             case 0:
                 currentRain = null;
                 currentThunder = null;
+                if (rainSource != null) rainSource.Stop();
+                if (thunderSource != null) thunderSource.Stop();
                 break;
             case 1:
                 currentRain = rainInsideSounds;
