@@ -181,22 +181,42 @@ public class SoundSystem : MonoBehaviour
 
     private void PlayRain()
     {
-        if (currentRain == null)
+        if (rainSource == null) return;
+
+        if (currentRain == null || currentRain.Length == 0)
         {
-            Debug.LogError("currentRain array is NULL!");
+            rainSource.Stop();
+            rainSource.clip = null;
             return;
         }
-        if (currentRain[rainIntencity] != null && rainSource != null)
+
+        rainIntencity = Mathf.Clamp(rainIntencity, 0, currentRain.Length - 1);
+
+        var clip = currentRain[rainIntencity];
+        if (clip == null)
         {
-            rainSource.clip = currentRain[rainIntencity];
-            rainSource.Play();
+            rainSource.Stop();
+            rainSource.clip = null;
+            return;
         }
 
+        // optional: nur wechseln, wenn nötig
+        if (rainSource.clip != clip)
+        {
+            rainSource.Stop();
+            rainSource.clip = clip;
+            rainSource.Play();
+        }
+        else if (!rainSource.isPlaying)
+        {
+            rainSource.Play();
+        }
     }
+
 
     public void PlayThunder(Vector3 lightningPos)
     {
-        if (currentThunder.Length == 0 || thunderSource == null || player == null)
+        if (currentThunder == null || currentThunder.Length == 0 || thunderSource == null || player == null)
             return;
 
         
