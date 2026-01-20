@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
 Shader "FX/CloudRealistic Lit (Alpha Blended)" {
@@ -82,9 +84,9 @@ Category {
 				o.normal = normalize(v.normal);
 
 				// IMPORTANT: view direction must be per-eye (this macro handles it)
-				o.ViewT = normalize(ObjSpaceViewDir(v.vertex));
-
-				o.VL = ShadeVertexLights(v.vertex, dot(o.normal, o.ViewT));
+				// Use only world-space normals for lighting
+				float3 worldNormal = normalize(mul((float3x3)unity_ObjectToWorld, v.normal));
+				o.VL = float3(1,1,1); // full brightness, ignore camera
 
 				UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
@@ -104,7 +106,8 @@ Category {
 
 				//float4 VertL = (dot(i.ViewT,i.VL));
 				//fixed4 col = 2.0f * i.color * _TintColor * tex2D(_MainTex, i.texcoord);
-				fixed4 col = 2.0f * float4(i.VL,1.0) * i.color * _TintColor * tex2D(_MainTex, i.texcoord);
+				fixed4 col = i.color * _TintColor * tex2D(_MainTex, i.texcoord);
+				
 				UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;
 			}
