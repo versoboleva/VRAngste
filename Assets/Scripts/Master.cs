@@ -31,7 +31,6 @@ public class Master : MonoBehaviour
     private float lightningIntencity;
     private float lightningFrequency;
 
-    public static Master Instance { get; private set; }
     private void Start()
     {
         if(sound == null)
@@ -44,7 +43,7 @@ public class Master : MonoBehaviour
         }
         if (sceneSetter == null)
         {
-            sceneSetter = FindAnyObjectByType<SceneSetter>();
+            sceneSetter = SceneSetter.Instance;
         }
         if (api == null)
         {
@@ -68,7 +67,7 @@ public class Master : MonoBehaviour
     {
         sound = FindAnyObjectByType<SoundSystem>();
         storm = FindAnyObjectByType<StormSystem>();
-        sceneSetter = FindAnyObjectByType<SceneSetter>();
+        sceneSetter = SceneSetter.Instance;
         api = FindAnyObjectByType<ApiClient>();
 
     }
@@ -148,15 +147,20 @@ public class Master : MonoBehaviour
 
     public async void SendLightningReport(AnnounceLightningReport report)
     {
-        // Serialize directly to byte array
-        byte[] data = report.ToByteArray();
+        if (ApiClient.Instance == null)
+        {
+            Debug.LogError("ApiClient.Instance is null!");
+            return;
+        }
 
-        using var client = new HttpClient();
-        var content = new ByteArrayContent(data);
-        content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/x-protobuf");
+        var env = new Envelope
+        {
+            AnnounceLightningReport = report
+        };
 
-        var response = await client.PostAsync("https://example.com/lightningreport", content);
-        Debug.Log($"Report sent. Response: {response.StatusCode}");
+        ApiClient.Instance.Send(env);
+
+        Debug.Log($"Lightning report sent via TCP. Distance={report.Distance}, Timestamp={report.Timestamp}");
     }
 
 

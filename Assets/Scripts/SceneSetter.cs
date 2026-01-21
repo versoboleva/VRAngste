@@ -20,15 +20,17 @@ public class SceneSetter : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
-        else
+        else if(Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
+
         if (master == null)
         {
             master = FindAnyObjectByType<Master>();
         }
+        
         if(sound == null)
         {
             sound = FindAnyObjectByType<SoundSystem>();
@@ -67,7 +69,11 @@ public class SceneSetter : MonoBehaviour
     if (triggerPressed && !lastTriggerPressed)
     {
         Debug.Log("Right Trigger pressed → loading scene 1");
-        ChangeScene(0);
+        if (SceneManager.GetActiveScene().name != "Safespace")
+        {
+            Debug.Log("Right Trigger pressed → loading Safespace (0)");
+            ChangeScene(0);
+        }
     }
 
     lastTriggerPressed = triggerPressed;

@@ -101,7 +101,7 @@ public class LightningController : MonoBehaviour
             Distance = 10UL, // example distance
             Timestamp = nextLightningTimestampMs
         };
-        Master master = Master.Instance;
+        Master master = FindAnyObjectByType<Master>();
         // Serialize and send
         master.SendLightningReport(report);
     }
