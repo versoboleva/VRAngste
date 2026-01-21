@@ -3,6 +3,10 @@ using NUnit;
 using TMPro;
 using System;
 using UnityEngine.SceneManagement;
+using System.IO;
+using System.Net.Http;
+using Google.Protobuf;
+
 
 public class Master : MonoBehaviour 
 {
@@ -27,7 +31,7 @@ public class Master : MonoBehaviour
     private float lightningIntencity;
     private float lightningFrequency;
 
-
+    public static Master Instance { get; private set; }
     private void Start()
     {
         if(sound == null)
@@ -141,6 +145,20 @@ public class Master : MonoBehaviour
         }
         
     }
+
+    public async void SendLightningReport(AnnounceLightningReport report)
+    {
+        // Serialize directly to byte array
+        byte[] data = report.ToByteArray();
+
+        using var client = new HttpClient();
+        var content = new ByteArrayContent(data);
+        content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/x-protobuf");
+
+        var response = await client.PostAsync("https://example.com/lightningreport", content);
+        Debug.Log($"Report sent. Response: {response.StatusCode}");
+    }
+
 
     public void ConnectToServer() // connect to server
 

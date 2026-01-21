@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using System;
+using System.IO;
+using System.Net.Http;
 
 public class LightningController : MonoBehaviour
 {
@@ -85,10 +87,25 @@ public class LightningController : MonoBehaviour
     }
     private void ScheduleNextLightning()
     {
+        // Schedule the next lightning locally
         nextLightningTime = DateTime.UtcNow + lightningInterval;
-        Debug.Log($"Lightning interval set to {lightningInterval}s. Next strike at {nextLightningTime}");
-        //send time
+
+        // Convert nextLightningTime to Unix milliseconds
+        ulong nextLightningTimestampMs = (ulong)new DateTimeOffset(nextLightningTime).ToUnixTimeMilliseconds();
+
+        Debug.Log($"Next lightning timestamp in ms: {nextLightningTimestampMs}");
+
+        // Prepare the report
+        var report = new AnnounceLightningReport
+        {
+            Distance = 10UL, // example distance
+            Timestamp = nextLightningTimestampMs
+        };
+        Master master = Master.Instance;
+        // Serialize and send
+        master.SendLightningReport(report);
     }
+
     public void SetLightningInterval(int seconds)
     {
         if (seconds <= 0)
