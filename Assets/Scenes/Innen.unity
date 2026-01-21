@@ -23276,11 +23276,16 @@ PrefabInstance:
       propertyPath: storm
       value: 
       objectReference: {fileID: 1559299069}
+    - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
+      propertyPath: sceneSetter
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8496764197639252964, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
       propertyPath: master
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8496764197639252964, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

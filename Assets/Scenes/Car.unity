@@ -2839,7 +2839,12 @@ PrefabInstance:
       propertyPath: nonce
       value: N6KV
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
+      propertyPath: sceneSetter
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8496764197639252964, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
