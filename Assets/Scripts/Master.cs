@@ -3,6 +3,7 @@ using NUnit;
 using TMPro;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 using System.IO;
 using System.Net.Http;
 using Google.Protobuf;
@@ -30,6 +31,8 @@ public class Master : MonoBehaviour
     private int clouds;
     private float lightningIntencity;
     private float lightningFrequency;
+    private InputDevice leftHand;
+    private bool lastTriggerPressed = false;
 
     private void Start()
     {
@@ -50,6 +53,7 @@ public class Master : MonoBehaviour
             api = FindAnyObjectByType<ApiClient>();
         }
         ConnectToServer();
+        leftHand = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
         ApiClient.Instance.OnBytesReceived += HandleEnvelope; // <- call function on event/does the same as https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
     }
 
@@ -145,6 +149,28 @@ public class Master : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        if (!leftHand.isValid)
+            leftHand = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+
+        bool triggerPressed = false;
+
+        if (leftHand.isValid)
+            leftHand.TryGetFeatureValue(CommonUsages.triggerButton, out triggerPressed);
+
+        if (triggerPressed && !lastTriggerPressed)
+        {
+            Debug.Log("Left Trigger pressed → Connecting");
+            if (SceneManager.GetActiveScene().name == "Safespace")
+            {
+                Debug.Log("Right Trigger pressed → Connect to Server");
+                OnKeyboardSubmit();
+            }
+        }
+
+        lastTriggerPressed = triggerPressed;
+    }
     public async void SendLightningReport(AnnounceLightningReport report)
     {
         if (ApiClient.Instance == null)
