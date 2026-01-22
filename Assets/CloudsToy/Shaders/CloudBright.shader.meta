@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8e7b06511ba28d94b8363b087e90ff78
+timeCreated: 1429464320
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Shaders/CloudBright.shader
+  uploadId: 757993

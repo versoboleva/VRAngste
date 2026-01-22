@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cc72ae9f3863d48489e478ac9fec99bc
+timeCreated: 1430643335
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Materials/Procedural/PTBlended3.mat
+  uploadId: 757993

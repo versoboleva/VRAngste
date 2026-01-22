@@ -1,0 +1,254 @@
+using UnityEngine;
+using System.Collections;
+using UnityEngine.SceneManagement;
+
+public class SoundSystem : MonoBehaviour 
+{
+    public static SoundSystem Instance;
+    
+    public AudioClip[] rainInsideSounds = new AudioClip[4];
+    public AudioClip[] rainOutsideSounds = new AudioClip[4];
+    public AudioClip[] rainCarSounds = new AudioClip[4];
+    public AudioClip[] thunderInside;
+    public AudioClip[] thunderOutside;
+    private AudioClip[] currentThunder;
+    private AudioClip[] currentRain;
+    public int currentScene = 0;
+    public AudioSource rainSource;
+    public AudioSource windSource;
+    public AudioSource thunderSource;
+    public Transform player;
+    public ParticleSystem Particlerain;
+    public float speedOfSound = 100f;
+    public int rainIntencity = 0;
+    public float thunderVolume = 0;
+
+
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        ResetAudioForSceneChange();
+        StartCoroutine(SetupSceneObjects());
+    }
+
+    private void ResetAudioForSceneChange()
+    {
+        StopAllCoroutines();
+
+        if (rainSource != null)
+        {
+            rainSource.Stop();
+            rainSource.clip = null;
+        }
+        
+        if (thunderSource != null)
+        {
+            thunderSource.Stop();
+            thunderSource.clip = null;
+        }
+    }
+
+    public void StopAudio()
+    {
+        if (rainSource != null)
+        {
+            rainSource.Stop();
+            rainSource.clip = null;
+        }
+
+        if (thunderSource != null)
+        {
+            thunderSource.Stop();
+            thunderSource.clip = null;
+        }
+    }
+    private IEnumerator SetupSceneObjects()
+    {
+        yield return null; // wait for scene init
+
+        player = null;
+        Particlerain = null;
+
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        Particlerain = GameObject.FindGameObjectWithTag("RainSystem")?.GetComponent<ParticleSystem>();
+
+        currentScene = GetSceneIndex();
+
+        SetScene();
+
+        if (player != null)
+        {
+            if (rainSource != null)
+                rainSource.transform.position = player.position;
+        }
+        rainIntencity = 0;
+
+
+        PlayRain();
+    }
+
+    private void FixedUpdate()
+    {
+        if (player == null) return;
+
+        if (rainSource != null)
+            rainSource.transform.position = player.position;
+    }
+
+    private void SetThunderVolume()
+    {
+        if (thunderSource != null)
+        {
+            thunderSource.volume = Mathf.Clamp01(thunderVolume);
+        }
+    }
+
+    public void SetRainIntencity(int intencity)
+    {
+        rainIntencity = intencity;
+        PlayRain();
+    }
+
+    public void SetThunder(float donnerVolume)
+    {
+        if (thunderVolume != donnerVolume)
+        {
+            thunderVolume = donnerVolume;
+            SetThunderVolume();
+        }
+    }
+
+    private void SetScene()
+    {
+        rainIntencity = 0;
+        thunderVolume = 0;
+        switch (currentScene)
+        {
+            case 0:
+                currentRain = null;
+                currentThunder = null;
+                if (rainSource != null) rainSource.Stop();
+                if (thunderSource != null) thunderSource.Stop();
+                break;
+            case 1:
+                currentRain = rainInsideSounds;
+                currentThunder = thunderInside;
+                break;
+            case 2:
+                currentRain = rainOutsideSounds;
+                currentThunder = thunderOutside;
+                break;
+            case 3:
+                currentRain = rainCarSounds;
+                currentThunder = thunderInside;
+                break;
+            default:
+                Debug.LogError($"Invalid currentScene: {currentScene}");
+                currentRain = null;
+                return;
+        }
+    }
+    public static int GetSceneIndex()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        switch (sceneName)
+        {
+            case "Safespace": return 0;
+            case "Innen": return 1;
+            case "Ausen": return 2;
+            case "Car": return 3;
+            default: return 0; // Default auf 0 = "Safespace"
+        }
+    }
+    private void PlayRain()
+    {
+        if (rainSource == null) return;
+
+        if (currentRain == null || currentRain.Length == 0)
+        {
+            rainSource.Stop();
+            rainSource.clip = null;
+            return;
+        }
+
+        rainIntencity = Mathf.Clamp(rainIntencity, 0, currentRain.Length - 1);
+
+        var clip = currentRain[rainIntencity];
+        if (clip == null)
+        {
+            rainSource.Stop();
+            rainSource.clip = null;
+            return;
+        }
+
+        // optional: nur wechseln, wenn nötig
+        if (rainSource.clip != clip)
+        {
+            rainSource.Stop();
+            rainSource.clip = clip;
+            rainSource.Play();
+        }
+        else if (!rainSource.isPlaying)
+        {
+            rainSource.Play();
+        }
+    }
+
+
+    public void PlayThunder(Vector3 lightningPos)
+    {
+        if (currentThunder == null || currentThunder.Length == 0 || thunderSource == null || player == null)
+            return;
+
+        
+        int index = Random.Range(0, currentThunder.Length);
+
+        float distance = Vector3.Distance(player.position, lightningPos);
+
+        float delay = distance / speedOfSound;
+
+        StartCoroutine(PlayThunderDelayed(currentThunder[index], delay, lightningPos));
+    }
+
+    private IEnumerator PlayThunderDelayed(AudioClip clip, float delay, Vector3 lightningPos)
+    {
+        yield return new WaitForSeconds(delay);
+
+        thunderSource.transform.position = lightningPos;
+
+        thunderSource.clip = clip;
+        thunderSource.Play();
+
+        Debug.Log($"Thunder played at {lightningPos} after {delay:F2} seconds");
+    }
+    /*private void PlayWind()
+    {
+        if (currentWind[windIntencity] != null && windSource != null)
+        {
+            windSource.clip = currentWind[windIntencity];
+            windSource.Play();
+        }
+    }*/
+
+
+}

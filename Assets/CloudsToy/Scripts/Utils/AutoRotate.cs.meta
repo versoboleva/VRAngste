@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8d9168d41f547414da58a5a8dbbc556f
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Scripts/Utils/AutoRotate.cs
+  uploadId: 757993

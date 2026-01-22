@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: d00c76fe17be0574797b4a0255c5e267
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Shaders/CloudAnimated_Bultin.shadergraph
+  uploadId: 757993

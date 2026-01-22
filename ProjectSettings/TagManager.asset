@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - Anchor
+  - RainSystem
+  - PorchDroplets
+  - Clouds
+  - Lightning
   layers:
   - Default
   - TransparentFX
@@ -12,8 +16,8 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
+  - Camera
+  - CloudsToy
   - 
   - 
   - 

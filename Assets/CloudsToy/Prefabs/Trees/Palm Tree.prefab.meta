@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 13929cf059768e641ac2e9c79f112a25
+timeCreated: 1529581143
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Prefabs/Trees/Palm Tree.prefab
+  uploadId: 757993

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 26d819d0279f07b418fd2ee28a274261
+timeCreated: 1430643280
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Materials/Clouds/Cloud6 Alpha Mat.mat
+  uploadId: 757993

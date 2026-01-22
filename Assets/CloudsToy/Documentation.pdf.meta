@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 69b0806fbe870894eaf6dcd7868f316c
+timeCreated: 1530182586
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Documentation.pdf
+  uploadId: 757993

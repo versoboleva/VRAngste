@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 088b53c899afcfb47b81c9cbf2e29dc2
+timeCreated: 1530093437
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Materials/SkyBoxes/SkyBox_Sunsetv1_Mat.mat
+  uploadId: 757993

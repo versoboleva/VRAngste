@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fae9b28b8e5671e47b550465dab02b07
+timeCreated: 1430643349
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Materials/Projector/Shadow_Light.mat
+  uploadId: 757993

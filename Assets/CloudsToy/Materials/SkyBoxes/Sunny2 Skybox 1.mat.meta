@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8a346ed0a39e9d24e8eecdfd575d151d
+timeCreated: 1430050757
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 35559
+  packageName: CloudsToy
+  packageVersion: v2.2.5.1
+  assetPath: Assets/CloudsToy/Materials/SkyBoxes/Sunny2 Skybox 1.mat
+  uploadId: 757993
