@@ -92,7 +92,8 @@ fun ControlView(
                 SubCategory("Intervall Blitz") {
                     Slider(
                         value = lightningInterval.toFloat(),
-                        onValueChange = { viewModel.setLightningInterval(it.roundToInt()) },
+                        onValueChange = { viewModel.setLightningIntervalWithoutEnv(it.roundToInt()) },
+                        onValueChangeFinished = viewModel::setLightningInterval,
                         valueRange = 0f..100f,
                     )
                     Text("Blitzschläge alle ${lightningInterval}s")
@@ -107,15 +108,15 @@ fun ControlView(
 
             Category("Blitz/Donner") {
                 SubCategory("Lautstärke Donner") {
-                    Slider(thunderVolume, viewModel::setThunderVolume)
+                    Slider(thunderVolume, viewModel::setThunderVolumeWithoutEnv, onValueChangeFinished = viewModel::setThunderVolume)
                     Text("${(thunderVolume * 100).roundToInt()}%")
                 }
                 SubCategory("Helligkeit Blitz") {
-                    Slider(lightningBrightness, viewModel::setLightningBrightness)
+                    Slider(lightningBrightness, viewModel::setLightningBrightnessWithoutEnv, onValueChangeFinished = viewModel::setLightningBrightness)
                     Text("${(lightningBrightness * 100).roundToInt()}%")
                 }
                 SubCategory("Distanz Blitz") {
-                    Slider(lightningDistance, viewModel::setLightningDistance)
+                    Slider(lightningDistance, viewModel::setLightningDistanceWithoutEnv, onValueChangeFinished = viewModel::setLightningDistance)
                     Text("${(lightningDistance * 100).roundToInt()}m")
                 }
             }

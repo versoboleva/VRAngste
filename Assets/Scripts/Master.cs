@@ -3,6 +3,7 @@ using NUnit;
 using TMPro;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 using System.IO;
 using System.Net.Http;
 using Google.Protobuf;
@@ -37,8 +38,9 @@ public class Master : MonoBehaviour
     private int clouds;
     private float lightningIntencity;
     private float lightningFrequency;
+    private InputDevice leftHand;
+    private bool lastTriggerPressed = false;
 
-    public static Master Instance { get; private set; }
     private void Start()
     {
         if(sound == null)
@@ -51,13 +53,14 @@ public class Master : MonoBehaviour
         }
         if (sceneSetter == null)
         {
-            sceneSetter = FindAnyObjectByType<SceneSetter>();
+            sceneSetter = SceneSetter.Instance;
         }
         if (api == null)
         {
             api = FindAnyObjectByType<ApiClient>();
         }
         if(connectWithoutVR) ConnectToServer();
+        leftHand = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
         ApiClient.Instance.OnBytesReceived += HandleEnvelope; // <- call function on event/does the same as https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
     }
 
@@ -75,7 +78,7 @@ public class Master : MonoBehaviour
     {
         sound = FindAnyObjectByType<SoundSystem>();
         storm = FindAnyObjectByType<StormSystem>();
-        sceneSetter = FindAnyObjectByType<SceneSetter>();
+        sceneSetter = SceneSetter.Instance;
         api = FindAnyObjectByType<ApiClient>();
 
     }
@@ -153,17 +156,44 @@ public class Master : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        if (!leftHand.isValid)
+            leftHand = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
+
+        bool triggerPressed = false;
+
+        if (leftHand.isValid)
+            leftHand.TryGetFeatureValue(CommonUsages.triggerButton, out triggerPressed);
+
+        if (triggerPressed && !lastTriggerPressed)
+        {
+            Debug.Log("Left Trigger pressed → Connecting");
+            if (SceneManager.GetActiveScene().name == "Safespace")
+            {
+                Debug.Log("Right Trigger pressed → Connect to Server");
+                OnKeyboardSubmit();
+            }
+        }
+
+        lastTriggerPressed = triggerPressed;
+    }
     public async void SendLightningReport(AnnounceLightningReport report)
     {
-        // Serialize directly to byte array
-        byte[] data = report.ToByteArray();
+        if (ApiClient.Instance == null)
+        {
+            Debug.LogError("ApiClient.Instance is null!");
+            return;
+        }
 
-        using var client = new HttpClient();
-        var content = new ByteArrayContent(data);
-        content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/x-protobuf");
+        var env = new Envelope
+        {
+            AnnounceLightningReport = report
+        };
 
-        var response = await client.PostAsync("https://example.com/lightningreport", content);
-        Debug.Log($"Report sent. Response: {response.StatusCode}");
+        ApiClient.Instance.Send(env);
+
+        Debug.Log($"Lightning report sent via TCP. Distance={report.Distance}, Timestamp={report.Timestamp}");
     }
 
 

@@ -20,15 +20,17 @@ public class SceneSetter : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
-        else
+        else if(Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
+
         if (master == null)
         {
             master = FindAnyObjectByType<Master>();
         }
+        
         if(sound == null)
         {
             sound = FindAnyObjectByType<SoundSystem>();
@@ -56,24 +58,25 @@ public class SceneSetter : MonoBehaviour
 
     void Update()
     {
-        if(SceneManager.GetActiveScene().name != "Safespace")
-        {
-            if (!rightHand.isValid)
+        if (!rightHand.isValid)
             rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
 
-            bool triggerPressed = false;
+        bool triggerPressed = false;
 
-            if (rightHand.isValid)
-                rightHand.TryGetFeatureValue(CommonUsages.triggerButton, out triggerPressed);
+        if (rightHand.isValid)
+            rightHand.TryGetFeatureValue(CommonUsages.triggerButton, out triggerPressed);
 
-            if (triggerPressed && !lastTriggerPressed)
+        if (triggerPressed && !lastTriggerPressed)
+        {
+            Debug.Log("Right Trigger pressed → loading scene 1");
+            if (SceneManager.GetActiveScene().name != "Safespace")
             {
-                Debug.Log("Right Trigger pressed → loading scene 1");
+                Debug.Log("Right Trigger pressed → loading Safespace (0)");
                 ChangeScene(0);
             }
-
-            lastTriggerPressed = triggerPressed;
         }
+
+        lastTriggerPressed = triggerPressed;
     }
     
     public void ChangeScene(int sceneNumber)
