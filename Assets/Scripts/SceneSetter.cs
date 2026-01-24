@@ -55,23 +55,26 @@ public class SceneSetter : MonoBehaviour
     }
 
     void Update()
-{
-    if (!rightHand.isValid)
-        rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
-
-    bool triggerPressed = false;
-
-    if (rightHand.isValid)
-        rightHand.TryGetFeatureValue(CommonUsages.triggerButton, out triggerPressed);
-
-    if (triggerPressed && !lastTriggerPressed)
     {
-        Debug.Log("Right Trigger pressed → loading scene 1");
-        ChangeScene(0);
-    }
+        if(SceneManager.GetActiveScene().name != "Safespace")
+        {
+            if (!rightHand.isValid)
+            rightHand = InputDevices.GetDeviceAtXRNode(XRNode.RightHand);
 
-    lastTriggerPressed = triggerPressed;
-}
+            bool triggerPressed = false;
+
+            if (rightHand.isValid)
+                rightHand.TryGetFeatureValue(CommonUsages.triggerButton, out triggerPressed);
+
+            if (triggerPressed && !lastTriggerPressed)
+            {
+                Debug.Log("Right Trigger pressed → loading scene 1");
+                ChangeScene(0);
+            }
+
+            lastTriggerPressed = triggerPressed;
+        }
+    }
     
     public void ChangeScene(int sceneNumber)
     {

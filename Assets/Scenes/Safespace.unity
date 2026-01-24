@@ -1110,6 +1110,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3447935436786261980, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+      propertyPath: m_text
+      value: Removed for privacy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447935436786261980, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447935436786261980, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447935436786261980, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4281479730
+      objectReference: {fileID: 0}
     - target: {fileID: 3447935437714240047, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1125,6 +1141,10 @@ PrefabInstance:
     - target: {fileID: 3447935437714240047, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3447935437714240049, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
+      propertyPath: m_Text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3578381075744759094, guid: cd1cd83b92c6c6246a5d786446abd7da, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1590,11 +1610,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
       propertyPath: host
-      value: 192.168.2.32
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
       propertyPath: nonce
-      value: K2GL
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
       propertyPath: hostField
@@ -1611,6 +1631,10 @@ PrefabInstance:
     - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
       propertyPath: sceneSetter
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
+      propertyPath: connectWithoutVR
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1632,6 +1656,10 @@ PrefabInstance:
     - target: {fileID: 6164475247259974053, guid: fd14038d3b702344e9da42b45cd37acd, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7441663228222122741, guid: fd14038d3b702344e9da42b45cd37acd, type: 3}
+      propertyPath: m_RequestedTrackingOriginMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7702082881757073992, guid: fd14038d3b702344e9da42b45cd37acd, type: 3}
       propertyPath: m_Name

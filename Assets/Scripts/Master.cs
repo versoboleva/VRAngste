@@ -10,15 +10,22 @@ using Google.Protobuf;
 
 public class Master : MonoBehaviour 
 {
+    [Header("System Inputs")]
     public SoundSystem sound;
     public StormSystem storm;
     public ApiClient api;
     public Envelope envelope;
     public SceneSetter sceneSetter;
-    public string host = "127.0.0.1";
-    public string nonce = "ABCD";
+
+    [Header("Server Connection")]
+    public string host;
+    public string nonce;
     public string port = "35614";
 
+    [Header("Option to Server connect without VR, preset host and nonce inbefore")]
+    public bool connectWithoutVR = true;
+
+    [Header("Textfields for Server connection with VR via Button")]
     public TMP_InputField hostField;
     public TMP_InputField nonceField;
     public TMP_InputField portField;
@@ -50,7 +57,7 @@ public class Master : MonoBehaviour
         {
             api = FindAnyObjectByType<ApiClient>();
         }
-        ConnectToServer();
+        if(connectWithoutVR) ConnectToServer();
         ApiClient.Instance.OnBytesReceived += HandleEnvelope; // <- call function on event/does the same as https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
     }
 
@@ -194,15 +201,15 @@ public class Master : MonoBehaviour
         // Lies direkt aus dem InputField
         string hostText = hostField.text;
         string nonceText = nonceField.text;
-        string portText = portField.text;
+        //string portText = portField.text;
 
         this.host = hostText;
         this.nonce = nonceText;
-        this.port = portText;
+        //this.port = portText;
 
         Debug.Log("Host set to: " + hostText);
         Debug.Log("Nonce set to: " + nonceText);
-        Debug.Log("Port set to: " + portText);
+        //Debug.Log("Port set to: " + portText);
 
         api.SetPort(this.port);
         ApiClient.Instance.Connect(this.nonce, this.host);
