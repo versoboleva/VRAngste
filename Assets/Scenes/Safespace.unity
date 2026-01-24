@@ -1610,11 +1610,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
       propertyPath: host
-      value: 192.168.2.32
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
       propertyPath: nonce
-      value: VBP9
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5186021858850502451, guid: f116171e375e4494da2fae349c7bdf80, type: 3}
       propertyPath: hostField
